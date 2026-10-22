@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Downloads · CCS brand toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform-light.svg" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="kit/ccs.css">
+<style>
+.dl-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,96px);align-items:center;padding-top:clamp(24px,5vh,64px)}
+.dl-in h1{margin:0 0 .5em;font-size:clamp(40px,4.6vw,80px)}
+.dl-in .lead{max-width:24em;color:var(--fg-2);margin:0}
+.tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);align-items:start}
+.ctrl{display:grid;gap:clamp(32px,5vh,56px)}
+.ctrl h2,.sig h2{margin:0 0 16px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.opt{display:inline-flex;align-items:center;gap:10px;min-height:48px;border:0;cursor:pointer;font:inherit;font-family:var(--f-d);font-weight:700;font-size:17px;padding:8px 18px 8px 12px;background:color-mix(in srgb,var(--ink) 7%,var(--stone));color:var(--ink);clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,0 10px)}
+.opt:hover{background:color-mix(in srgb,var(--ink) 13%,var(--stone))}
+.opt[aria-checked="true"]{background:var(--ink);color:var(--stone)}
+.opt .sw{width:22px;height:22px;flex:none}
+.opt .tick{width:1em;text-align:center}
+.opt:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.opt .sp{font-weight:600;opacity:.85}
+.files{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.files li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 12px calc(var(--cut) + 16px)}
+.files .fn{font-family:var(--f-d);font-weight:800;font-size:20px;letter-spacing:-.02em;display:block}
+.files .fd{display:block;font-size:var(--s-small);color:var(--fg-2)}
+.files .ff{display:block;font-size:var(--s-small);color:var(--fg-2);overflow-wrap:anywhere}
+.files .btn{flex:none}
+.files li.lit{padding:clamp(20px,2.6vw,36px) clamp(20px,2.6vw,36px) clamp(20px,2.6vw,36px) calc(var(--cut) + 18px);margin-bottom:10px}
+button.primary{background:transparent;color:inherit;padding:0;min-height:44px;display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;border:0;cursor:pointer;font:inherit;text-align:left}
+button.primary .fn{font-size:clamp(24px,2.4vw,34px)}
+button.primary .fd,button.primary .ff{color:var(--lit-ink)}
+button.primary .go{font-family:var(--f-d);font-weight:800;font-size:18px;flex:none}
+button.primary:focus-visible{outline:3px solid var(--lit-ink);outline-offset:-8px}
+.all{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.all p{margin:0;font-size:var(--s-small);color:var(--fg-2);max-width:22em}
+.preview{min-height:min(70vh,640px);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,2.4vw,36px);color:var(--fg)}
+.preview.on-stone{background:var(--stone);color:var(--ink)}
+.preview .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 0}
+.preview .stage img{height:min(52vh,480px);width:auto;max-width:100%}
+.preview .chip{background:color-mix(in srgb,var(--fg) 14%,transparent);color:var(--fg)}
+.preview .cap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.preview .cap strong{font-family:var(--f-d);font-weight:800;font-size:20px;letter-spacing:-.02em;margin-right:4px}
+.preview.on-stone .chip{background:var(--ink);color:var(--stone)}
+.icons{display:flex;gap:16px;align-items:flex-end;margin-top:16px;flex-wrap:wrap}
+.icons figure{margin:0;display:grid;gap:6px;justify-items:start;font-size:var(--s-small);color:var(--fg-2)}
+.icons img{display:block}
+.sig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);align-items:start}
+.sig .intro{max-width:30em;color:var(--fg-2);margin:0 0 28px}
+.sig form{display:grid;gap:20px}
+.sig .row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:8px}
+.sigprev{background:#FFFFFF;padding:clamp(24px,3vw,40px);overflow-x:auto}
+.sigprev-h{margin:0 0 12px;font-family:var(--f-d);font-weight:700;font-size:16px}
+.status{min-height:1.5em;font-size:var(--s-small);color:var(--fg-2);margin:0}
+@media (max-width:860px){
+  .tool,.sig,.dl-in{grid-template-columns:1fr}
+  .dl-in{gap:8px}
+  .preview{min-height:0;padding:16px}
+  .preview .stage img{height:clamp(160px,34vh,260px)}
+  .files li{padding-left:0;flex-direction:column;align-items:stretch}
+  .files .btn{justify-content:center}
+  button.primary{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="section dl-top" id="band" data-colourway="platform" aria-label="Introduction">
+  <div class="bar bar-flush">
+    <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main"><ul>
+      <li><a href="index.html">Home</a></li><li><a href="how-ccs-works.html">How CCS works</a></li><li><a href="mark-suite.html">Mark Suite</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="motion.html">Motion</a></li><li><a href="deck.html">Deck</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="journey.html">Journey</a></li>
+    </ul></nav>
+  </div>
+  <div class="dl-in">
+    <div>
+      <h1 class="display hero-size step"><span>Take the mark</span><span>with you.</span></h1>
+      <p class="lead">Pick a colourway and a version, then take the file you need. Every file is the refined mark, drawn from the same shapes and palette as the rest of the toolkit.</p>
+    </div>
+    <div class="preview" id="preview">
+      <div class="stage"><img id="pv-img" alt=""></div>
+      <div class="cap" id="pv-cap"></div>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="section dl-tool" data-surface="stone" data-cut="left" aria-labelledby="files-h">
+    <div class="tool">
+      <div class="ctrl">
+        <div>
+          <h2 class="display sub" id="cw-h">Colourway</h2>
+          <div class="pick" id="cw" role="radiogroup" aria-labelledby="cw-h"></div>
+        </div>
+        <div>
+          <h2 class="display sub" id="ver-h">Version</h2>
+          <div class="pick" id="ver" role="radiogroup" aria-labelledby="ver-h"></div>
+        </div>
+      </div>
+      <div class="ctrl">
+        <div>
+          <h2 class="display sub" id="files-h">Files</h2>
+          <ul class="files" id="files"></ul>
+          <div class="all">
+            <button class="btn btn-sm" type="button" id="zip">Download all as a zip</button>
+            <p>All six files for this colourway and version in one folder.</p>
+          </div>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </div>
+        <div class="icons" id="icons" aria-label="Icon previews"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-surface="stone" aria-labelledby="sig-h">
+    <div class="sig">
+      <div>
+        <h2 class="display head" id="sig-h">Email signature.</h2>
+        <p class="intro">Fill in your details and copy the signature. In Outlook, open Settings, then Signatures, and paste. It uses the colourway picked above.</p>
+        <form id="sig-form" onsubmit="return false">
+          <div class="field"><label for="s-name">Name</label><input class="input" id="s-name" autocomplete="name" value="Alex Morgan"></div>
+          <div class="field"><label for="s-role">Role</label><input class="input" id="s-role" autocomplete="organization-title" value="Service Design Lead"></div>
+          <div class="field"><label for="s-mail">Email</label><input class="input" id="s-mail" type="email" autocomplete="email" value="alex.morgan@example.com"></div>
+          <div class="field"><label for="s-tel">Phone</label><input class="input" id="s-tel" type="tel" autocomplete="tel" value="+44 20 7946 0000"><span class="hint">Leave blank to drop the line.</span></div>
+          <div class="row"><button class="btn" type="button" id="copy">Copy signature</button><p class="status" id="sig-status" role="status" aria-live="polite"></p></div>
+        </form>
+      </div>
+      <div>
+        <p class="sigprev-h" id="sigprev-h">Preview</p>
+        <div class="sigprev" id="sigprev" role="region" aria-labelledby="sigprev-h"></div>
+      </div>
+    </div>
+    <footer class="foot">
+      <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+      <a href="how-ccs-works.html">How CCS works</a><a href="archive/directions/synthesis/qbr.html">QBR pack</a><a href="refined-mark.html">The refined mark</a><a href="kit/gallery.html">Kit gallery</a>
+    </footer>
+  </section>
+</main>
+<script src="palette.js"></script>
+<script src="kit/ccs.js"></script>
+<script src="downloads/downloads.js"></script>
+</body>
+</html>

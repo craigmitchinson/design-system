@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCS quarterly business review: the space between</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="space.css">
+<style>
+body{background:#C9D1DE;padding:24px 0 48px;display:flex;flex-direction:column;align-items:center;gap:32px}
+.holder{position:relative;overflow:hidden}
+.slide-frame{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden;background:var(--paper);--g:22px;--d:31px}
+
+/* Title slide */
+.s1{background:var(--navy);color:var(--silver)}
+.s1 .mark{position:absolute;height:1420px;left:1010px;top:-150px}
+.s1 .brand{position:absolute;left:128px;top:96px;display:flex;align-items:center;gap:18px;font-family:var(--f-display);font-weight:700;font-size:44px;letter-spacing:-.04em}
+.s1 .brand img{height:60px}
+.s1 .t{position:absolute;left:128px;top:360px;font-size:184px;line-height:.86;letter-spacing:-.05em;width:960px}
+.s1 .sub{position:absolute;left:128px;bottom:120px;font-size:36px;line-height:1.3;color:var(--silver-soft)}
+.s1 .sub b{color:#fff;font-weight:600}
+/* the step out of the title: paper below, at the gap's angle */
+.s1 .cut{position:absolute;left:0;right:0;bottom:0;height:96px;background:var(--paper);clip-path:polygon(calc(820px + 96px + 31px) 0,100% 0,100% 100%,calc(820px + 31px) 100%)}
+
+/* Content slide */
+.s2 .head{position:absolute;left:128px;top:112px;width:980px}
+.s2 h2{font-size:104px;line-height:.9;letter-spacing:-.045em}
+.s2 .head p{font-size:32px;line-height:1.35;color:var(--ink-soft);margin-top:36px;max-width:24em}
+.bars{position:absolute;left:128px;top:470px;width:1040px;display:grid;gap:16px;list-style:none;margin:0;padding:0}
+.bars li{display:grid;grid-template-columns:400px 1fr;align-items:center;gap:28px;font-size:28px;line-height:1.1}
+.bars b{font-weight:600}
+.bars span{display:block;color:var(--ink-soft);font-size:22px;margin-top:4px}
+.bars i{display:flex;align-items:center;height:46px;width:calc(var(--n) * 56px);background:var(--c);clip-path:polygon(46px 0,100% 0,calc(100% - 46px) 100%,0 100%);color:#fff;font-style:normal;font-family:var(--f-display);font-weight:700;font-size:28px;padding-left:52px;font-variant-numeric:tabular-nums}
+.s2 .field{position:absolute;right:0;top:0;bottom:0;width:640px;background:#04213E;clip-path:polygon(222px 0,100% 0,100% 100%,0 100%,0 820px,222px 598px)}
+.s2 .moon{position:absolute;left:232px;top:96px;width:400px;height:400px}
+.s2 .moon.ph{background:#074E79;color:#D9F5F8}
+.s2 .moon span{font-size:22px;max-width:6.5em;transform:translate(26%,2%)}
+.s2 .cap{position:absolute;left:262px;top:520px;width:330px;font-size:22px;line-height:1.35;color:#9FE3EA}
+.s2 .note{position:absolute;right:96px;bottom:112px;width:440px;color:#D9F5F8;font-size:26px;line-height:1.35}
+.s2 .note b{display:block;font-family:var(--f-display);font-size:44px;letter-spacing:-.03em;line-height:1;color:#fff;margin-bottom:12px}
+.s2 .foot{position:absolute;left:128px;bottom:60px;font-size:22px;color:var(--ink-soft);display:flex;gap:16px;align-items:center}
+.s2 .foot img{height:34px}
+</style>
+</head>
+<body>
+<h1 class="sr-only">CCS quarterly business review slides</h1>
+
+<div class="holder"><section class="slide-frame s1" aria-label="Title slide">
+  <img class="mark" src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="">
+  <div class="brand"><img src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="">CCS</div>
+  <h2 class="t">Quarterly review</h2>
+  <p class="sub"><b>Colleague &amp; Customer Service</b><br>Q3 2026. The platform and its four Labs.</p>
+  <div class="cut"></div>
+</section></div>
+
+<div class="holder"><section class="slide-frame s2" aria-label="Content slide: where the mark lives">
+  <div class="head">
+    <h2>Where the mark lives</h2>
+    <p>Every SharePoint site now carries the mark in its own colourway: 60 pages across the platform, the Labs and Frontier.</p>
+  </div>
+  <ul class="bars">
+    <li><div><b>Platform hub</b><span>Navy</span></div><i style="--n:9;--c:#2B4A86">9</i></li>
+    <li><div><b>24x7 Services</b><span>Lab 1, Ember</span></div><i style="--n:6;--c:#B8400F">6</i></li>
+    <li><div><b>Automated Operations</b><span>Lab 2, Crimson</span></div><i style="--n:6;--c:#A01A2C">6</i></li>
+    <li><div><b>Colleague Services</b><span>Lab 3, Sapphire</span></div><i style="--n:6;--c:#1D4ED8">6</i></li>
+    <li><div><b>Data &amp; Insights</b><span>Lab 4, Seafoam</span></div><i style="--n:6;--c:#0A6E8C">6</i></li>
+    <li><div><b>Frontier</b><span>Innovation forum, Violet</span></div><i style="--n:7;--c:#5B21B6">7</i></li>
+  </ul>
+  <div class="field">
+    <div class="moon ph m-cr" role="img" aria-label="Picture placeholder, right crescent crop"></div>
+    <p class="cap">Photograph to come, in the right crescent crop: the Data &amp; Insights team.</p>
+    <p class="note"><b>Data &amp; Insights</b>Lab 4, in Seafoam and Teal. Six SharePoint pages, each in its own colourway.</p>
+  </div>
+  <div class="foot"><img src="../../assets/ccs-mark/suite/ccs-mark-seafoam-teal.svg" alt="">Templates as well: a business site of 11 pages and a team site of 7.</div>
+</section></div>
+
+<script>
+function fit(){
+  const pad = innerWidth < 700 ? 12 : 48;
+  const s = Math.min((innerWidth - pad * 2) / 1920, (innerHeight - 48) / 1080);
+  document.querySelectorAll('.holder').forEach(h => { h.style.width = 1920 * s + 'px'; h.style.height = 1080 * s + 'px'; h.firstElementChild.style.transform = 'scale(' + s + ')'; });
+}
+addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>

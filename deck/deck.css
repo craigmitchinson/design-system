@@ -1,0 +1,120 @@
+/* Mark Deck. Page chrome, the stage, the controller and the slide layouts. Built on kit/ccs.css. */
+
+/* ---------- Page chrome ---------- */
+.deck-head .intro{padding:4px var(--m) 36px}
+.deck-head h1{font-size:clamp(34px,4.4vw,72px)}
+.deck-head .lead{color:var(--fg-2);max-width:34em;margin-top:.45em}
+.deck-foot{padding:0 var(--m) 40px}
+.deck-foot .foot{margin-top:0;padding-top:40px}
+
+/* ---------- The stage ---------- */
+#deck{position:relative;background:var(--ink)}
+.stage{position:relative;width:100%;display:grid;place-items:center;overflow:hidden;touch-action:pan-y}
+.fit{position:relative;overflow:hidden;width:calc(1920px * var(--k,.5));height:calc(1080px * var(--k,.5))}
+.frame{position:absolute;left:0;top:0;width:1920px;height:1080px;transform:scale(var(--k,.5));transform-origin:0 0}
+
+.controls{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;padding:14px var(--m)}
+.controls .counter{flex:1;min-width:12em;text-align:center;font-family:var(--f-d);font-weight:700;font-size:17px;letter-spacing:-.01em}
+.controls .counter .muted{display:block;font-weight:700;font-size:15px}
+.controls .btn{min-width:44px}
+.controls .btn[disabled]{opacity:.45;cursor:default;translate:none}
+.ctl-end{display:flex;gap:12px}
+
+.notes-panel{padding:24px var(--m) 32px}
+.notes-panel h2{font-family:var(--f-d);font-size:22px;letter-spacing:-.01em;margin-bottom:8px}
+.notes-panel p{max-width:46em;font-size:19px}
+.notes-panel p + p{margin-top:.6em}
+
+.hint{display:none;align-items:center;gap:16px;padding:12px var(--m)}
+.hint p{flex:1;font-family:var(--f-d);font-weight:700;font-size:17px}
+@media (orientation:portrait) and (max-width:767px){.hint:not(.gone){display:flex}}
+
+/* Present mode: the deck alone, full screen, letterboxed in Ink. */
+#deck.presenting{position:fixed;inset:0;z-index:50}
+#deck.presenting .controls{display:none}
+#deck.presenting .notes-panel{position:absolute;left:0;right:0;bottom:0;z-index:5}
+.dk-presenting body{overflow:hidden}
+
+/* ---------- Slides ---------- */
+.slide{position:absolute;inset:0;display:none;overflow:hidden;--cut:56px;font-size:30px;line-height:1.45}
+.slide.on,.slide.out{display:block}
+.slide.on{z-index:2}
+.slide.out{z-index:1;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+  .slide.on.fwd{animation:dk-in-f .48s var(--ease) both}
+  .slide.on.back{animation:dk-in-b .48s var(--ease) both}
+  .slide.out.fwd{animation:dk-out-f .42s var(--ease) both}
+  .slide.out.back{animation:dk-out-b .42s var(--ease) both}
+}
+/* The one motion: along the mark's 45 degree axis. Forward travels up and to the right. */
+@keyframes dk-in-f{from{translate:-40px 40px;opacity:0}}
+@keyframes dk-in-b{from{translate:40px -40px;opacity:0}}
+@keyframes dk-out-f{to{translate:40px -40px;opacity:0}}
+@keyframes dk-out-b{to{translate:-40px 40px;opacity:0}}
+
+.slide .abs,.slide .zone{position:absolute}
+.slide .t-hero{font-size:168px}
+.slide .t-big{font-size:150px}
+.slide .t-head{font-size:112px}
+.slide .t-mid{font-size:92px;letter-spacing:-.03em;line-height:1}
+.slide .s-lead{font-size:38px;line-height:1.32}
+.slide .s-text{font-size:30px}
+.slide .s-tag{font-family:var(--f-d);font-weight:700;font-size:28px;letter-spacing:-.005em;color:var(--tint)}
+.slide .s-name{font-family:var(--f-d);font-weight:800;font-size:40px;letter-spacing:-.025em;line-height:1.05}
+.slide .lit-pad{padding:40px 56px 40px 104px}
+.slide .wordmark{position:absolute;left:96px;top:72px;font-size:44px;gap:18px;margin:0}
+.slide .wordmark .mark{height:54px}
+.slide .wordmark.right{left:auto;right:96px}
+.slide .step > *{white-space:nowrap}
+.slide .step > :nth-child(2){margin-left:1lh}
+.slide .step > :nth-child(3){margin-left:2lh}
+.slide .step > :nth-child(4){margin-left:3lh}
+.slide .stone-field{background:var(--stone);color:var(--ink)}
+.slide .fmark{display:block;aspect-ratio:3637.75/5727.99}
+.slide .slab{clip-path:polygon(48px 0,100% 0,100% 100%,0 100%,0 48px)}
+.slide .row{position:absolute;display:grid}
+
+/* 4. Panels and crescents: one part lit at a time. */
+.parts3{left:96px;right:96px;top:330px;grid-template-columns:repeat(3,1fr);gap:48px;justify-items:center;text-align:center}
+.parts3 .mark{--mark-h:500px;margin-bottom:36px}
+.hl-s .c1,.hl-s .c2,.hl-c1 .p1,.hl-c1 .p2,.hl-c1 .p3,.hl-c1 .c2,.hl-c2 .p1,.hl-c2 .p2,.hl-c2 .p3,.hl-c2 .c1{opacity:.16}
+
+/* 5. Family tiles. */
+.family{left:96px;right:96px;top:430px;grid-template-columns:repeat(6,1fr);gap:24px}
+.family > div{height:540px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;padding:0 16px 44px;text-align:center}
+.family .mark,.family .fmark{height:250px;margin-bottom:auto;margin-top:72px}
+
+/* 6. Labs, flush columns on their own grounds. */
+.labs4{left:0;right:0;top:330px;bottom:0;grid-template-columns:repeat(4,1fr)}
+.labs4 > div{display:flex;flex-direction:column;gap:24px;padding:56px 48px 64px}
+.labs4 .mark{--mark-h:300px;align-self:center;margin:16px 0 auto}
+.labs4 h3{font-size:54px;letter-spacing:-.03em;line-height:1}
+
+/* 8. Colour specimens. */
+.colours{left:96px;right:96px;top:420px;grid-template-columns:repeat(6,1fr);gap:24px}
+.colours .sw-main{height:250px}
+.colours .sw-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.colours .sw-pair i{display:block;height:88px}
+.colours .s-name{margin-top:22px;font-size:34px}
+.colours .mono{display:block;margin-top:10px;font-size:22px;line-height:1.5}
+
+/* 9. Builds. */
+.builds{left:96px;right:96px;top:300px;grid-template-columns:repeat(5,1fr);gap:24px;align-items:end;text-align:center}
+.builds .cell{height:360px;display:grid;place-items:center}
+.builds .cell.stone-field{clip-path:polygon(48px 0,100% 0,100% 100%,0 100%,0 48px)}
+.builds .mark{--mark-h:300px}
+.builds .s-name{margin-top:28px}
+.builds .s-tag{display:block;margin-top:6px;color:var(--fg-2)}
+
+/* 10. App icons. */
+.icons{display:flex;align-items:flex-end;gap:28px}
+.icons > div{display:grid;place-items:center}
+
+/* QBR frames, ported from directions/synthesis/qbr.html. */
+.q-t3 ul{position:absolute;left:1110px;top:470px;width:700px;margin:0;padding:0;list-style:none;display:grid;gap:56px}
+.q-t3 li b{display:block;font-family:var(--f-d);font-weight:700;font-size:28px;color:var(--tint);margin-bottom:6px}
+.q-t3 li span{font-size:38px;line-height:1.3}
+.q-t3 .lit{left:96px;top:450px;width:880px;height:520px;--cut:72px;padding:56px 64px 56px 120px;display:flex;flex-direction:column;justify-content:space-between}
+.q-t3 .lit .lbl{font-family:var(--f-d);font-weight:700;font-size:30px}
+.q-t3 .lit .fig{font-size:150px;line-height:1;letter-spacing:-.04em}
+.q-t3 .lit .cap{font-size:30px}

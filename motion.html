@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mark in Motion · CCS brand toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform-light.svg" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="kit/ccs.css">
+<link rel="stylesheet" href="motion/ccs-motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="section mo-head" data-colourway="platform" aria-label="Introduction">
+  <div class="bar bar-flush">
+    <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main"><ul>
+      <li><a href="index.html">Home</a></li><li><a href="how-ccs-works.html">How CCS works</a></li><li><a href="mark-suite.html">Mark Suite</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="motion.html">Motion</a></li><li><a href="deck.html">Deck</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="journey.html">Journey</a></li>
+    </ul></nav>
+  </div>
+  <h1 class="display head step"><span>The mark,</span><span><em>in motion.</em></span></h1>
+  <p class="lead">Every frame is drawn from the refined geometry. The panels slide back along their own axis, and each crescent is exactly the space they leave. Pick a scene, then change the look.</p>
+</header>
+<main id="main">
+  <section class="section" data-surface="stone" data-cut="left" aria-label="Motion scenes">
+    <div id="ccs-motion-host"></div>
+  </section>
+  <section class="section" data-colourway="platform" data-cut="right" aria-labelledby="one-h">
+    <div class="one" data-enter>
+      <h2 id="one-h" class="display head">One motion.</h2>
+      <div class="body">
+        <p class="lead">CCS moves one way: along the 45 degree axis of the panels.</p>
+        <p>In the mark, the outer panels slide back along that line and the two Cs open in the space they leave. Every scene on this page is that slide, run forwards, backwards, in a pulse or in a loop.</p>
+        <p>Interface motion uses the same move, only smaller. A section slides a short way along the axis as it comes into view. A button or link nudges 8 pixels up and to the right on hover and focus. Pages never spin or bounce; the scenes here that turn are for video, launches and loading states.</p>
+        <p>When a device asks for reduced motion, pages sit still and these scenes play only when you press play.</p>
+        <p><a class="text-link" href="how-ccs-works.html">How CCS works</a></p>
+      </div>
+    </div>
+    <footer class="foot">
+      <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+      <a href="how-ccs-works.html">How CCS works</a><a href="archive/directions/synthesis/qbr.html">QBR pack</a><a href="refined-mark.html">The refined mark</a><a href="kit/gallery.html">Kit gallery</a>
+    </footer>
+  </section>
+</main>
+<script src="palette.js"></script>
+<script src="kit/ccs.js"></script>
+<script src="motion/gsap.min.js"></script>
+<script src="motion/ccs-motion.js"></script>
+</body>
+</html>

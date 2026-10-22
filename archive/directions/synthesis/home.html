@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCS brand toolkit</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Familjen+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="synthesis.css">
+<script src="../../palette.js"></script>
+<style>
+.hero{min-height:100svh;display:flex;flex-direction:column;padding:0 0 calc(var(--S) + var(--pad) * .5)}
+.hero-in{flex:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center;gap:var(--m);padding:2vh var(--m) 4vh}
+.hero h1{margin-bottom:.42em}
+.hero .lead{max-width:25em;color:var(--silver-2);margin-bottom:44px}
+.hero-mark{height:min(72vh,44vw);aspect-ratio:5137.8/6158.35;justify-self:center}
+.hero-mark svg,.hero-mark img{width:100%;height:100%}
+
+.idea{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(40px,6vw,120px);align-items:center}
+.idea h2{margin-bottom:.7em}
+.idea .body{max-width:34em;display:grid;gap:1em}
+.idea figure{margin:0;justify-self:center;width:min(100%,400px)}
+.idea figcaption{margin-top:24px;font-style:italic;color:var(--ink-2);font-size:17px;max-width:21em}
+.labs{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,22em);gap:clamp(32px,5vw,96px);align-items:end}
+.labs .lit{padding:clamp(28px,3.4vw,56px) clamp(28px,3.4vw,56px) clamp(28px,3.4vw,56px) calc(var(--cut) + 20px)}
+.labs p{color:var(--silver-2)}
+.band{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,5vw,96px);align-items:center}
+.band .bm{height:var(--bh,clamp(150px,23vw,360px));aspect-ratio:5137.8/6158.35}
+.band .bm svg,.band .bm img{width:100%;height:100%}
+.band .tag{font-family:var(--f-d);font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--tint);margin:.9em 0 1.3em}
+.band p.lead{color:#fff;max-width:22em}
+.band.flip{grid-template-columns:minmax(0,1fr) auto;text-align:right}
+.band.flip .bm{order:2}
+.band.flip p.lead{margin-left:auto}
+.b1{--gr:#260C03;--grh:#662209;--tint:#FFC394;--bh:clamp(150px,24vw,380px)}
+.b2{--gr:#30050C;--grh:#680E1B;--tint:#FF85A1;--bh:clamp(150px,21vw,330px)}
+.b3{--gr:#0A0F1B;--grh:#142A67;--tint:#93C5FD;--bh:clamp(150px,25vw,390px)}
+.b4{--gr:#04213E;--grh:#074E79;--tint:#9FE3EA;--bh:clamp(150px,20vw,320px)}
+.b5{--gr:#140431;--grh:#330F70;--tint:#F0ABFC}
+.b5 .band{grid-template-columns:auto minmax(0,1fr)}
+.b5 .lit{--l1:#F0ABFC;--l2:#F472B6;--ld:#1E064B;padding:clamp(28px,3.4vw,56px) clamp(32px,4vw,72px) clamp(28px,3.4vw,56px) calc(var(--cut) + 24px)}
+.kitsec .lead{max-width:30em;margin-top:.6em;color:var(--ink-2)}
+.kit{list-style:none;margin:clamp(40px,7vh,88px) 0 0;padding:0;display:grid;gap:clamp(4px,1vw,14px)}
+.kit a{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:baseline;gap:6px 4vw;text-decoration:none;padding:clamp(14px,1.8vw,26px) clamp(16px,2vw,32px)}
+.kit a{padding-left:calc(var(--cut) + 16px)}
+.kit .kn{font-size:clamp(34px,4.8vw,84px)}
+.kit .kd{color:var(--ink-2);max-width:24em}
+.kit .lit .kd{color:var(--ink)}
+.foot{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;margin-top:clamp(80px,14vh,160px);font-size:17px;color:var(--ink-2)}
+.foot a{color:var(--ink)}
+@media (max-width:860px){
+  .hero-in{grid-template-columns:1fr;align-content:center}
+  .hero-mark{height:clamp(180px,32vh,300px);justify-self:start;order:-1}
+  .idea,.labs,.b5 .band{grid-template-columns:1fr}
+  .idea figure{justify-self:start;width:min(70%,280px)}
+  .kit a{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .band,.band.flip{grid-template-columns:1fr;gap:28px;text-align:left}
+  .band.flip .bm{order:0}
+  .band.flip p.lead{margin-left:0}
+  .band .bm{height:var(--bm-s,150px)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="s s-platform cbL hero" aria-label="Introduction">
+  <div class="bar">
+    <a class="wm" href="home.html" aria-label="CCS home"><span class="mk" data-mark="platform" data-v="small"></span><span>CCS</span></a>
+    <nav aria-label="Main"><a href="#toolkit">Toolkit</a><a href="sheet.html">How CCS works</a><a class="opt" href="qbr.html">QBR pack</a></nav>
+  </div>
+  <div class="hero-in">
+    <div>
+      <h1 class="display hero-size step"><span>Hand it</span><span>on.</span></h1>
+      <p class="lead">The CCS brand toolkit. Everything you need to carry the mark well, for every colleague who passes work on.</p>
+      <a class="btn" href="#toolkit">Open the toolkit</a>
+    </div>
+    <div class="hero-mark" id="heroMark" data-mark="platform" data-v="parts" role="img" aria-label="The CCS mark: three panels form an S, two crescents turn it"></div>
+  </div>
+</header>
+<main id="main">
+  <section class="s s-stone ctL cbR" style="--chan:var(--lead)" aria-labelledby="idea-h">
+    <div class="idea rise">
+      <div>
+        <h2 id="idea-h" class="display head step"><span>The panels slide.</span><span>The Cs are <em style="--accent:#3F64B0">the space</em></span><span>they leave.</span></h2>
+        <div class="body">
+          <p>Three panels form the S. Two crescents turn it. The Cs are Colleague and Customer, and the S between them is Service.</p>
+          <p>One mark for the platform and every lab. The light middle panel is the focal point, so it is always the brightest part of the mark. That is where the work passes from one of us to the next.</p>
+        </div>
+      </div>
+      <figure class="fc">
+        <div data-fc role="img" aria-label="The three panels of the mark in ink. The two Cs fill in the spaces the panels leave."></div>
+        <figcaption>Look again. The Cs were there all along: the space the panels leave.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="s s-platform ctR cbL" style="--chan:var(--lead)" aria-labelledby="labs-h">
+    <div class="labs rise">
+      <h2 id="labs-h" class="display head lit">Four labs.<br>One platform.</h2>
+      <p class="lead">Use the platform navy when several labs appear together. Each lab uses its own colourway only for its own materials.</p>
+    </div>
+  </section>
+
+  <section class="s s-lab ctL cbR b1" style="--chan:var(--stone)" aria-labelledby="l1"><div class="band rise">
+    <div class="bm" data-mark="ember"></div>
+    <div><h3 id="l1" class="display name">24x7 Services</h3><p class="tag">Lab 1 · Ember</p><p class="lead">Round the clock, so nobody waits for the morning.</p></div>
+  </div></section>
+  <section class="s s-lab ctR cbL b2" style="--chan:var(--stone)" aria-labelledby="l2"><div class="band flip rise">
+    <div class="bm" data-mark="crimson-obsidian"></div>
+    <div><h3 id="l2" class="display name">Automated Operations</h3><p class="tag">Lab 2 · Crimson</p><p class="lead">The routine done by machines, so people can do the rest.</p></div>
+  </div></section>
+  <section class="s s-lab ctL cbR b3" style="--chan:var(--stone)" aria-labelledby="l3"><div class="band rise">
+    <div class="bm" data-mark="royal-sapphire"></div>
+    <div><h3 id="l3" class="display name">Colleague Services</h3><p class="tag">Lab 3 · Sapphire</p><p class="lead">Looking after the people who look after customers.</p></div>
+  </div></section>
+  <section class="s s-lab ctR cbL b4" style="--chan:var(--stone)" aria-labelledby="l4"><div class="band flip rise">
+    <div class="bm" data-mark="seafoam-teal"></div>
+    <div><h3 id="l4" class="display name">Data &amp; Insights</h3><p class="tag">Lab 4 · Seafoam</p><p class="lead">What the numbers say, in words everyone can use.</p></div>
+  </div></section>
+  <section class="s s-lab ctL cbR b5" style="--chan:var(--stone)" aria-labelledby="l5"><div class="band rise">
+    <h3 id="l5" class="display name lit">Frontier</h3>
+    <div><p class="tag">Innovation forum · Frontier</p><p class="lead">Where we try the next idea first.</p></div>
+  </div></section>
+
+  <section class="s s-stone ctR kitsec" style="--chan:var(--ink)" id="toolkit" aria-labelledby="kit-h">
+    <div class="rise">
+      <h2 id="kit-h" class="display head">The toolkit.</h2>
+      <p class="lead">Everything for the CCS mark in one place: the mark and its colourways, guidelines, motion, the deck, and the SharePoint sites built on them.</p>
+    </div>
+    <ul class="kit rise">
+      <li><a class="glide lit" href="../../../mark-suite.html"><span class="display kn">Mark Suite</span><span class="kd">The final mark: six colourways, variants, type, lockups and sizes.</span></a></li>
+      <li><a class="glide" href="../../../guidelines.html"><span class="display kn">Brand Guidelines</span><span class="kd">The rules: construction, colour, clear space and misuse.</span></a></li>
+      <li><a class="glide" href="../../../motion.html"><span class="display kn">Mark in Motion</span><span class="kd">Every motion scene, with sound and MP4 or GIF export.</span></a></li>
+      <li><a class="glide" href="../../../deck.html"><span class="display kn">Mark Deck</span><span class="kd">Eleven slides introducing the mark to colleagues.</span></a></li>
+      <li><a class="glide" href="../../../downloads.html"><span class="display kn">Downloads</span><span class="kd">SVG and PNG marks, app icons, favicons and an email signature.</span></a></li>
+      <li><a class="glide" href="../../../journey.html"><span class="display kn">Design Journey</span><span class="kd">The record: five candidates and how we chose. Shown in their original colours.</span></a></li>
+    </ul>
+    <footer class="foot">
+      <a class="wm" href="home.html" aria-label="CCS home"><span class="mk" data-mark="platform" data-v="small"></span><span>CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+      <a href="sheet.html">How CCS works</a><a href="qbr.html">QBR pack</a><a href="../../../refined-mark.html">Mark study</a>
+    </footer>
+  </section>
+</main>
+<script>
+/* Marks come from marks/ (manifest.json). Until a file exists, the refined master is used, recoloured from palette.js. */
+const RV="-110.24 -75.58 5137.8 6158.35";
+const RP=["M2412.15 -75.58A1315.59 1315.59 0 0 1 2412.15 1784.95L899.28 3297.82A1434 1434 0 0 1 979.54 1357.03L2412.15 -75.58Z","M1066.72 3465.27L1909.8 2622.19A1434 1434 0 0 1 3850.6 2541.92L3007.52 3385A1434 1434 0 0 1 1066.72 3465.27Z","M2505.17 6082.77A1315.59 1315.59 0 0 1 2505.17 4222.24L4018.04 2709.37A1434 1434 0 0 1 3937.78 4650.16L2505.17 6082.77Z","M372.02 1968.15A1434 1434 0 1 0 2396.39 3992.52A1670.8 1670.8 0 0 1 372.02 1968.15Z","M4545.3 4039.04A1434 1434 0 1 0 2520.93 2014.67A1670.8 1670.8 0 0 1 4545.3 4039.04Z"];
+const PN=["p1","p2","p3","c1","c2"], ALIAS={"crimson-obsidian":["crimson-obsidian","crimson"],"royal-sapphire":["royal-sapphire","sapphire"],"seafoam-teal":["seafoam-teal","seafoam"]};
+let uid=0;
+function markSVG(k){const g=CCS_PALETTE[k].g,id="m"+(uid++),st=[g[0],g[1],[g[0][1],g[0][0]],g[3],g[4]];
+  return `<svg viewBox="${RV}" aria-hidden="true" focusable="false"><defs>${st.map((s,i)=>`<linearGradient id="${id}${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${s[0]}"/><stop offset="1" stop-color="${s[1]}"/></linearGradient>`).join("")}</defs>${RP.map((d,i)=>`<path class="${PN[i]}" d="${d}" fill="url(#${id}${i})"/>`).join("")}</svg>`;}
+async function loadMarks(){
+  let txt="";try{const r=await fetch("marks/manifest.json",{cache:"no-store"});if(r.ok)txt=await r.text();}catch(e){}
+  const has=f=>txt.includes(f);
+  for(const el of document.querySelectorAll("[data-mark]")){
+    const k=el.dataset.mark,v=el.dataset.v||"dark";let file=null;
+    for(const a of (ALIAS[k]||[k])){const f=v==="small"?`refined-small-${a}.svg`:v.startsWith("mono")?`refined-${v}.svg`:`refined-${a}-${v}.svg`;if(has(f)){file=f;break;}}
+    if(file&&(v==="parts"||el.dataset.anim)){try{const t=await (await fetch("marks/"+file)).text();el.innerHTML=t;const s=el.querySelector("svg");s.setAttribute("aria-hidden","true");s.removeAttribute("width");s.removeAttribute("height");
+        const ps=[...s.querySelectorAll("path")];if(!s.querySelector(".p1")&&ps.length===5)ps.forEach((p,i)=>p.classList.add(PN[i]));continue;}catch(e){}}
+    el.innerHTML=file&&!(v==="parts"||el.dataset.anim)?`<img src="marks/${file}" alt="">`:markSVG(k);
+  }
+  await foundC();
+}
+/* The found C: the three panels from marks/masks in Ink, the two crescents in the platform lead, filled as it enters view. */
+async function foundC(){
+  const els=document.querySelectorAll("[data-fc]");if(!els.length)return;
+  const parts=["panel-upper","panel-middle","panel-lower","crescent-left","crescent-right"];
+  const ds=await Promise.all(parts.map(async(p,i)=>{try{const t=await (await fetch("marks/masks/"+p+".svg")).text();const m=t.match(/ d="([^"]+)"/);if(m)return m[1];}catch(e){}return RP[i];}));
+  const svg='<svg viewBox="'+RV+'" aria-hidden="true" focusable="false">'+ds.map((d,i)=>'<path class="'+(i<3?"pn":"cr")+'" d="'+d+'"/>').join("")+'</svg>';
+  els.forEach(el=>el.innerHTML=svg);
+}
+if("IntersectionObserver" in window){document.documentElement.classList.add("js");
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".rise,.fc").forEach(el=>io.observe(el));}
+loadMarks().then(()=>document.querySelectorAll("#heroMark,[data-anim]").forEach(h=>h.classList.add("asm")));
+</script>
+</body>
+</html>

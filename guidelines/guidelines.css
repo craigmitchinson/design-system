@@ -1,0 +1,252 @@
+/* Brand guidelines: page-only layout on top of kit/ccs.css. Colours come from the kit variables only. */
+.hero{min-height:92svh;display:flex;flex-direction:column;padding:0 0 calc(var(--S) + var(--pad) * .5)}
+.hero-in{flex:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);align-items:center;gap:var(--m);padding:2vh var(--m) 4vh}
+.hero h1{margin-bottom:.42em}
+.hero .lead{max-width:26em;color:var(--fg-2);margin-bottom:40px}
+.cover-note{max-width:26em;margin:0}
+.hero-mark{--mark-h:min(64vh,36vw);justify-self:center}
+
+.pg h2{margin-bottom:.5em}
+.stone-run .pg + .pg{padding-top:var(--pad)}
+.intro{max-width:34em;margin-bottom:var(--sp-5);color:var(--fg-2)}
+.note{max-width:40em;margin:var(--sp-3) 0 var(--sp-5);color:var(--fg-2)}
+.note .chip{vertical-align:middle}
+.pg h3.sub{margin-bottom:.6em}
+.table-wrap + .table-wrap,.note + .table-wrap{margin-top:var(--sp-5)}
+.pair{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pair .to{font-family:var(--f-t);font-size:15px;color:var(--fg-2)}
+.same{font-family:var(--f-t);font-style:italic;color:var(--fg-2)}
+.table th[scope="row"]{font-family:var(--f-d);font-weight:800;font-size:17px;padding:10px 24px 10px 0;vertical-align:top;white-space:nowrap}
+.table td{white-space:nowrap}
+
+/* The mark */
+.build{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,96px);align-items:start}
+.dia-fig{margin:0}
+.diagram{width:100%;max-width:520px;height:auto;display:block;overflow:hidden}
+.diagram .dl{font-family:var(--f-m);font-size:300px;font-weight:500;paint-order:stroke;stroke:var(--stone);stroke-width:90px;stroke-linejoin:round}
+.dia-fig figcaption{margin-top:16px;font-style:italic;color:var(--fg-2);font-size:17px;max-width:30em}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);margin-top:var(--sp-6)}
+.two p{max-width:34em;margin-bottom:var(--sp-3)}
+
+/* Lockups */
+.locks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);align-items:end}
+.locks figure{margin:0}
+.locks figcaption{margin-top:20px;font-size:17px;color:var(--fg-2);max-width:22em}
+.locks figcaption strong{color:var(--fg)}
+.clear{--mh:76px;display:inline-block;padding:calc(var(--mh) * 5137.8 / 6158.35 / 2);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.clear .wordmark{display:flex;color:var(--ink)}
+.clear-sm{--mh:96px}
+.stacked{display:inline-flex;flex-direction:column;align-items:center;gap:16px;font-family:var(--f-w);font-weight:700;letter-spacing:.01em;font-size:56px;line-height:1;color:var(--ink)}
+.stacked .mark{--mark-h:96px}
+.lab{display:inline-flex;align-items:center;gap:20px;font-family:var(--f-w);color:var(--ink)}
+.lab .mark{--mark-h:76px}
+.lab-t{display:flex;flex-direction:column;gap:8px}
+.lab-t > span:first-child{font-weight:700;letter-spacing:.01em;font-size:56px;line-height:1}
+.lab-n{font-weight:500;font-size:19px}
+.sizes{display:flex;flex-wrap:wrap;gap:var(--sp-5);margin-top:var(--sp-6);align-items:end}
+.size{display:flex;align-items:end;gap:16px;flex-wrap:wrap}
+.size p{flex-basis:100%;margin:8px 0 0;color:var(--fg-2)}
+.size p .chip{margin-right:6px}
+
+/* Which version */
+.vers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:var(--sp-4) 0 var(--sp-5)}
+.ver{padding:28px 24px 24px;background:var(--ground);color:var(--fg);display:flex;flex-direction:column;gap:10px;min-height:300px}
+.ver .mark,.ver .draw,.ver .row{margin-bottom:auto}
+.ver .draw{height:120px;width:auto;align-self:flex-start}
+.ver h3{margin:24px 0 0}
+.ver p{margin:0;font-size:17px;color:var(--fg)}
+.ver-stone{background:var(--stone);color:var(--ink)}
+.ver-stone p,.ver-stone h3{color:var(--ink)}
+.row{display:flex;align-items:end;gap:16px}
+.glow-rule{max-width:46em;margin:0}
+
+/* Do and don't */
+.dd{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:clamp(32px,5vw,96px)}
+.ex{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-5) var(--sp-4)}
+.dd > div:last-child .ex{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ex figure{margin:0;display:flex;flex-direction:column;gap:16px}
+.ex figure > :first-child{min-height:120px;display:flex;align-items:flex-end;align-self:flex-start}
+.ex .clear{display:inline-flex;align-self:flex-start}
+.ex .draw{height:120px;width:auto;align-self:flex-start}
+.ex figcaption{font-size:17px;max-width:18em}
+.v{font-family:var(--f-d);font-weight:800}
+.squash{transform:scaleX(1.45);transform-origin:left bottom}
+.turn{transform:rotate(-30deg);transform-origin:center}
+.wrong-glow > img,.wrong-glow > svg{filter:drop-shadow(0 0 10px var(--glow))}
+
+/* Frontier */
+.fr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:start;margin-top:var(--sp-4)}
+.f-big{height:clamp(220px,30vw,420px);width:auto;filter:drop-shadow(0 0 8px var(--glow))}
+.fr .lead{max-width:28em;margin-bottom:var(--sp-4)}
+.f-row{display:flex;gap:12px;margin:var(--sp-4) 0;flex-wrap:wrap}
+.f-tile{display:flex;align-items:end;gap:16px;padding:24px 28px}
+.f-stone{background:var(--stone)}
+.fr .lit{max-width:34em;margin:0}
+.fr + .foot{margin-top:var(--pad)}
+
+@media (max-width:1180px){
+  .vers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .build,.two,.dd{grid-template-columns:1fr}
+  .diagram{max-width:420px}
+}
+@media (max-width:860px){
+  .hero-in{grid-template-columns:1fr;align-content:center}
+  .hero-mark{--mark-h:clamp(180px,30vh,280px);justify-self:start;order:-1}
+  .locks{grid-template-columns:1fr;align-items:start}
+  .vers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fr{grid-template-columns:1fr}
+  .f-big{height:220px}
+}
+/* Tables become cards on smaller screens, inside the All values disclosure only. Print keeps the tables. */
+@media screen and (max-width:900px){
+  .all .cards thead{display:none}
+  .all .cards,.all .cards tbody,.all .cards tr,.all .cards td,.all .cards th[scope="row"]{display:block}
+  .all .cards caption{display:block}
+  .all .cards tr{background:color-mix(in srgb,currentColor 7%,transparent);padding:16px 20px;margin-bottom:12px}
+  .all .cards th[scope="row"]{font-size:22px;padding:0 0 8px;white-space:normal}
+  .all .cards td{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;align-items:center;padding:6px 0;white-space:normal}
+  .all .cards td::before{content:attr(data-label);font-family:var(--f-d);font-weight:800;font-size:15px}
+}
+@media (max-width:560px){
+  .vers,.ex,.dd > div:last-child .ex{grid-template-columns:1fr}
+  .ver{min-height:0}
+  .stacked,.lab-t > span:first-child{font-size:44px}
+  .clear .wordmark{font-size:48px}
+  .all .cards td{grid-template-columns:1fr;gap:6px}
+}
+
+/* Print: A4, each section on its own page, no navigation, inked grounds kept. */
+@page{size:A4;margin:0}
+@media print{
+  html,body,*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .skip,.bar,.foot,.menu,.nav,.text-link{display:none!important}
+  [data-cut]{margin-top:0!important;clip-path:none!important}
+  [data-cut]::before{display:none!important}
+  [data-enter],.section[data-enter] > *{opacity:1!important;translate:none!important}
+  .hero{min-height:297mm;padding-bottom:var(--pad);break-after:page}
+  .hero-in{grid-template-columns:1fr;padding-top:24mm}
+  .hero-mark{--mark-h:90mm;justify-self:start;order:-1}
+  .pg{break-before:page;min-height:297mm;box-sizing:border-box;padding-top:18mm!important;padding-bottom:14mm}
+  .stone-run{padding-top:0;padding-bottom:0}
+  .stone-run > .pg:first-child{break-before:avoid}
+  .section{--pad:14mm}
+  .table{font-size:11.5px}
+  .table th,.table th[scope="row"]{font-size:12px;padding:0 12px 6px 0}
+  .table td{padding:5px 12px 5px 0;white-space:normal}
+  .table td.mono,.table .mono,.chip{font-size:10.5px}
+  .chip{padding:2px 6px 2px 4px;gap:5px}
+  .chip[style*="--c"]::before{width:10px;height:10px}
+  .table caption{font-size:20px;margin-bottom:8px}
+  .table-wrap{overflow:visible}
+  .table-wrap + .table-wrap,.note + .table-wrap{margin-top:6mm}
+  .note{margin:3mm 0 5mm;font-size:13px}
+  .intro{margin-bottom:8mm}
+  tr,figure,.ver{break-inside:avoid}
+  .build{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+  .two{margin-top:8mm}
+  .vers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ver{min-height:0}
+}
+
+/* Fixes after the first capture. */
+.hero h1.hero-size{font-size:clamp(52px,6.4vw,124px)}
+.hero-mark{--mark-h:min(58vh,30vw)}
+.build .table td:not(.mono){white-space:normal;min-width:12em}
+.build .table th[scope="row"]{white-space:normal}
+.ex figure{display:grid;grid-template-rows:180px auto;align-items:end}
+.ex figure > :first-child{min-height:0}
+
+.ver{display:grid;grid-template-rows:120px auto 1fr;align-content:start}
+.ver > :first-child{align-self:start}
+@media print{
+  body{background:var(--stone)}
+  [data-cut]:not(.pg){padding-top:0!important}
+  .hero,.section[data-colourway]{min-height:297mm}
+  .pg{min-height:0}
+  .stone-run > .pg{padding-bottom:0}
+  .hero h1.hero-size{font-size:68px}
+  .ex figure{grid-template-rows:130px auto}
+  .ex .draw,.ex .mark{--mark-h:96px}
+  .ex .draw{height:96px}
+  .dd{grid-template-columns:1fr}
+  .dd > div:last-child .ex,.ex{grid-template-columns:repeat(3,minmax(0,1fr));gap:6mm}
+  .f-big{height:70mm}
+}
+@media print{
+  .pg > *{zoom:.76}
+  .pg > h2{zoom:.85}
+  .vers{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .ver{grid-template-rows:90px auto 1fr;padding:18px 14px}
+  .ver .mark,.ver .draw{--mark-h:84px;height:84px}
+  .sizes{margin-top:8mm}
+}
+@media print{
+  .diagram{max-width:70mm}
+  .two{margin-top:6mm;grid-template-columns:1fr 1fr;gap:8mm}
+  .stone-run > .pg:first-child .intro{margin-bottom:5mm}
+}
+
+/* Hero: the mark keeps its own column and never reaches the headline. */
+.hero-in{grid-template-columns:minmax(0,1.5fr) minmax(0,.5fr)}
+.hero h1.hero-size{font-size:clamp(48px,5vw,96px)}
+.hero-mark{--mark-h:min(52vh,22vw);justify-self:center;max-width:100%}
+.cover-note{font-size:clamp(18px,1.6vw,24px)}
+.print-note{max-width:26em;margin:20px 0 0;font-size:14px;color:var(--fg-2)}
+@media (max-width:860px){.hero-in{grid-template-columns:1fr}.hero-mark{--mark-h:clamp(160px,26vh,240px);justify-self:start}}
+.key-rule{max-width:34em;margin:0 0 var(--sp-5)}
+
+/* Specimens first, every value one disclosure away. */
+.spec-mark{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(32px,5vw,96px);align-items:center}
+.spec-mark .diagram{max-width:640px}
+.callouts{margin:0;display:grid;gap:var(--sp-4)}
+.callouts div{margin:0}
+.callouts dt{font-family:var(--f-m);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin-bottom:6px}
+.callouts dd{margin:0;max-width:22em;color:var(--fg-2);font-size:17px}
+.callouts .big{display:block;font-family:var(--f-d);font-weight:800;font-size:clamp(34px,3.4vw,56px);line-height:1.05;color:var(--fg);margin-bottom:4px}
+.all{margin:var(--sp-4) 0 var(--sp-5)}
+.all > summary{display:inline-flex;align-items:center;gap:12px;min-height:44px;min-width:44px;padding:0 8px 0 0;cursor:pointer;list-style:none;font-family:var(--f-m);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg)}
+.all > summary::-webkit-details-marker{display:none}
+.all > summary::before{content:"+";font-size:24px;line-height:1;width:1ch}
+.all[open] > summary::before{content:"\2212"}
+.all > summary span{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.all > summary:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.all[open] > .table-wrap{margin-top:var(--sp-3)}
+.ladder{margin:var(--sp-4) 0 0}
+.rungs{display:flex;flex-wrap:wrap;align-items:flex-end;gap:28px 36px}
+.rung{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.rl{font-size:15px;color:var(--fg-2)}
+.rl .mono{color:var(--fg);margin-right:4px}
+.ladder figcaption{margin-top:16px;font-style:italic;color:var(--fg-2);font-size:17px}
+.swatches,.strip{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.swatches{grid-template-columns:repeat(4,minmax(0,1fr))}
+.swatches li{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:28px 24px 24px;min-height:280px}
+.swatches .mark{margin-bottom:auto}
+.sw-n{font-family:var(--f-d);font-weight:800;font-size:24px;margin-top:20px}
+.sw-r{font-size:15px;color:var(--fg-2)}
+.swatches .chip{margin-top:6px}
+.spec-h{margin-top:var(--sp-6)}
+.strip{grid-template-columns:repeat(8,minmax(0,1fr));margin-bottom:var(--sp-3)}
+.strip li{display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 8px 18px}
+.strip .mark{--mark-h:clamp(72px,8.5vw,150px)!important}
+.strip .sw-n{margin:0;font-size:17px}
+.strip-light li{padding-left:0;padding-right:0}
+@media (max-width:1180px){.spec-mark{grid-template-columns:1fr}.strip{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:860px){.swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.swatches li{min-height:0;padding:20px 16px}.swatches .mark{--mark-h:84px!important}.callouts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.callouts{grid-template-columns:1fr}.strip .mark{--mark-h:64px!important}.strip .sw-n{font-size:15px}.sw-r{font-size:14px}}
+@media print{
+  details.all::details-content{content-visibility:visible;display:contents}
+  .all > summary{display:none}
+  .all{margin:0}
+  .swatches,.strip,.spec-h,.ladder{display:none}
+  .spec-mark{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8mm}
+  .spec-mark .diagram{max-width:62mm}
+  .callouts{display:none}
+  .spec-mark{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}
+  .spec-mark .diagram{max-width:50mm}
+  .callouts .big{font-size:26px}
+  .callouts dd{font-size:12px}
+}
+
+/* Wordmark section end: no near-empty Stone screen before the next band. */
+@media screen{.stone-run > .pg:last-child{padding-bottom:calc(var(--pad) * .3)}}
+@media screen and (max-width:860px){.stone-run{padding-bottom:calc(var(--S) + var(--pad) * .5)!important}}

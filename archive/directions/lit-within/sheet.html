@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-GB" data-lab="platform">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lit from within · How the system works</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="stylesheet" href="lit.css">
+<style>
+  body { background: var(--fall); }
+  .intro { padding: 72px var(--margin) 120px; display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: end; }
+  .intro h1 { font-size: clamp(60px, 8.6vw, 156px); line-height: .88; letter-spacing: -.055em; }
+  .intro p { font-size: var(--s-lead); line-height: 1.4; color: var(--muted); max-width: 32ch; }
+  section { padding: 0 var(--margin) 160px; }
+  .head { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; margin-bottom: 64px; align-items: start; }
+  .head p { padding-top: .4em; }
+  .head h2 { font-size: var(--s-head); }
+  .head p { color: var(--muted); font-size: var(--s-lead); line-height: 1.4; max-width: 38ch; }
+
+  /* The ladder: the mark's stops in order of light, each a step lower than the one before. */
+  .ladder { display: grid; grid-template-columns: 1.6fr 1.2fr 1fr 1fr 1fr 1fr; align-items: end; height: 440px; }
+  .ladder div { display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; font: 700 18px/1.2 var(--display); letter-spacing: -.01em; }
+  .ladder small { display: block; font: 400 16px/1.4 var(--text); margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .ladder .s1 { height: 100%; background: var(--light); color: var(--deep); clip-path: polygon(0 0, 100% 0, calc(100% - 26px) 100%, 0 100%); }
+  .ladder .s2 { height: 64%; background: linear-gradient(135deg, var(--p1), var(--p0)); color: var(--deep); }
+  .ladder .s3 { height: 46%; background: var(--crescent); color: var(--deep); }
+  .ladder .s4 { height: 82%; color: var(--deep); background: var(--ink); }
+  .ladder .s5 { height: 30%; background: var(--hi); color: var(--ink); }
+  .ladder .s6 { height: 16%; background: var(--ground); color: var(--muted); }
+
+  /* Type specimen */
+  .type { display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: start; }
+  .spec { font: 800 clamp(64px, 9vw, 168px)/.86 var(--display); letter-spacing: -.055em; }
+  .scale { margin-top: 48px; display: grid; gap: 18px; }
+  .scale div { display: grid; grid-template-columns: 150px 1fr; align-items: baseline; gap: 20px; color: var(--muted); font-size: 16px; }
+  .scale b { color: var(--ink); font-family: var(--display); letter-spacing: -.03em; }
+  .type .serif p { font-size: var(--s-lead); line-height: 1.45; max-width: 30ch; }
+  .type .serif p + p { margin-top: 24px; color: var(--muted); font-size: var(--s-body); line-height: 1.55; }
+
+  /* Colour per lab: six atmospheres, edge to edge. Each band is its own ground with its own one light. */
+  .labs { padding: 0 0 160px; }
+  .labs .head { padding: 0 var(--margin); }
+  .band { background: var(--fall); color: var(--ink); display: grid; grid-template-columns: 4fr 5fr 3fr; gap: 48px; align-items: center; padding: 48px var(--margin); }
+  .band h3 { font-size: clamp(30px, 3vw, 52px); }
+  .band .role { color: var(--muted); margin-top: 8px; }
+  .band .slab { padding: 26px 48px 26px 34px; font: 800 clamp(22px, 2vw, 32px)/1.05 var(--display); letter-spacing: -.03em; }
+  .band .hex { font-size: 16px; line-height: 1.6; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .band .hex b { color: var(--ink); font-weight: 600; }
+
+  /* Devices with do and don't */
+  .device { display: grid; grid-template-columns: 4fr 4fr 4fr; gap: 40px; align-items: start; margin-bottom: 96px; }
+  .device h3 { font-size: 34px; margin-bottom: 14px; }
+  .device > div:first-child p { color: var(--muted); }
+  .ex { aspect-ratio: 4 / 3; background: var(--fall); position: relative; overflow: hidden; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .ex.bad { background: var(--ground); }
+  .verdict { margin-top: 14px; font: 700 18px/1.3 var(--display); }
+  .verdict span { font: 400 16px/1.45 var(--text); color: var(--muted); display: block; margin-top: 2px; }
+  .verdict.no::before { content: "Don't. "; color: var(--c0); }
+  .verdict.yes::before { content: "Do. "; color: var(--m1); }
+  .ex .t { font: 800 34px/.95 var(--display); letter-spacing: -.04em; }
+  .ex .mini { padding: 12px 30px 12px 18px; font: 800 20px/1 var(--display); align-self: flex-start; }
+  .ex .mini + .mini { margin-top: 10px; }
+  .ex .halo { position: absolute; inset: -30%; background: radial-gradient(circle at 50% 45%, var(--p1), transparent 45%); }
+  .ex .mk { height: .8em; vertical-align: -.03em; }
+
+  @media (max-width: 900px) {
+    .intro, .head, .type, .band, .device { grid-template-columns: 1fr; gap: 24px; }
+    .ladder { grid-template-columns: repeat(3, 1fr); height: auto; }
+    .ladder div { height: auto !important; min-height: 120px; }
+    .ladder .s1 { min-height: 200px; }
+    .band { padding: 40px var(--margin); }
+    .device { margin-bottom: 72px; }
+  }
+  @media (max-width: 720px) {
+    .intro { padding: 40px var(--margin) 88px; }
+    .intro h1 { font-size: 14.2vw; }
+    section, .labs { padding-bottom: 112px; }
+    .spec { font-size: 19vw; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="wordmark" href="home.html">CCS</a>
+  <nav aria-label="Toolkit"><a href="home.html">Toolkit</a><a href="#">Downloads</a><a href="qbr.html">QBR slides</a></nav>
+</header>
+<main>
+  <div class="intro">
+    <h1>One light per surface.</h1>
+    <p>The brand rule says the middle panel is the brightest part of the mark. This system makes that rule the whole identity: every screen, slide and page has exactly one lit thing, and everything else falls away into the lab's ground.</p>
+  </div>
+
+  <section aria-labelledby="h-rule">
+    <div class="head">
+      <h2 id="h-rule">The order of light.</h2>
+      <p>Every colour on a surface takes its place on this ladder, read straight from the mark. Nothing may be brighter than the one light. Type sits one step below it: a stone tinted by the middle panel, never pure white.</p>
+    </div>
+    <div class="ladder" role="img" aria-label="Six steps from brightest to darkest: middle panel, type, panels, crescent, ground high, ground">
+      <div class="s1">The one light<small>Middle panel fade</small></div>
+      <div class="s4">Type<small>Stone tinted by the light</small></div>
+      <div class="s2">Panels<small>Actions, data</small></div>
+      <div class="s3">Crescent<small>Bright tint to deepest shade</small></div>
+      <div class="s5">Ground high<small>Where light enters</small></div>
+      <div class="s6">Ground<small>Everything else</small></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-type">
+    <div class="head">
+      <h2 id="h-type">Type speaks first.</h2>
+      <p>Schibsted Grotesk, the brand's named alternate, set heavy and tight for anything that leads. Source Serif 4 for reading, so the voice stays warm. Familjen Grotesk is kept for the wordmark alone.</p>
+    </div>
+    <div class="type">
+      <div>
+        <div class="spec">Lit from within</div>
+        <div class="scale">
+          <div><b style="font-size:28px">Hero</b>12.4vw, up to 228px, weight 800, leading .86</div>
+          <div><b style="font-size:24px">Heading</b>36 to 76px, weight 800, tracking -3.5%</div>
+          <div><b style="font-size:20px">Lead</b>20 to 26px, Source Serif 4</div>
+          <div><b style="font-size:17px">Body</b>17 to 19px, Source Serif 4, measure 62ch</div>
+        </div>
+      </div>
+      <div class="serif">
+        <p>One mark for the platform and every lab. Three panels form the S; two crescents turn it.</p>
+        <p>Five sizes, far apart. No mono labels, no tracked capitals, no kickers. A heading says what the section is; the size says how much it matters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="labs" aria-labelledby="h-labs">
+    <div class="head">
+      <h2 id="h-labs">Each lab, its own atmosphere.</h2>
+      <p>A lab keeps its ground, its fall of light and its one lit colour. Never mix two colourways on one surface.</p>
+    </div>
+    <div class="band" data-lab="platform"><div><h3>Navy</h3><p class="role">Platform, all labs together</p></div><div class="slab lit">Colleague &amp; Customer Service</div><p class="hex"><b>Light</b> #D4DCEA to #F4F7FB<br><b>Ground</b> #0D1730, high #233A6E</p></div>
+    <div class="band" data-lab="ember"><div><h3>Ember</h3><p class="role">Lab 1 · 24x7 Services</p></div><div class="slab lit">24x7 Services</div><p class="hex"><b>Light</b> #FF9F5A to #FFC394<br><b>Ground</b> #260C03, high #662209</p></div>
+    <div class="band" data-lab="crimson"><div><h3>Crimson</h3><p class="role">Lab 2 · Automated Operations</p></div><div class="slab lit">Automated Operations</div><p class="hex"><b>Light</b> #FF4D6D to #FF85A1<br><b>Ground</b> #30050C, high #680E1B</p></div>
+    <div class="band" data-lab="sapphire"><div><h3>Sapphire</h3><p class="role">Lab 3 · Colleague Services</p></div><div class="slab lit">Colleague Services</div><p class="hex"><b>Light</b> #60A5FA to #93C5FD<br><b>Ground</b> #0A0F1B, high #142A67</p></div>
+    <div class="band" data-lab="seafoam"><div><h3>Seafoam</h3><p class="role">Lab 4 · Data &amp; Insights</p></div><div class="slab lit">Data &amp; Insights</div><p class="hex"><b>Light</b> #5FD0DA to #9FE3EA<br><b>Ground</b> #04213E, high #074E79</p></div>
+    <div class="band" data-lab="frontier"><div><h3>Violet</h3><p class="role">Frontier, the innovation forum</p></div><div class="slab lit">Frontier</div><p class="hex"><b>Light</b> #F0ABFC to #F472B6<br><b>Ground</b> #140431, high #330F70</p></div>
+  </section>
+
+  <section aria-labelledby="h-dev">
+    <div class="head">
+      <h2 id="h-dev">Three devices, used precisely.</h2>
+      <p>Light is directional. It enters top-left and falls to bottom-right, exactly as every fade in the mark runs. It never blooms from a centre.</p>
+    </div>
+
+    <div class="device">
+      <div><h3>The lit slab</h3><p>The middle panel's fade, cut on the panel's slant, with the crescent fade along its leading edge. It holds the one thing that matters on the surface: the action, the number, the chosen item.</p></div>
+      <div><div class="ex"><div class="t" style="margin-bottom:auto">Quarterly review</div><div class="mini lit">Read the summary</div></div><p class="verdict yes">One slab.<span>The eye lands on it first, every time.</span></p></div>
+      <div><div class="ex bad"><div class="mini lit">Summary</div><div class="mini lit">Timeline</div><div class="mini lit">Risks</div></div><p class="verdict no">Three slabs.<span>When everything is lit, nothing is.</span></p></div>
+    </div>
+
+    <div class="device">
+      <div><h3>The fall line</h3><p>The ground carries one linear fade from ground high at the top-left corner into the ground. It tells you where the light comes from without drawing attention to itself.</p></div>
+      <div><div class="ex"><div class="t">Light from<br>the corner</div></div><p class="verdict yes">Linear, 135 degrees.<span>Ground high to ground, then flat.</span></p></div>
+      <div><div class="ex bad"><div class="halo"></div><div class="t" style="position:relative">A glow<br>behind it</div></div><p class="verdict no">A radial bloom.<span>Ambient blur is the old look. It has no direction.</span></p></div>
+    </div>
+
+    <div class="device">
+      <div><h3>The mark as a word</h3><p>On a hero, the mark takes the place of a word in the sentence, set to the cap height so it reads in line. Use the supplied files as they are; the mark is never redrawn.</p></div>
+      <div><div class="ex"><div class="t">Lit from<br><img class="mk" src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="CCS mark"> within</div></div><p class="verdict yes">In the line, at cap height.<span>The mark is the brightest word.</span></p></div>
+      <div><div class="ex bad" style="color:#FFFFFF"><div class="t">Lit from<br>within <img style="height:.42em" src="../../assets/ccs-mark/suite/ccs-mark-ember.svg" alt="Ember mark on a navy ground"></div></div><p class="verdict no">Pure white type, wrong lab.<span>The type outshines the mark and the colourways mix.</span></p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How CCS works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform-light.svg" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="kit/ccs.css">
+<style>
+.top{padding-top:0}
+.top-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--m);align-items:end;padding-top:clamp(40px,8vh,96px)}
+.top h1{margin-bottom:.4em}
+.top .lead{max-width:26em;color:var(--fg-2)}
+.top .mark{--mark-h:clamp(140px,22vw,320px)}
+.sec-h{margin-bottom:.5em}
+.intro{max-width:34em;margin-bottom:clamp(40px,6vh,72px);color:var(--fg-2)}
+.markrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(32px,6vw,112px);align-items:center}
+.markrow .mark{--mark-h:clamp(160px,20vw,280px)}
+.markrow p{max-width:30em}
+.markrow .text-link{margin-top:16px}
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(56px,7vw,112px) clamp(32px,5vw,96px)}
+.move h3{font-size:clamp(28px,3vw,44px);margin:28px 0 14px}
+.move .dd{display:grid;gap:8px;color:var(--fg-2);max-width:30em}
+.move .dd b{color:var(--fg);font-weight:600}
+.ex{height:220px;position:relative;overflow:hidden}
+.ex-cut{background:#0D1730;--dg:16px;--dd:calc(var(--dg) * 1.4142)}
+.ex-cut i{position:absolute;inset:0}
+.ex-cut .b{background:linear-gradient(135deg,#260C03,#662209);clip-path:polygon(0 150px,calc(100% - 130px) 150px,100% 20px,100% 100%,0 100%)}
+.ex-cut .a{background:var(--stone);clip-path:polygon(calc(100% - 130px) 150px,100% 20px,100% calc(20px + var(--dd)),calc(100% - 130px + var(--dd)) 150px)}
+.ex-step{font-size:clamp(48px,6vw,88px);padding-top:24px}
+.ex-lit{display:flex;align-items:center}
+.ex-lit .lit{padding:28px 32px 28px calc(var(--cut) + 18px);font-family:var(--f-d);font-weight:800;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.02em;line-height:1.05}
+.ex-c{background:var(--stone);display:flex;align-items:center;justify-content:center}
+.ex-c .found-c{height:184px}
+.ways{margin-top:clamp(112px,16vh,200px)}
+.sw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
+.way{padding:clamp(24px,2.6vw,40px);min-height:300px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.way h3{font-size:clamp(28px,2.6vw,40px)}
+.way .tag{margin-top:8px;font-size:16px}
+.way .lit{padding:16px 18px 16px calc(var(--cut) + 12px);font-size:15px;line-height:1.5}
+.way dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 14px}
+.way dt{font-family:var(--f-t);font-weight:600}
+.way dd{margin:0}
+.ref{margin-top:clamp(64px,10vh,120px)}
+.spec{display:grid;gap:clamp(36px,5vh,64px)}
+.spec .row{display:grid;grid-template-columns:minmax(0,14em) minmax(0,1fr);gap:16px 4vw;align-items:baseline}
+.spec .meta{color:var(--fg-2);font-size:16px}
+.spec .meta .mono{display:block;font-size:15px;margin-top:4px}
+.spec .wmk{font-family:var(--f-w);font-weight:700;letter-spacing:.01em;font-size:64px;line-height:1}
+.spec .lit{padding:20px 24px 20px calc(var(--cut) + 14px);font-size:18px;justify-self:start}
+.voice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px);margin-bottom:clamp(56px,8vh,96px)}
+.voice h3{font-size:clamp(26px,2.4vw,36px);margin-bottom:12px}
+.voice p{color:var(--fg-2)}
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(28px,4vw,64px);align-items:stretch}
+.ba ol{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.ba .before{color:var(--fg-2);padding:28px 0}
+.ba .lit{padding:28px 28px 28px calc(var(--cut) + 18px);font-family:var(--f-d);font-weight:800;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.015em;line-height:1.2}
+.ba h3{font-family:var(--f-t);font-weight:600;font-size:18px;margin-bottom:12px}
+.motion-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(32px,6vw,112px);align-items:center}
+.motion-row .mark{--mark-h:clamp(180px,22vw,300px)}
+.motion-row .btn{margin-top:28px}
+@media (max-width:900px){.moves,.voice,.ba{grid-template-columns:1fr}.sw{grid-template-columns:repeat(2,minmax(0,1fr))}.ba .before{padding:0}}
+@media (max-width:600px){.top-in,.markrow,.motion-row{grid-template-columns:1fr}.sw{grid-template-columns:1fr}.spec .row{grid-template-columns:1fr}.spec .wmk{font-size:48px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="section top" data-colourway="platform">
+  <div class="bar bar-flush">
+    <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main"><ul>
+      <li><a href="index.html">Home</a></li><li><a href="how-ccs-works.html">How CCS works</a></li><li><a href="mark-suite.html">Mark Suite</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="motion.html">Motion</a></li><li><a href="deck.html">Deck</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="journey.html">Journey</a></li>
+    </ul></nav>
+  </div>
+  <div class="top-in">
+    <div>
+      <h1 class="display hero-size step"><span>How CCS</span><span>works.</span></h1>
+      <p class="lead">Four moves, one colourway per surface, two typefaces and one motion. That is the whole system, and it all comes from the mark.</p>
+    </div>
+    <div class="mark" data-mark="platform" role="img" aria-label="The refined CCS mark"></div>
+  </div>
+</header>
+<main id="main">
+  <section class="section" data-surface="stone" data-cut="left" aria-labelledby="mark-h">
+    <div class="markrow" data-enter>
+      <div class="mark" data-mark="platform" data-build="light" role="img" aria-label="The refined CCS mark on a light ground"></div>
+      <div>
+        <h2 id="mark-h" class="display head sec-h">The refined mark.</h2>
+        <p class="lead">One gap everywhere, now 0.18 of a panel, so the S holds at small sizes and the crescents end on true curves.</p>
+        <a class="text-link" href="refined-mark.html">Read the mark study</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-colourway="platform" data-cut="right" aria-labelledby="moves-h">
+    <div data-enter>
+      <h2 id="moves-h" class="display head sec-h">Four moves.</h2>
+      <p class="intro lead">They are the whole graphic language. Nothing else decorates.</p>
+    </div>
+    <div class="moves">
+      <article class="move" data-enter>
+        <div class="ex ex-cut" role="img" aria-label="Two dark fields meeting on a 45 degree run, with a Stone channel along the run only"><i class="b"></i><i class="a"></i></div>
+        <h3 class="display">The cut</h3>
+        <div class="dd"><p><b>Do</b> meet every boundary on one long 45 degree run. Between two dark fields, a Stone channel one gap wide runs along it.</p><p><b>Don't</b> run the channel along the flat, or divide sections with a hairline.</p></div>
+      </article>
+      <article class="move" data-enter>
+        <div class="ex ex-step display step" aria-hidden="true"><span>Pass it</span><span>on.</span></div>
+        <h3 class="display">The step</h3>
+        <div class="dd"><p><b>Do</b> step two or three lines right by one line-height each.</p><p><b>Don't</b> step more than one headline on a screen.</p></div>
+      </article>
+      <article class="move" data-enter>
+        <div class="ex ex-lit"><p class="lit">One lit element<br>per surface.</p></div>
+        <h3 class="display">The light</h3>
+        <div class="dd"><p><b>Do</b> fill it with that colourway's middle-panel fade, cut at 45 degrees on its leading edge.</p><p><b>Don't</b> add radial glows or light a second thing.</p></div>
+      </article>
+      <article class="move" data-enter>
+        <div class="ex ex-c"><div class="found-c" role="img" aria-label="The three panels of the mark in ink. The two Cs fill in the spaces the panels leave."></div></div>
+        <h3 class="display">The found C</h3>
+        <div class="dd"><p><b>Do</b> show the panels first, then let the two Cs fill the space they leave, once, at the featured moment.</p><p><b>Don't</b> show a crescent on its own, or repeat it as a pattern, a bullet or a frame.</p></div>
+      </article>
+    </div>
+    <section class="ways" aria-labelledby="col-h">
+      <div data-enter>
+        <h2 id="col-h" class="display head sec-h">One colourway per surface.</h2>
+        <p class="intro lead">Each surface takes its ground, a straight fade from the top-left, and one lit element in its middle-panel fade. Lab colours stay on that lab's own materials.</p>
+      </div>
+      <div class="sw" id="sw" data-enter></div>
+      <div class="ref" data-enter>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="ref-cap">
+          <table class="table" id="ref"><caption id="ref-cap">Colourway reference</caption>
+            <thead><tr><th scope="col">Short name</th><th scope="col">Full name</th><th scope="col">Used by</th><th scope="col">Ground</th><th scope="col">Lit</th><th scope="col">Lead</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="section" data-surface="stone" data-cut="left" aria-labelledby="type-h">
+    <div data-enter>
+      <h2 id="type-h" class="display head sec-h">Type.</h2>
+      <p class="intro lead">Schibsted Grotesk, used heavy, carries the voice. Source Serif 4 keeps it warm. Familjen Grotesk is Bold in the wordmark and Medium for lab names in lockups, nowhere else.</p>
+    </div>
+    <div class="spec" data-enter>
+      <div class="row"><p class="meta">Display, hero<span class="mono">800 · 72 to 200px · 0.95 · -0.035em</span></p><p class="display hero-size">Hand it on.</p></div>
+      <div class="row"><p class="meta">Display, section<span class="mono">800 · 30 to 96px</span></p><p class="display head">Four labs. One platform.</p></div>
+      <div class="row"><p class="meta">Lead<span class="mono">Source Serif 4 · 19 to 25px · 1.45</span></p><p class="lead">Everything you need to carry the mark well.</p></div>
+      <div class="row"><p class="meta">Text<span class="mono">Source Serif 4 · 17 to 20px · 1.55</span></p><p style="max-width:34em">Three panels form the S. Two crescents turn it. The light middle panel is the focal point and is always the brightest part of the mark.</p></div>
+      <div class="row"><p class="meta">Wordmark<span class="mono">Familjen Grotesk 700 · +10</span></p><p class="wmk">CCS</p></div>
+      <div class="row"><p class="meta">Figures and data<span class="mono">IBM Plex Mono · 400</span></p><p class="mono">#0D1730 &nbsp; 0.18 W &nbsp; 45° &nbsp; 1.2 s</p></div>
+      <p class="lit">Schibsted Grotesk for display, Source Serif for reading, Familjen only in the wordmark and lab names, mono only for data.</p>
+    </div>
+  </section>
+
+  <section class="section" data-colourway="platform" data-cut="right" aria-labelledby="voice-h">
+    <div data-enter>
+      <h2 id="voice-h" class="display head sec-h">Voice.</h2>
+      <p class="intro lead">We write about people passing work between them, to colleagues, as you and we.</p>
+    </div>
+    <div class="voice" data-enter>
+      <div><h3 class="display">Say one thing.</h3><p>Short declaratives. One idea per sentence, with the point first.</p></div>
+      <div><h3 class="display">Write to colleagues.</h3><p>You and we. Never users, stakeholders or resources.</p></div>
+      <div><h3 class="display">Name the hand-off.</h3><p>Work moves between people. Say who passes it and who picks it up.</p></div>
+    </div>
+    <div class="ba" data-enter>
+      <div><h3>Before</h3><ol class="before"><li>Our best-in-class platform empowers stakeholders to unlock value.</li><li>Please be advised that the toolkit has been updated.</li><li>Click here to access the resources.</li></ol></div>
+      <div><h3>After</h3><ol class="lit"><li>Everything you need to carry the mark well.</li><li>The toolkit has changed. Here is what is new.</li><li>Open the toolkit.</li></ol></div>
+    </div>
+  </section>
+
+  <section class="section" data-surface="stone" data-cut="left" aria-labelledby="motion-h">
+    <div class="motion-row" data-enter>
+      <div>
+        <h2 id="motion-h" class="display head sec-h">One motion.</h2>
+        <p class="intro lead" style="margin-bottom:24px">Everything slides along the mark's own 45 degree axis.</p>
+        <ul class="list">
+          <li>The mark assembles once on load: the outer panels slide in along their axis and the crescents fade up in the space they leave, in about 1.2 seconds.</li>
+          <li>Sections slide in by 24px along the axis as they enter view.</li>
+          <li>List items slide 8px along the axis on hover and focus.</li>
+          <li>With reduced motion, everything is static and assembled.</li>
+        </ul>
+        <button class="btn btn-sm" type="button" id="replay">Replay the assembly</button>
+      </div>
+      <div class="mark" id="mo" data-mark="platform" data-build="light" data-assemble role="img" aria-label="The CCS mark assembling"></div>
+    </div>
+    <footer class="foot">
+      <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+      <a href="index.html#toolkit">Toolkit</a><a href="kit/gallery.html">Kit gallery</a>
+    </footer>
+  </section>
+</main>
+<script src="palette.js"></script>
+<script>
+/* Swatches show short names. Full names appear once, in the reference table. */
+const W=[["platform","Platform"],["ember","24x7 Services"],["crimson-obsidian","Automated Operations"],["royal-sapphire","Colleague Services"],["seafoam-teal","Data & Insights"],["neon-cyberpunk","Frontier"]];
+const P=window.CCS_PALETTE;
+document.getElementById("sw").innerHTML=W.map(([k,lab])=>{const c=P[k];return `<div class="way" data-swatch="${k}"><div><h3 class="display">${c.short}</h3><p class="tag">${lab==="Platform"?"Platform":lab}</p></div><div class="lit"><dl class="mono"><dt>Ground</dt><dd>${c.ground} to ${c.groundHi}</dd><dt>Lit</dt><dd>${c.g[1][0]} to ${c.g[1][1]}</dd><dt>Lead</dt><dd>${c.g[0][0]}</dd></dl></div></div>`}).join("");
+document.querySelector("#ref tbody").innerHTML=W.map(([k,lab])=>{const c=P[k];return `<tr><td>${c.short}</td><td>${c.name}</td><td>${lab}</td><td class="mono">${c.ground} to ${c.groundHi}</td><td class="mono">${c.g[1][0]} to ${c.g[1][1]}</td><td class="mono">${c.g[0][0]}</td></tr>`}).join("");
+</script>
+<script src="kit/ccs.js"></script>
+<script>document.getElementById("replay").addEventListener("click",()=>CCS.assemble(document.getElementById("mo")));</script>
+</body>
+</html>

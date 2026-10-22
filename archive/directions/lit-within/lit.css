@@ -1,0 +1,73 @@
+/* Lit from within. One light per surface, taken from the mark's own stops (palette.js). */
+@import url("https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@700&family=Schibsted+Grotesk:wght@500;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap");
+
+/* Each lab is an atmosphere: ground, ground high, deep, panel fade, middle fade, crescent fade. */
+:root, [data-lab="platform"] {
+  --ground:#0D1730; --hi:#233A6E; --deep:#14244A; --ink-deep:#203258;
+  --p0:#5B82D1; --p1:#8AA9E3; --m0:#D4DCEA; --m1:#F4F7FB; --c0:#E6ECF5; --c1:#2B4A86;
+}
+[data-lab="ember"]    { --ground:#260C03; --hi:#662209; --deep:#3A1205; --ink-deep:#5C2008; --p0:#E4571E; --p1:#F47A3C; --m0:#FF9F5A; --m1:#FFC394; --c0:#FF8A4C; --c1:#8F3A0E; }
+[data-lab="crimson"]  { --ground:#30050C; --hi:#680E1B; --deep:#4A0812; --ink-deep:#500D16; --p0:#D7263D; --p1:#FF4D6D; --m0:#FF4D6D; --m1:#FF85A1; --c0:#FF2A4B; --c1:#A11030; }
+[data-lab="sapphire"] { --ground:#0A0F1B; --hi:#142A67; --deep:#0F172A; --ink-deep:#0F276C; --p0:#2563EB; --p1:#3B82F6; --m0:#60A5FA; --m1:#93C5FD; --c0:#3B82F6; --c1:#1D3F9E; }
+[data-lab="seafoam"]  { --ground:#04213E; --hi:#074E79; --deep:#06335F; --ink-deep:#054054; --p0:#14C8B4; --p1:#1AA6D6; --m0:#5FD0DA; --m1:#9FE3EA; --c0:#2FD8C2; --c1:#0A6E8C; }
+[data-lab="frontier"] { --ground:#140431; --hi:#330F70; --deep:#1E064B; --ink-deep:#2E115B; --p0:#7C3AED; --p1:#A78BFA; --m0:#F0ABFC; --m1:#F472B6; --c0:#F0ABFC; --c1:#4F2391; }
+
+[data-lab] {
+  /* Type ink is a stone tinted by the middle panel, always a step below the light itself. */
+  --ink: color-mix(in oklab, var(--m0) 18%, #E4DFD6);
+  --muted: color-mix(in oklab, var(--ink) 64%, var(--ground));
+  /* The fall line: light enters top-left and falls to the ground, the way every fade in the mark runs. */
+  --fall: linear-gradient(135deg, var(--hi) 0%, var(--ground) 52%, var(--ground) 100%);
+  /* The one light: the middle panel's own fade. */
+  --light: linear-gradient(135deg, var(--m0), var(--m1));
+  /* The crescent: bright tint to the deepest shade, never black. */
+  --crescent: linear-gradient(180deg, var(--c0), var(--c1));
+  --display: "Schibsted Grotesk", system-ui, sans-serif;
+  --text: "Source Serif 4", Georgia, serif;
+  --margin: clamp(20px, 4.4vw, 72px);
+  --s-body: clamp(17px, 1rem + .2vw, 19px);
+  --s-lead: clamp(20px, 1.1rem + .6vw, 26px);
+  --s-head: clamp(36px, 1.4rem + 3.4vw, 76px);
+  --s-hero: clamp(66px, 12.4vw, 228px);
+  --slant: .5em;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--ground); color: var(--ink); transition: background-color .6s ease; }
+body { margin: 0; font: 400 var(--s-body)/1.5 var(--text); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -.035em; line-height: .95; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 62ch; text-wrap: pretty; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--m1); outline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Wordmark: Familjen Grotesk Bold, tracking +10, as the brand fixes it. */
+.wordmark { font: 700 26px/1 "Familjen Grotesk", sans-serif; letter-spacing: .1em; text-decoration: none; color: var(--ink); }
+
+/* The bar */
+.bar { display: flex; align-items: center; gap: 32px; padding: 28px var(--margin); position: relative; z-index: 2; }
+.bar nav { display: flex; gap: 28px; margin-left: auto; font: 500 17px/1 var(--display); }
+.bar nav a { text-decoration: none; color: var(--muted); padding: 14px 0; }
+.bar nav a:hover { color: var(--ink); }
+
+/* One action shape on every page: a flat panel-coloured slab with the mark's slanted cut. */
+.act { display: inline-flex; align-items: center; min-height: 48px; padding: 0 calc(22px + var(--slant)) 0 22px;
+  font: 700 17px/1 var(--display); letter-spacing: -.01em; text-decoration: none; border: 0; cursor: pointer;
+  background: var(--p0); color: var(--deep);
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%); }
+.act:hover { background: var(--p1); }
+
+/* THE device: the lit slab. Middle-panel fade, deep ink, slanted cut, crescent beside it. */
+.lit { background: var(--light); color: var(--deep); position: relative;
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%); }
+.lit::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--crescent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .switch-on { animation: on 1.3s cubic-bezier(.2,.7,.1,1) both .15s; }
+  @keyframes on { from { clip-path: polygon(0 0, 0 0, 0 0, 0 0); } to { clip-path: polygon(0 0, 260% 0, 0 260%, 0 0); } }
+}
+@media (max-width: 720px) {
+  .bar { gap: 16px; padding: 18px var(--margin); }
+  .bar nav { display: none; }
+  .act { font-size: 16px; }
+}

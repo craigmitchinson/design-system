@@ -1,0 +1,221 @@
+/* CCS v3 kit. Ported from directions/synthesis. Four moves: the cut, the step, the light, the found C.
+   Nothing else decorates. Reference: kit/README.md. Live: kit/gallery.html. */
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Familjen+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+/* ---------- 1. Tokens ---------- */
+:root{
+  /* Colour. Stone and Ink are the only fixed colours; everything else comes from palette.js. */
+  --stone:#F3F1EC; --ink:#0D1730; --ink-2:#3B4763; --silver:#F4F7FB; --silver-2:#C9D3E6; --lead:#5B82D1;
+  /* Type. Display is Schibsted 800. Text is Source Serif 4. Familjen is Bold for the wordmark, Medium for lab names in lockups, nowhere else. Plex Mono is data only. */
+  --f-d:"Schibsted Grotesk",system-ui,sans-serif; --f-t:"Source Serif 4",Georgia,serif;
+  --f-w:"Familjen Grotesk",system-ui,sans-serif; --f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --s-small:15px; --s-label:14px;
+  --s-text:clamp(17px,.85rem + .4vw,20px); --s-lead:clamp(19px,1rem + .6vw,25px);
+  --s-sub:clamp(26px,2.6vw,40px); --s-name:clamp(40px,6.4vw,120px);
+  --s-head:clamp(30px,5.2vw,96px); --s-hero:clamp(72px,11vw,200px);
+  /* Space. --m is the page margin, --pad the section padding. */
+  --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:40px; --sp-5:64px; --sp-6:96px;
+  --m:clamp(20px,6vw,112px); --pad:clamp(64px,10vh,140px);
+  /* The cut. --g is the mark's gap (0.18 of a panel) scaled to the section, --S the long 45 degree run,
+     --cut the 45 degree corner of lit slabs and buttons. */
+  --g:clamp(24px,2.6vw,48px); --S:clamp(64px,8vw,160px); --S:round(down,clamp(64px,8vw,160px),1px); --cut:clamp(22px,2.6vw,48px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  /* Mark aspect ratios from marks/manifest.json. */
+  --mark-ar:5137.8/6158.35; --mark-ar-small:5794.85/6753.72;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);font-family:var(--f-t);font-size:var(--s-text);line-height:1.55;color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-weight:800}
+:focus-visible{outline:3px solid currentColor;outline-offset:5px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-80px;z-index:20;background:var(--stone);color:var(--ink);padding:12px 18px;min-height:44px;font-family:var(--f-d);font-weight:800;text-decoration:none}
+.skip:focus{top:12px}
+.skip:focus-visible{outline-color:var(--ink);outline-offset:-6px}
+
+.display{font-family:var(--f-d);font-weight:800;letter-spacing:-.035em;line-height:.95}
+.hero-size{font-size:var(--s-hero)}
+.head{font-size:var(--s-head)}
+.name{font-size:var(--s-name)}
+.sub{font-size:var(--s-sub);letter-spacing:-.025em;line-height:1.02}
+.lead{font-size:var(--s-lead);line-height:1.45}
+.mono{font-family:var(--f-m);font-variant-numeric:tabular-nums}
+.muted{color:var(--fg-2)}
+.tag{font-family:var(--f-d);font-weight:700;font-size:var(--s-label);letter-spacing:.01em;color:var(--tint)}
+
+/* ---------- 2. Surfaces ----------
+   data-colourway="<key>" makes a dark surface from palette.js (ccs.js writes the variables inline).
+   data-surface="stone" makes the light surface. One colourway per surface: nested ones are ignored by ccs.js.
+   Static fallback below is platform, so a surface reads correctly before the script runs. */
+[data-colourway],[data-swatch]{
+  --ground:#0D1730; --ground-hi:#233A6E; --fg:#F4F7FB; --fg-2:#C9D3E6; --tint:#F4F7FB;
+  --lead:#5B82D1; --accent:#5E85D2; --lit-1:#82AEFF; --lit-2:#A5CCFF; --lit-ink:#14244A; --glow:rgba(170,196,240,.55);
+  --paint:linear-gradient(135deg,var(--ground),var(--ground-hi));
+}
+[data-surface="stone"]{
+  --ground:var(--stone); --ground-hi:var(--stone); --fg:var(--ink); --fg-2:var(--ink-2); --tint:var(--ink-2);
+  --lead:#5B82D1; --accent:#3F64B0; --lit-1:#82AEFF; --lit-2:#A5CCFF; --lit-ink:var(--ink);
+  --paint:var(--stone);
+}
+[data-colourway],[data-surface="stone"]{background:var(--paint);color:var(--fg)}
+[data-colourway]:focus-visible,[data-surface]:focus-visible{outline-offset:-6px}
+
+/* A section: page margins and padding, and the box the cut is drawn on. */
+.section{position:relative;isolation:isolate;padding:var(--pad) var(--m)}
+
+/* ---------- 3. The cut ----------
+   data-cut="left|right" on a section cuts its TOP edge: a horizontal edge with one 45 degree run (--S, 8vw, 64 to 160px)
+   rising to the right, at the left or right end. Alternate left and right down the page.
+   The section is pulled up by --S over the one before it and clipped, so the earlier surface shows above the run.
+   Where two dark fields meet, a Stone channel one mark gap wide (--g) runs along the 45 degree run only;
+   the horizontal parts meet flush. Where Stone meets a dark field the cut is clean, no channel.
+   ccs.js sets data-chan on the lower section when both are dark, and data-cut-below on the upper one. */
+[data-cut]{--cg:0px;--d:calc(var(--cg) * 1.4142);margin-top:calc(-1 * var(--S));clip-path:polygon(var(--top),100% 100%,0 100%)}
+[data-cut][data-chan]{--cg:var(--g)}
+[data-cut="left"]{--top:0 var(--S),var(--S) 0,100% 0;--band:0 var(--S),var(--S) 0,calc(var(--S) + var(--d)) 0,0 calc(var(--S) + var(--d));padding-top:max(var(--pad),calc(var(--S) + var(--d) + var(--g) - var(--m)))}
+[data-cut="right"]{--top:0 var(--S),calc(100% - var(--S)) var(--S),100% 0;--band:calc(100% - var(--S)) var(--S),100% 0,100% var(--d),calc(100% - var(--S) + var(--d)) var(--S);padding-top:calc(var(--S) + var(--pad))}
+/* The channel: a Stone band one gap wide laid along the 45 degree run, inside the section, ending where the run meets the flat
+   and the page edge. The section ground runs right to its own edge, so no seam shows where the flat parts meet flush. */
+[data-cut][data-chan]::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--stone);clip-path:polygon(var(--band))}
+/* Room above the next section's cut. Static fallback for siblings, ccs.js covers the rest. */
+.section:has(+ [data-cut="left"]),[data-cut-below="left"]{padding-bottom:calc(var(--pad) + var(--S))}
+.section:has(+ [data-cut="right"]),[data-cut-below="right"]{padding-bottom:calc(var(--pad) + max(0px,var(--S) + var(--g) - var(--m)))}
+
+/* ---------- 4. The step ----------
+   One line per child. Each line steps right by one line-height, so the headline descends at 45 degrees.
+   One stepped headline per screen. On phones the step halves and lines may wrap. */
+.step > *{display:block;white-space:nowrap}
+.step > :nth-child(2){margin-left:1lh}
+.step > :nth-child(3){margin-left:2lh}
+.step > :nth-child(4){margin-left:3lh}
+.step em{font-style:normal;color:var(--accent,var(--lead))}
+@media (max-width:560px){
+  .step > *{white-space:normal}
+  .step > :nth-child(2){margin-left:.5lh}
+  .step > :nth-child(3){margin-left:1lh}
+  .step > :nth-child(4){margin-left:1.5lh}
+}
+
+/* ---------- 5. The light ----------
+   One lit element per surface: the colourway's middle-panel fade (on Stone, its vivid light-ground middle from
+   marks/manifest.json lightOverrides; ccs.js sets it per colourway, platform below is the static fallback), cut at 45 degrees on its leading edge.
+   It holds the most important thing on that surface. ccs.js warns in the console if a surface has two. */
+.lit{background:linear-gradient(135deg,var(--lit-1),var(--lit-2));color:var(--lit-ink);clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.lit-pad{padding:clamp(20px,2.6vw,40px) clamp(24px,3vw,48px) clamp(20px,2.6vw,40px) calc(var(--cut) + 18px)}
+.lit .muted,.lit .tag{color:var(--lit-ink)}
+a.lit:focus-visible,.lit :focus-visible{outline-color:var(--lit-ink);outline-offset:-8px}
+
+/* ---------- 6. The found C ----------
+   The three panels in Ink on Stone, the crescent spaces empty; the two Cs fill in the lead as it enters view.
+   Filled and static under reduced motion. One per page. Set data-lead="<key>" for a lab lead. */
+.found-c{aspect-ratio:var(--mark-ar);--fc-lead:#5B82D1}
+.found-c svg{width:100%;height:100%}
+.found-c .pn{fill:var(--ink)}
+.found-c .cr{fill:var(--fc-lead)}
+@media (prefers-reduced-motion:no-preference){
+  .ccs-js .found-c .cr{transition:fill-opacity 1.2s var(--ease) 1.1s}
+  .ccs-js .found-c:not(.in) .cr{fill-opacity:0}
+}
+
+/* ---------- 7. The mark and the wordmark ----------
+   <span class="mark" data-mark="<key>" data-build="auto|dark|light|flat|parts|small|mono"> sized by height.
+   auto picks small under 40px, light on Stone, dark otherwise. Glow on dark grounds at 64px and above only. */
+.mark{display:block;aspect-ratio:var(--mark-ar);height:var(--mark-h,120px)}
+.mark[data-built="small"]{aspect-ratio:var(--mark-ar-small)}
+.mark > svg,.mark > img{width:100%;height:100%}
+.mark.has-glow > svg,.mark.has-glow > img{filter:drop-shadow(0 0 var(--glow-r,8px) color-mix(in srgb,var(--glow) var(--glow-k,100%),transparent))}
+.wordmark{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;font-family:var(--f-w);font-weight:700;letter-spacing:.01em;font-size:28px;line-height:1;color:var(--fg,inherit)}
+.wordmark .mark{height:36px}
+.wordmark-lg{font-size:64px;gap:20px}
+.wordmark-lg .mark{height:76px}
+
+/* ---------- 8. Motion ----------
+   The one motion: a slide along the mark's 45 degree axis.
+   data-enter on an element slides it in once as it enters view; on a section it moves the section's children,
+   never the section, so the cut stays put. .nudge slides an item 8px along the axis on hover and focus.
+   data-assemble on a parts mark runs the assembly once on load; CCS.assemble(el) replays it. */
+@media (prefers-reduced-motion:no-preference){
+  .ccs-js [data-enter]:not(.section),.ccs-js .section[data-enter] > *{translate:-17px 17px;opacity:0;transition:translate .9s var(--ease),opacity .6s linear}
+  .ccs-js [data-enter].in:not(.section),.ccs-js .section[data-enter].in > *{translate:0 0;opacity:1}
+  .nudge,.btn{transition:translate .35s var(--ease)}
+  .nudge:hover,.nudge:focus-visible,.btn:hover,.btn:focus-visible{translate:5.66px -5.66px}
+  .asm .p1{animation:ccs-in-u 1.2s var(--ease) both}
+  .asm .p3{animation:ccs-in-d 1.2s var(--ease) both}
+  .asm .c1,.asm .c2{animation:ccs-fade .55s linear both .65s}
+  @keyframes ccs-in-u{from{transform:translate(780px,-780px)}}
+  @keyframes ccs-in-d{from{transform:translate(-780px,780px)}}
+  @keyframes ccs-fade{from{opacity:0}}
+}
+
+/* ---------- 9. Navigation, footer ---------- */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px clamp(24px,4vw,64px);padding:26px var(--m);position:relative;z-index:3;flex-wrap:wrap}
+.bar-flush{padding-left:0;padding-right:0}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 clamp(16px,1.9vw,32px)}
+.nav a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;font-family:var(--f-d);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.nav a:hover,.nav a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px}
+.menu{display:none;align-items:center;gap:10px;min-height:44px;min-width:44px;padding:0 18px 0 22px;border:0;font:inherit;font-family:var(--f-d);font-weight:800;font-size:16px;cursor:pointer;background:var(--fg);color:var(--ground);clip-path:polygon(12px 0,100% 0,100% 100%,0 100%,0 12px)}
+.menu:focus-visible{outline-color:var(--ground);outline-offset:-6px}
+@media (max-width:1180px){
+  .ccs-js .menu{display:inline-flex}
+  .ccs-js .nav{flex-basis:100%}
+  .ccs-js .nav:not(.open){display:none}
+  .ccs-js .nav ul{flex-direction:column;padding:8px 0 12px}
+  .ccs-js .nav a{min-height:48px;font-size:20px}
+}
+.foot{display:flex;flex-wrap:wrap;gap:4px 40px;align-items:center;margin-top:clamp(80px,14vh,160px);font-size:17px;color:var(--fg-2)}
+.foot a:not(.wordmark){display:inline-flex;align-items:center;min-height:44px;color:var(--fg)}
+
+/* ---------- 10. Lists, buttons, forms, tables, chips ---------- */
+/* The cut-corner button. Stone on dark grounds, Ink on Stone. */
+.btn{display:inline-flex;align-items:center;min-height:44px;border:0;cursor:pointer;font:inherit;font-family:var(--f-d);font-weight:800;font-size:clamp(17px,1rem + .2vw,20px);letter-spacing:-.01em;text-decoration:none;padding:.95em 1.5em .95em 1.7em;background:var(--stone);color:var(--ink);clip-path:polygon(.9em 0,100% 0,100% 100%,0 100%,0 .9em)}
+[data-surface="stone"] .btn,.btn-ink{background:var(--ink);color:var(--stone)}
+.btn-sm{font-size:16px;padding:.8em 1.4em .8em 1.6em}
+.btn:focus-visible{outline-color:currentColor;outline-offset:-7px}
+.text-link{display:inline-flex;align-items:center;min-height:44px;font-family:var(--f-d);font-weight:800}
+
+/* The link list: a big display name and a line of description per item. Put .lit on at most one item. */
+.link-list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(4px,1vw,14px)}
+.link-list a{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:baseline;gap:6px 4vw;min-height:44px;text-decoration:none;padding:clamp(14px,1.8vw,26px) clamp(16px,2vw,32px) clamp(14px,1.8vw,26px) calc(var(--cut) + 16px)}
+.link-list .ln{font-family:var(--f-d);font-weight:800;letter-spacing:-.035em;line-height:.95;font-size:clamp(34px,4.8vw,84px)}
+.link-list .ld{color:var(--fg-2);max-width:24em}
+.link-list .lit .ld{color:var(--lit-ink)}
+@media (max-width:860px){.link-list a{grid-template-columns:1fr}}
+/* A plain list. */
+.list{margin:0;padding-left:1.1em;display:grid;gap:10px;max-width:34em}
+
+/* Form fields. No outlines as decoration: the field is a Stone or white slab with a 3px base in Ink. */
+.field{display:grid;gap:8px;max-width:28em}
+.field label{font-family:var(--f-d);font-weight:700;font-size:16px}
+.field .hint{font-size:var(--s-small);color:var(--fg-2)}
+.input{width:100%;min-height:48px;border:0;border-radius:0;font:inherit;font-size:18px;padding:10px 16px;background:var(--stone);color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink);clip-path:polygon(12px 0,100% 0,100% 100%,0 100%,0 12px)}
+[data-surface="stone"] .input{background:#FFFFFF}
+.input:focus-visible{outline:3px solid var(--ink);outline-offset:-3px}
+textarea.input{min-height:120px;resize:vertical}
+select.input{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(-45deg,transparent 50%,var(--ink) 50%);background-position:calc(100% - 22px) 52%,calc(100% - 16px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px}
+.check{display:inline-flex;align-items:center;gap:12px;min-height:44px;cursor:pointer}
+.check input{width:22px;height:22px;margin:0;accent-color:var(--ink)}
+[data-colourway] .check input{accent-color:var(--lead)}
+
+/* Data table. No rules: rows are spaced, the header is display type, figures are Plex Mono. */
+.table-wrap{overflow-x:auto;max-width:100%}
+.table-wrap:focus-visible{outline-offset:2px}
+.table{border-collapse:collapse;width:100%;font-size:17px}
+.table caption{text-align:left;font-family:var(--f-d);font-weight:800;font-size:var(--s-sub);letter-spacing:-.025em;margin-bottom:16px}
+.table th{text-align:left;font-family:var(--f-d);font-weight:800;font-size:15px;padding:0 24px 12px 0;vertical-align:bottom}
+.table td{padding:10px 24px 10px 0;vertical-align:top}
+.table td.mono,.table .mono{font-size:15px;white-space:nowrap}
+
+/* Code and hex chip, in Plex Mono. Set --c to show a swatch. A button chip copies its text. */
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-m);font-size:15px;font-variant-numeric:tabular-nums;line-height:1.2;padding:4px 10px 4px 8px;background:var(--fg);color:var(--ground);border:0;font-weight:500}
+.chip[style*="--c"]::before{content:"";width:14px;height:14px;background:var(--c);flex:none}
+button.chip{min-height:44px;cursor:pointer;padding:4px 14px 4px 12px}
+.lit .chip{background:var(--lit-ink);color:var(--lit-2)}
+code{font-family:var(--f-m);font-size:.88em}
+
+/* Colourway specimen: data-swatch="<key>" paints a tile in that colourway without making it a surface. */
+[data-swatch]{background:linear-gradient(135deg,var(--ground),var(--ground-hi));color:var(--fg)}

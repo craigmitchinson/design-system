@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en-GB" data-lab="platform">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCS brand toolkit · Lit from within</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="stylesheet" href="lit.css">
+<style>
+  body { background: var(--fall); background-attachment: fixed; transition: background .6s ease; }
+
+  /* Hero: the sentence is the layout, the mark is a word in it. */
+  .hero { min-height: calc(100svh - 104px); display: grid; grid-template-rows: auto 1fr auto; }
+  .hero h1 { font-size: clamp(66px, 15.4vw, 280px); line-height: .86; letter-spacing: -.055em; padding: 0 var(--margin); align-self: center; color: color-mix(in oklab, var(--p1) 42%, var(--ink)); }
+  .hero h1 .l2 { display: block; padding-left: .52em; }
+  .hero .mk { display: inline-block; height: .84em; width: auto; vertical-align: -.03em; margin-right: .1em; }
+  .hero .foot { display: flex; align-items: end; justify-content: space-between; gap: 48px; padding: 0 var(--margin) 48px; }
+  .hero .foot p { font-size: var(--s-lead); line-height: 1.38; color: var(--muted); max-width: 34ch; }
+  .hero .foot p b { color: var(--ink); font-weight: 600; }
+
+  section { padding: 160px var(--margin) 0; }
+  .say { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+  .say h2 { font-size: var(--s-head); }
+  .say > div > p { margin-top: 28px; color: var(--muted); font-size: var(--s-lead); line-height: 1.4; max-width: 30ch; }
+
+  /* Six lights: one strip per role, edge to edge. Only the chosen one is lit. */
+  .lights { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 80px; }
+  .lights button { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 420px; padding: 32px 28px 28px; color: var(--muted); position: relative; background: var(--fall); }
+  .lights button img { height: 104px; width: auto; align-self: flex-start; transition: transform .5s ease; }
+  .lights button b { display: block; font: 800 clamp(24px, 2vw, 34px)/1 var(--display); letter-spacing: -.03em; color: var(--ink); }
+  .lights button span { display: block; margin-top: 10px; font-size: 16px; line-height: 1.35; }
+  .lights button:hover img { transform: translateY(-6px); }
+  .lights button[aria-pressed="true"] { background: var(--light); color: var(--deep); clip-path: polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%); }
+  .lights button[aria-pressed="true"] b { color: var(--deep); }
+  .lights button[aria-pressed="true"]::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--crescent); }
+
+  /* The toolkit: the light follows your attention. One row is lit; point at another and the light moves. */
+  .kit { display: grid; grid-template-columns: 4fr 8fr; gap: 64px; }
+  .kit h2 { font-size: var(--s-head); position: sticky; top: 48px; align-self: start; }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .rows a { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) 40px; gap: 32px; align-items: baseline;
+    padding: 30px 40px 30px 36px; text-decoration: none; position: relative; transition: background .35s ease, color .35s ease; }
+  .rows b { font: 800 clamp(26px, 2.5vw, 44px)/1 var(--display); letter-spacing: -.035em; color: var(--ink); }
+  .rows span { color: var(--muted); }
+  .rows i { font-style: normal; font: 700 26px/1 var(--display); justify-self: end; color: var(--muted); }
+  .rows a.on, .rows:hover a:hover, .rows a:focus-visible { background: var(--light); color: var(--deep);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%); }
+  .rows a.on b, .rows a.on span, .rows a.on i, .rows:hover a:hover b, .rows:hover a:hover span, .rows:hover a:hover i,
+  .rows a:focus-visible b, .rows a:focus-visible span, .rows a:focus-visible i { color: var(--deep); }
+  .rows:hover a.on:not(:hover) { background: none; clip-path: none; }
+  .rows:hover a.on:not(:hover) b { color: var(--ink); }
+  .rows:hover a.on:not(:hover) span, .rows:hover a.on:not(:hover) i { color: var(--muted); }
+
+  /* The rule: a whole field of light, the one surface on this screen. */
+  .rule { margin-top: 160px; padding: 120px var(--margin) 128px; background: var(--light); color: var(--deep); position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9vw), calc(100% - 9vw) 100%, 0 100%); }
+  .rule::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 16px; background: var(--crescent); }
+  .rule h2 { font-size: clamp(48px, 7.4vw, 136px); line-height: .9; letter-spacing: -.05em; max-width: 13ch; }
+  .rule .why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-top: 88px; max-width: 1240px; }
+  .rule h3 { font-size: 28px; letter-spacing: -.025em; margin-bottom: 12px; }
+  .rule p { font-size: 18px; }
+
+  /* SharePoint: statement left, table pushed right. */
+  .sites { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; }
+  .sites h2 { font-size: var(--s-head); }
+  .sites h2 em { font-style: normal; color: var(--p1); }
+  .sites > div p { margin-top: 28px; color: var(--muted); font-size: var(--s-lead); line-height: 1.4; max-width: 28ch; }
+  .sites dl { margin: 0; display: grid; grid-template-columns: 1fr auto; column-gap: 32px; row-gap: 0; align-self: end; }
+  .sites dt, .sites dd { margin: 0; padding: 14px 0; font-size: 19px; }
+  .sites dt b { font: 700 22px/1.2 var(--display); letter-spacing: -.02em; color: var(--ink); margin-right: 12px; }
+  .sites dt span { color: var(--muted); }
+  .sites dd { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; font-family: var(--display); font-weight: 700; }
+  .sites .gap { margin-top: 28px; }
+
+  /* Footer: the instruction for builders is the headline. */
+  footer { padding: 200px var(--margin) 64px; display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: end; }
+  footer h2 { font-size: clamp(44px, 6.4vw, 116px); line-height: .9; letter-spacing: -.05em; }
+  footer h2 a { text-decoration-thickness: .06em; text-underline-offset: .12em; text-decoration-color: var(--p0); }
+  footer p { color: var(--muted); }
+  footer .small { margin-top: 40px; font-size: 16px; display: flex; gap: 24px; align-items: center; }
+
+  @media (max-width: 1100px) {
+    .lights { grid-template-columns: repeat(3, 1fr); }
+    .rows a { grid-template-columns: 1fr 32px; }
+    .rows span { grid-column: 1; grid-row: 2; }
+    .rows i { grid-row: 1 / span 2; align-self: center; }
+  }
+  @media (max-width: 720px) {
+    .hero { min-height: calc(100svh - 70px); }
+    .hero h1 { font-size: 21vw; line-height: .88; }
+    .hero h1 .l2 { padding-left: 0; }
+    .hero .foot { flex-direction: column; align-items: stretch; gap: 28px; padding-bottom: 32px; }
+    .hero .foot .act { justify-content: center; }
+    section { padding-top: 112px; }
+    .say, .kit, .sites, footer { grid-template-columns: 1fr; gap: 24px; }
+    .kit h2 { position: static; }
+    .lights { grid-template-columns: repeat(2, 1fr); margin-top: 48px; margin-left: calc(-1 * var(--margin)); margin-right: calc(-1 * var(--margin)); }
+    .lights button { min-height: 228px; padding: 24px 20px 20px; }
+    .lights button img { height: 72px; }
+    .rows { margin: 0 calc(-1 * var(--margin)); }
+    .rows a { padding: 22px var(--margin); gap: 8px 16px; }
+    .rule { margin-top: 112px; padding: 80px var(--margin) 120px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 64px), calc(100% - 64px) 100%, 0 100%); }
+    .rule h2 { font-size: 15vw; }
+    .rule .why { grid-template-columns: 1fr; gap: 32px; margin-top: 48px; }
+    .sites dl { margin-top: 16px; }
+    .sites dt b { display: block; margin: 0 0 2px; }
+    footer { padding-top: 140px; }
+    footer h2 { font-size: 15vw; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="wordmark" href="#" aria-label="CCS home">CCS</a>
+  <nav aria-label="Toolkit">
+    <a href="sheet.html">Guidelines</a>
+    <a href="#">Downloads</a>
+    <a href="#sharepoint">SharePoint</a>
+    <a href="qbr.html">QBR slides</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <span></span>
+    <h1>Lit from <span class="l2"><img class="mk switch-on" id="heroMark" src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="the CCS mark,"> within</span></h1>
+    <div class="foot">
+      <p><b>The CCS brand toolkit.</b> Everything for the mark in one place: its colourways, guidelines, motion, the deck, and the SharePoint sites built on them.</p>
+      <a class="act" href="#">Open the Mark Suite</a>
+    </div>
+  </div>
+
+  <section aria-labelledby="h-lights">
+    <div class="say">
+      <div>
+        <h2 id="h-lights">One mark. Six lights.</h2>
+      </div>
+      <div>
+        <p style="margin-top:0;color:var(--muted);font-size:var(--s-lead);line-height:1.4;max-width:34ch">Each role owns one colourway. Choose one and this page takes its light: the ground, the type and the mark move together.</p>
+      </div>
+    </div>
+    <div class="lights" role="group" aria-label="Choose a colourway">
+      <button type="button" data-lab="platform" data-mark="ccs-mark-platform" aria-pressed="true"><img src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt=""><span><b>Navy</b><span>Platform, all labs together</span></span></button>
+      <button type="button" data-lab="ember" data-mark="ccs-mark-ember" aria-pressed="false"><img src="../../assets/ccs-mark/suite/ccs-mark-ember.svg" alt=""><span><b>Ember</b><span>Lab 1 · 24x7 Services</span></span></button>
+      <button type="button" data-lab="crimson" data-mark="ccs-mark-crimson-obsidian" aria-pressed="false"><img src="../../assets/ccs-mark/suite/ccs-mark-crimson-obsidian.svg" alt=""><span><b>Crimson</b><span>Lab 2 · Automated Operations</span></span></button>
+      <button type="button" data-lab="sapphire" data-mark="ccs-mark-royal-sapphire" aria-pressed="false"><img src="../../assets/ccs-mark/suite/ccs-mark-royal-sapphire.svg" alt=""><span><b>Sapphire</b><span>Lab 3 · Colleague Services</span></span></button>
+      <button type="button" data-lab="seafoam" data-mark="ccs-mark-seafoam-teal" aria-pressed="false"><img src="../../assets/ccs-mark/suite/ccs-mark-seafoam-teal.svg" alt=""><span><b>Seafoam</b><span>Lab 4 · Data &amp; Insights</span></span></button>
+      <button type="button" data-lab="frontier" data-mark="frontier-mark" aria-pressed="false"><img src="../../assets/ccs-mark/suite/frontier-mark.svg" alt=""><span><b>Violet</b><span>Frontier, the innovation forum</span></span></button>
+    </div>
+  </section>
+
+  <section class="kit" aria-labelledby="h-kit">
+    <h2 id="h-kit">Everything for the mark.</h2>
+    <ul class="rows">
+      <li><a class="on" href="#"><b>Mark Suite</b><span>The final mark: six colourways, variants, type, lockups and sizes.</span><i aria-hidden="true">&rarr;</i></a></li>
+      <li><a href="sheet.html"><b>Brand Guidelines</b><span>The rules: construction, colour, clear space and misuse.</span><i aria-hidden="true">&rarr;</i></a></li>
+      <li><a href="#"><b>Mark in Motion</b><span>Every motion scene, with sound and MP4 or GIF export.</span><i aria-hidden="true">&rarr;</i></a></li>
+      <li><a href="qbr.html"><b>Mark Deck</b><span>Eleven slides introducing the mark to colleagues.</span><i aria-hidden="true">&rarr;</i></a></li>
+      <li><a href="#"><b>Downloads</b><span>SVG and PNG marks, app icons, favicons and an email signature.</span><i aria-hidden="true">&rarr;</i></a></li>
+      <li><a href="#"><b>Design Journey</b><span>The record: five candidates and how we chose.</span><i aria-hidden="true">&rarr;</i></a></li>
+    </ul>
+  </section>
+
+  <div class="rule" role="region" aria-labelledby="h-rule">
+    <h2 id="h-rule">The middle panel is always the brightest.</h2>
+    <div class="why">
+      <div><h3>The mark</h3><p>The faceted S: three panels and two crescents. The Cs are the space the panels leave.</p></div>
+      <div><h3>Shading</h3><p>The lower panel is the top panel turned 180 degrees. The crescents mirror each other and glow, with no outline.</p></div>
+      <div><h3>Frontier</h3><p>Our innovation forum, not a Lab, so it has its own mark: an F built from the same panels and gap, drawn to the same height as the S.</p></div>
+    </div>
+  </div>
+
+  <section class="sites" id="sharepoint" aria-labelledby="h-sites">
+    <div>
+      <h2 id="h-sites">Sixty pages, <em>one light.</em></h2>
+      <p>Every SharePoint page is built on the same colourways. Each Lab site takes its own ground.</p>
+    </div>
+    <dl>
+      <dt><b>Platform hub</b><span>Navy</span></dt><dd>9 pages</dd>
+      <dt class="gap"><b>24x7 Services</b><span>Lab 1 · Ember</span></dt><dd class="gap">6 pages</dd>
+      <dt><b>Automated Operations</b><span>Lab 2 · Crimson</span></dt><dd>6 pages</dd>
+      <dt><b>Colleague Services</b><span>Lab 3 · Sapphire</span></dt><dd>6 pages</dd>
+      <dt><b>Data &amp; Insights</b><span>Lab 4 · Seafoam</span></dt><dd>6 pages</dd>
+      <dt class="gap"><b>Frontier</b><span>Innovation forum · Violet</span></dt><dd class="gap">7 pages</dd>
+      <dt class="gap"><b>Business site</b><span>Template</span></dt><dd class="gap">11 pages</dd>
+      <dt><b>Team site</b><span>Template</span></dt><dd>7 pages</dd>
+    </dl>
+  </section>
+</main>
+
+<footer>
+  <h2>Colours come from one file, <a href="#">palette.js</a>.</h2>
+  <div>
+    <p>The two component files, Mark and Frontier mark, draw every logo in this project. The ccs-mark-kit folder holds a copy with the rules.</p>
+    <div class="small"><a class="wordmark" href="#" style="font-size:20px">CCS</a><span>Colleague &amp; Customer Service</span></div>
+  </div>
+</footer>
+
+<script>
+  const root = document.documentElement, hero = document.getElementById('heroMark');
+  document.querySelectorAll('.lights button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.lights button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    root.dataset.lab = b.dataset.lab;
+    hero.src = '../../assets/ccs-mark/suite/' + b.dataset.mark + '.svg';
+    hero.classList.remove('switch-on'); void hero.offsetWidth; hero.classList.add('switch-on');
+  }));
+  const rows = document.querySelector('.rows');
+  rows.addEventListener('focusin', e => { rows.querySelectorAll('a').forEach(a => a.classList.toggle('on', a === e.target)); });
+</script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+{
+  "generator": "gen.mjs, geometry from directions/mark-study/build.mjs (refined master)",
+  "viewBox": "-110.24 -75.58 5137.8 6158.35",
+  "viewBoxSmall": "-438.77 -373.27 5794.85 6753.72",
+  "aspectRatio": {
+    "full": 0.83,
+    "small": 0.86,
+    "note": "width divided by height"
+  },
+  "units": "master drawing units; panel width W is the unit scale",
+  "panelWidth": 1315.59,
+  "gap": {
+    "units": 236.81,
+    "fractionOfPanelWidth": 0.18,
+    "small": {
+      "units": 447.3,
+      "fractionOfPanelWidth": 0.34
+    }
+  },
+  "crescentWidest": {
+    "fractionOfPanelWidth": 0.54,
+    "small": 0.62
+  },
+  "turnCentre": [
+    2458.66,
+    3003.59
+  ],
+  "axis": {
+    "vector": [
+      0.7071,
+      -0.7071
+    ],
+    "description": "unit vector along the three panels in SVG coordinates (x right, y down): up and to the right at 45 degrees. Same as uhat in motion/ccs-motion.js.",
+    "perPiece": {
+      "panel-upper": {
+        "slideSign": 1,
+        "direction": [
+          0.7071,
+          -0.7071
+        ]
+      },
+      "panel-lower": {
+        "slideSign": -1,
+        "direction": [
+          -0.7071,
+          0.7071
+        ]
+      },
+      "panel-middle": {
+        "slideSign": 0,
+        "direction": [
+          0,
+          0
+        ]
+      },
+      "crescent-left": {
+        "slideSign": 0,
+        "direction": [
+          0,
+          0
+        ]
+      },
+      "crescent-right": {
+        "slideSign": 0,
+        "direction": [
+          0,
+          0
+        ]
+      }
+    },
+    "note": "translate(direction * distance). In motion/ccs-motion.js setK the upper panel (and the upper half of the middle) is clipped by a clip shape moved +uhat * k, the lower panel (and lower half of the middle) by one moved -uhat * k. The panels are not translated whole: their arc ends retract by k while the caps stay put, and the crescents grow into the space. Moving the whole panel by the same vector is the simple version and uses the same axis and distance."
+  },
+  "slide": {
+    "unit": "master drawing units, in the viewBox of these files (the refined mark has the same W and turn centre as the master)",
+    "distance": {
+      "versionA": 850,
+      "versionB": 1000
+    },
+    "fractionOfPanelWidth": {
+      "versionA": 0.65,
+      "versionB": 0.76
+    },
+    "source": "motion/ccs-motion.js: C.versions {a: 850, b: 1000}, slider range 0 to 1000",
+    "closedAt": 0
+  },
+  "grounds": {
+    "light": "#F3F1EC",
+    "inkHex": "#0D1730"
+  },
+  "files": {
+    "pattern": {
+      "dark": "refined-<key>-dark.svg",
+      "light": "refined-<key>-light.svg",
+      "flat": "refined-<key>-flat.svg",
+      "parts": "refined-<key>-parts.svg",
+      "small": "refined-small-<key>.svg",
+      "smallLight": "refined-small-<key>-light.svg"
+    },
+    "monoWhite": "refined-mono-white.svg",
+    "monoInk": "refined-mono-ink.svg",
+    "masks": {
+      "panel-upper": "masks/panel-upper.svg",
+      "panel-middle": "masks/panel-middle.svg",
+      "panel-lower": "masks/panel-lower.svg",
+      "crescent-left": "masks/crescent-left.svg",
+      "crescent-right": "masks/crescent-right.svg",
+      "s-silhouette": "masks/s-silhouette.svg"
+    }
+  },
+  "partIds": [
+    "panel-upper",
+    "panel-middle",
+    "panel-lower",
+    "crescent-left",
+    "crescent-right"
+  ],
+  "maskUse": "Same viewBox as the full mark. Layer a mask over the parts file (or size both to the same box) and they align exactly.",
+  "colourways": [
+    {
+      "key": "platform",
+      "order": 1,
+      "name": "Midnight Navy & Silver",
+      "short": "Platform",
+      "labRole": "Platform",
+      "lead": "#5B82D1",
+      "ground": "#0D1730",
+      "groundHi": "#233A6E",
+      "inkDeep": "#203258",
+      "glow": "rgba(170, 196, 240, 0.55)",
+      "stroke": "#F4F7FB",
+      "hasLightOverride": true,
+      "lightOverrides": {
+        "1": [
+          "#82AEFF",
+          "#A5CCFF"
+        ],
+        "3": [
+          "#5D90DD",
+          "#2B4A86"
+        ],
+        "4": [
+          "#2B4A86",
+          "#5D90DD"
+        ]
+      },
+      "supersedesPalette": true,
+      "paletteLight": {
+        "1": [
+          "#7E93B8",
+          "#A3B4CF"
+        ],
+        "3": [
+          "#7E93B8",
+          "#2B4A86"
+        ],
+        "4": [
+          "#2B4A86",
+          "#7E93B8"
+        ]
+      },
+      "smallTones": {
+        "dark": {
+          "ground": "#0D1730",
+          "panels": "#5B82D1",
+          "middle": "#F4F7FB",
+          "crescents": "#E6ECF5",
+          "stats": {
+            "panelsVsMiddle": 36.1,
+            "panelsVsCrescents": 33,
+            "middleVsCrescents": 3.3,
+            "markVsGround": 58.4,
+            "minPieceVsGround": 38.8
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 36.1,
+            "panelsVsCrescents": 33,
+            "middleVsCrescents": 3.3,
+            "markVsGround": 58.4,
+            "minPieceVsGround": 38.8
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#5B82D1",
+          "middle": "#AACFFF",
+          "crescents": "#21458E",
+          "stats": {
+            "panelsVsMiddle": 21.8,
+            "panelsVsCrescents": 22.4,
+            "middleVsCrescents": 47.9,
+            "markVsGround": 40.5,
+            "minPieceVsGround": 22
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#5B82D1",
+        "middle": "#F4F7FB",
+        "crescents": "#E6ECF5",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 22.9,
+        "middleVsPanels": 11.1,
+        "crescentsVsGround": 36,
+        "crescentsVsPanels": 15.7,
+        "crescentsVsMiddle": 26.4,
+        "middleChroma": 0.105,
+        "darkMiddleChroma": 0.014,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-platform-dark.svg",
+        "light": "refined-platform-light.svg",
+        "flat": "refined-platform-flat.svg",
+        "parts": "refined-platform-parts.svg",
+        "small": "refined-small-platform.svg",
+        "smallLight": "refined-small-platform-light.svg"
+      }
+    },
+    {
+      "key": "ember",
+      "order": 2,
+      "name": "Ember",
+      "short": "Ember",
+      "labRole": "Lab 1 · 24x7 Services",
+      "lead": "#E4571E",
+      "ground": "#260C03",
+      "groundHi": "#662209",
+      "inkDeep": "#5C2008",
+      "glow": "rgba(255, 122, 61, 0.6)",
+      "stroke": "#FFD2B0",
+      "hasLightOverride": true,
+      "lightOverrides": {
+        "1": [
+          "#FF8717",
+          "#FFAE6B"
+        ],
+        "3": [
+          "#D15B03",
+          "#8F3A0E"
+        ],
+        "4": [
+          "#8F3A0E",
+          "#D15B03"
+        ]
+      },
+      "supersedesPalette": true,
+      "paletteLight": {
+        "1": [
+          "#E07A36",
+          "#F09A5C"
+        ]
+      },
+      "smallTones": {
+        "dark": {
+          "ground": "#260C03",
+          "panels": "#E4571E",
+          "middle": "#FFC394",
+          "crescents": "#FF9864",
+          "stats": {
+            "panelsVsMiddle": 26.5,
+            "panelsVsCrescents": 15.7,
+            "middleVsCrescents": 11.8,
+            "markVsGround": 52.3,
+            "minPieceVsGround": 44
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 26.5,
+            "panelsVsCrescents": 15.7,
+            "middleVsCrescents": 11.8,
+            "markVsGround": 59.7,
+            "minPieceVsGround": 53
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#E4571E",
+          "middle": "#FFB171",
+          "crescents": "#873200",
+          "stats": {
+            "panelsVsMiddle": 22.5,
+            "panelsVsCrescents": 22.1,
+            "middleVsCrescents": 43.4,
+            "markVsGround": 40.8,
+            "minPieceVsGround": 24.9
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#E4571E",
+        "middle": "#FFC394",
+        "crescents": "#FF9864",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 25.6,
+        "middleVsPanels": 13.6,
+        "crescentsVsGround": 41.4,
+        "crescentsVsPanels": 15.9,
+        "crescentsVsMiddle": 26.3,
+        "middleChroma": 0.153,
+        "darkMiddleChroma": 0.117,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-ember-dark.svg",
+        "light": "refined-ember-light.svg",
+        "flat": "refined-ember-flat.svg",
+        "parts": "refined-ember-parts.svg",
+        "small": "refined-small-ember.svg",
+        "smallLight": "refined-small-ember-light.svg"
+      }
+    },
+    {
+      "key": "crimson-obsidian",
+      "order": 3,
+      "name": "Imperial Crimson & Obsidian",
+      "short": "Crimson",
+      "labRole": "Lab 2 · Automated Operations",
+      "lead": "#D7263D",
+      "ground": "#30050C",
+      "groundHi": "#680E1B",
+      "inkDeep": "#500D16",
+      "glow": "rgba(255, 42, 75, 0.65)",
+      "stroke": "#FF6B81",
+      "hasLightOverride": false,
+      "lightOverrides": {
+        "1": [
+          "#FF4D6D",
+          "#FF85A1"
+        ],
+        "3": [
+          "#C0002F",
+          "#A11030"
+        ],
+        "4": [
+          "#A11030",
+          "#C0002F"
+        ]
+      },
+      "supersedesPalette": false,
+      "smallTones": {
+        "dark": {
+          "ground": "#30050C",
+          "panels": "#D7263D",
+          "middle": "#FF85A1",
+          "crescents": "#FF676E",
+          "stats": {
+            "panelsVsMiddle": 23.7,
+            "panelsVsCrescents": 15.5,
+            "middleVsCrescents": 11,
+            "markVsGround": 41.2,
+            "minPieceVsGround": 34.5
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 23.7,
+            "panelsVsCrescents": 15.5,
+            "middleVsCrescents": 11,
+            "markVsGround": 49.8,
+            "minPieceVsGround": 45
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#D7263D",
+          "middle": "#FF86A1",
+          "crescents": "#6E001B",
+          "stats": {
+            "panelsVsMiddle": 23.8,
+            "panelsVsCrescents": 22.2,
+            "middleVsCrescents": 47.1,
+            "markVsGround": 48.6,
+            "minPieceVsGround": 31.3
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#D7263D",
+        "middle": "#FF85A1",
+        "crescents": "#FF676E",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 31.4,
+        "middleVsPanels": 11.7,
+        "crescentsVsGround": 52.2,
+        "crescentsVsPanels": 15.6,
+        "crescentsVsMiddle": 28.1,
+        "middleChroma": 0.181,
+        "darkMiddleChroma": 0.181,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-crimson-obsidian-dark.svg",
+        "light": "refined-crimson-obsidian-light.svg",
+        "flat": "refined-crimson-obsidian-flat.svg",
+        "parts": "refined-crimson-obsidian-parts.svg",
+        "small": "refined-small-crimson-obsidian.svg",
+        "smallLight": "refined-small-crimson-obsidian-light.svg"
+      }
+    },
+    {
+      "key": "royal-sapphire",
+      "order": 4,
+      "name": "Royal Sapphire & Ice Cobalt",
+      "short": "Sapphire",
+      "labRole": "Lab 3 · Colleague Services",
+      "lead": "#2563EB",
+      "ground": "#0A0F1B",
+      "groundHi": "#142A67",
+      "inkDeep": "#0F276C",
+      "glow": "rgba(59, 130, 246, 0.6)",
+      "stroke": "#93C5FD",
+      "hasLightOverride": false,
+      "lightOverrides": {
+        "1": [
+          "#58A3FF",
+          "#8EC3FF"
+        ],
+        "3": [
+          "#0054CA",
+          "#1D3F9E"
+        ],
+        "4": [
+          "#1D3F9E",
+          "#0054CA"
+        ]
+      },
+      "supersedesPalette": false,
+      "smallTones": {
+        "dark": {
+          "ground": "#0A0F1B",
+          "panels": "#2563EB",
+          "middle": "#93C5FD",
+          "crescents": "#4F91FF",
+          "stats": {
+            "panelsVsMiddle": 28.8,
+            "panelsVsCrescents": 15.7,
+            "middleVsCrescents": 14.2,
+            "markVsGround": 44.6,
+            "minPieceVsGround": 36.9
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 28.8,
+            "panelsVsCrescents": 15.7,
+            "middleVsCrescents": 14.2,
+            "markVsGround": 41.1,
+            "minPieceVsGround": 33
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#2563EB",
+          "middle": "#8DC2FE",
+          "crescents": "#0518A6",
+          "stats": {
+            "panelsVsMiddle": 28.1,
+            "panelsVsCrescents": 22.2,
+            "middleVsCrescents": 57.9,
+            "markVsGround": 50.2,
+            "minPieceVsGround": 26
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#2563EB",
+        "middle": "#93C5FD",
+        "crescents": "#4F91FF",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 25.9,
+        "middleVsPanels": 19.3,
+        "crescentsVsGround": 54.7,
+        "crescentsVsPanels": 15.8,
+        "crescentsVsMiddle": 37.7,
+        "middleChroma": 0.128,
+        "darkMiddleChroma": 0.119,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-royal-sapphire-dark.svg",
+        "light": "refined-royal-sapphire-light.svg",
+        "flat": "refined-royal-sapphire-flat.svg",
+        "parts": "refined-royal-sapphire-parts.svg",
+        "small": "refined-small-royal-sapphire.svg",
+        "smallLight": "refined-small-royal-sapphire-light.svg"
+      }
+    },
+    {
+      "key": "seafoam-teal",
+      "order": 5,
+      "name": "Seafoam & Teal (toned)",
+      "short": "Seafoam",
+      "labRole": "Lab 4 · Data & Insights",
+      "lead": "#14C8B4",
+      "ground": "#04213E",
+      "groundHi": "#074E79",
+      "inkDeep": "#054054",
+      "glow": "rgba(47, 216, 194, 0.5)",
+      "stroke": "#8CEBDD",
+      "hasLightOverride": false,
+      "lightOverrides": {
+        "1": [
+          "#07D5E3",
+          "#3CEFFF"
+        ],
+        "3": [
+          "#069F8E",
+          "#0A6E8C"
+        ],
+        "4": [
+          "#0A6E8C",
+          "#069F8E"
+        ]
+      },
+      "supersedesPalette": false,
+      "smallTones": {
+        "dark": {
+          "ground": "#04213E",
+          "panels": "#14C8B4",
+          "middle": "#D6FBFF",
+          "crescents": "#A9FFEF",
+          "stats": {
+            "panelsVsMiddle": 22.7,
+            "panelsVsCrescents": 15.6,
+            "middleVsCrescents": 12.1,
+            "markVsGround": 74.2,
+            "minPieceVsGround": 61.8
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 22.7,
+            "panelsVsCrescents": 15.6,
+            "middleVsCrescents": 12.1,
+            "markVsGround": 76.7,
+            "minPieceVsGround": 64.3
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#14C8B4",
+          "middle": "#B1F7FF",
+          "crescents": "#0A6E8C",
+          "stats": {
+            "panelsVsMiddle": 19.1,
+            "panelsVsCrescents": 34.4,
+            "middleVsCrescents": 40.7,
+            "markVsGround": 29.9,
+            "minPieceVsGround": 19.2
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#14C8B4",
+        "middle": "#D6FBFF",
+        "crescents": "#A9FFEF",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 25.4,
+        "middleVsPanels": 10.7,
+        "crescentsVsGround": 35.2,
+        "crescentsVsPanels": 15.7,
+        "crescentsVsMiddle": 26.1,
+        "middleChroma": 0.136,
+        "darkMiddleChroma": 0.086,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-seafoam-teal-dark.svg",
+        "light": "refined-seafoam-teal-light.svg",
+        "flat": "refined-seafoam-teal-flat.svg",
+        "parts": "refined-seafoam-teal-parts.svg",
+        "small": "refined-small-seafoam-teal.svg",
+        "smallLight": "refined-small-seafoam-teal-light.svg"
+      }
+    },
+    {
+      "key": "neon-cyberpunk",
+      "order": 6,
+      "name": "Neon Cyberpunk Violet",
+      "short": "Frontier",
+      "labRole": "Frontier",
+      "lead": "#7C3AED",
+      "ground": "#140431",
+      "groundHi": "#330F70",
+      "inkDeep": "#2E115B",
+      "glow": "rgba(240, 171, 252, 0.65)",
+      "stroke": "#F472B6",
+      "hasLightOverride": true,
+      "lightOverrides": {
+        "1": [
+          "#F2A9FF",
+          "#FF65B9"
+        ],
+        "3": [
+          "#CB43E2",
+          "#4F2391"
+        ],
+        "4": [
+          "#4F2391",
+          "#CB43E2"
+        ]
+      },
+      "supersedesPalette": true,
+      "paletteLight": {
+        "3": [
+          "#A855F7",
+          "#4F2391"
+        ],
+        "4": [
+          "#4F2391",
+          "#A855F7"
+        ]
+      },
+      "smallTones": {
+        "dark": {
+          "ground": "#140431",
+          "panels": "#7C3AED",
+          "middle": "#F0ABFC",
+          "crescents": "#EDA8F9",
+          "stats": {
+            "panelsVsMiddle": 34.1,
+            "panelsVsCrescents": 33.5,
+            "middleVsCrescents": 0.8,
+            "markVsGround": 45.9,
+            "minPieceVsGround": 33.2
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 34.1,
+            "panelsVsCrescents": 33.5,
+            "middleVsCrescents": 0.8,
+            "markVsGround": 45.2,
+            "minPieceVsGround": 32.9
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#7C3AED",
+          "middle": "#F2A8FF",
+          "crescents": "#3A0075",
+          "stats": {
+            "panelsVsMiddle": 33.6,
+            "panelsVsCrescents": 22.1,
+            "middleVsCrescents": 61.4,
+            "markVsGround": 53.5,
+            "minPieceVsGround": 30.1
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#7C3AED",
+        "middle": "#F0ABFC",
+        "crescents": "#EDA8F9",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 29.9,
+        "middleVsPanels": 23.5,
+        "crescentsVsGround": 45.1,
+        "crescentsVsPanels": 15.6,
+        "crescentsVsMiddle": 31.4,
+        "middleChroma": 0.167,
+        "darkMiddleChroma": 0.149,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-neon-cyberpunk-dark.svg",
+        "light": "refined-neon-cyberpunk-light.svg",
+        "flat": "refined-neon-cyberpunk-flat.svg",
+        "parts": "refined-neon-cyberpunk-parts.svg",
+        "small": "refined-small-neon-cyberpunk.svg",
+        "smallLight": "refined-small-neon-cyberpunk-light.svg"
+      }
+    },
+    {
+      "key": "cyber-emerald",
+      "order": 7,
+      "name": "Cyber Emerald & Mint",
+      "short": "Emerald",
+      "labRole": "Spare",
+      "lead": "#10B981",
+      "ground": "#011D16",
+      "groundHi": "#034735",
+      "inkDeep": "#023C2C",
+      "glow": "rgba(52, 211, 153, 0.6)",
+      "stroke": "#A7F3D0",
+      "hasLightOverride": false,
+      "lightOverrides": {
+        "1": [
+          "#08EFAF",
+          "#6DFFC5"
+        ],
+        "3": [
+          "#01AA77",
+          "#047857"
+        ],
+        "4": [
+          "#047857",
+          "#01AA77"
+        ]
+      },
+      "supersedesPalette": false,
+      "smallTones": {
+        "dark": {
+          "ground": "#011D16",
+          "panels": "#10B981",
+          "middle": "#C1FFE2",
+          "crescents": "#66F9BD",
+          "stats": {
+            "panelsVsMiddle": 22,
+            "panelsVsCrescents": 15.7,
+            "middleVsCrescents": 11.1,
+            "markVsGround": 66.1,
+            "minPieceVsGround": 52.6
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 22,
+            "panelsVsCrescents": 15.7,
+            "middleVsCrescents": 11.1,
+            "markVsGround": 72.4,
+            "minPieceVsGround": 60.6
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#10B981",
+          "middle": "#BBFFDF",
+          "crescents": "#037656",
+          "stats": {
+            "panelsVsMiddle": 21.3,
+            "panelsVsCrescents": 22.5,
+            "middleVsCrescents": 40.1,
+            "markVsGround": 31.9,
+            "minPieceVsGround": 20.7
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#10B981",
+        "middle": "#C1FFE2",
+        "crescents": "#66F9BD",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 25.3,
+        "middleVsPanels": 11.5,
+        "crescentsVsGround": 34.2,
+        "crescentsVsPanels": 15.8,
+        "crescentsVsMiddle": 26.9,
+        "middleChroma": 0.164,
+        "darkMiddleChroma": 0.11,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-cyber-emerald-dark.svg",
+        "light": "refined-cyber-emerald-light.svg",
+        "flat": "refined-cyber-emerald-flat.svg",
+        "parts": "refined-cyber-emerald-parts.svg",
+        "small": "refined-small-cyber-emerald.svg",
+        "smallLight": "refined-small-cyber-emerald-light.svg"
+      }
+    },
+    {
+      "key": "saffron",
+      "order": 8,
+      "name": "Saffron",
+      "short": "Saffron",
+      "labRole": "Spare",
+      "lead": "#D98E04",
+      "ground": "#261700",
+      "groundHi": "#613C00",
+      "inkDeep": "#543500",
+      "glow": "rgba(242, 169, 0, 0.6)",
+      "stroke": "#FFE7A3",
+      "hasLightOverride": false,
+      "lightOverrides": {
+        "1": [
+          "#FFBE1F",
+          "#FFD567"
+        ],
+        "3": [
+          "#C08C01",
+          "#8A5A00"
+        ],
+        "4": [
+          "#8A5A00",
+          "#C08C01"
+        ]
+      },
+      "supersedesPalette": false,
+      "smallTones": {
+        "dark": {
+          "ground": "#261700",
+          "panels": "#D98E04",
+          "middle": "#FFE197",
+          "crescents": "#FFCB63",
+          "stats": {
+            "panelsVsMiddle": 22.4,
+            "panelsVsCrescents": 16,
+            "middleVsCrescents": 7.9,
+            "markVsGround": 62.2,
+            "minPieceVsGround": 51.1
+          },
+          "statsOnNavy": {
+            "panelsVsMiddle": 22.4,
+            "panelsVsCrescents": 16,
+            "middleVsCrescents": 7.9,
+            "markVsGround": 72.3,
+            "minPieceVsGround": 63.1
+          }
+        },
+        "light": {
+          "ground": "#F3F1EC",
+          "panels": "#D98E04",
+          "middle": "#FFDC85",
+          "crescents": "#8A5A00",
+          "stats": {
+            "panelsVsMiddle": 20.8,
+            "panelsVsCrescents": 22.6,
+            "middleVsCrescents": 38.9,
+            "markVsGround": 33.3,
+            "minPieceVsGround": 21.3
+          }
+        }
+      },
+      "flatTones": {
+        "panels": "#D98E04",
+        "middle": "#FFE197",
+        "crescents": "#FFCB63",
+        "note": "same as the dark-ground small cut"
+      },
+      "lightContrast": {
+        "middleVsGround": 24.2,
+        "middleVsPanels": 12.3,
+        "crescentsVsGround": 34.5,
+        "crescentsVsPanels": 15.8,
+        "crescentsVsMiddle": 25.6,
+        "middleChroma": 0.151,
+        "darkMiddleChroma": 0.14,
+        "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+      },
+      "files": {
+        "dark": "refined-saffron-dark.svg",
+        "light": "refined-saffron-light.svg",
+        "flat": "refined-saffron-flat.svg",
+        "parts": "refined-saffron-parts.svg",
+        "small": "refined-small-saffron.svg",
+        "smallLight": "refined-small-saffron-light.svg"
+      }
+    }
+  ],
+  "lightRule": {
+    "version": 3,
+    "appliesTo": "every colourway, including those with a palette.js light override (supersedesPalette: true on those)",
+    "space": "OKLCH for edits, CIEDE2000 for contrast on #F3F1EC",
+    "panels": "unchanged: the lead fade g0",
+    "chroma": "a reworked stop takes C = max(own C, dark middle mid-colour C, lead C), reduced only to fit sRGB at fixed L and hue. Hue held. If the middle targets cannot be met on the lit side at that chroma, the middle takes the most chroma sRGB allows (listed in middleAtGamutMaxChroma).",
+    "middlePanel": "both g1 stops drop by one amount dL (0.005 steps), the least that gives lighter stop vs ground >= 25.5 and middle vs panels >= 12.5 (mid-colours).",
+    "crescent": "deep g3 stop kept; the pale stop takes the highest L at or under its own (0.005 steps) that gives crescent vs panels >= 15.5 (mid-colours). g4 mirrors g3.",
+    "targets": {
+      "middleVsGround": 25,
+      "middleVsPanels": 12,
+      "crescentsVsPanels": 15,
+      "middleChroma": ">= dark middle chroma"
+    },
+    "litSide": "the middle mid-colour stays lighter than the panel mid-colour; where both targets cannot be met there, the dL with the best min(achieved / target) is used",
+    "dL": {
+      "platform": 0.14,
+      "ember": 0.045,
+      "crimson-obsidian": 0,
+      "royal-sapphire": 0.005,
+      "seafoam-teal": 0,
+      "neon-cyberpunk": 0,
+      "cyber-emerald": 0,
+      "saffron": 0.01
+    },
+    "middleAtGamutMaxChroma": [
+      "platform",
+      "crimson-obsidian",
+      "seafoam-teal",
+      "cyber-emerald",
+      "saffron"
+    ],
+    "status": "lightOverrides are derived here and used by the light builds; not yet in palette.js. Where supersedesPalette is true they replace the palette.js override."
+  },
+  "smallRule": {
+    "fills": "flat, no gradients; panels lead, middle lit tone, crescents deep tone",
+    "tones": "lit from the middle fade, deep from the crescent fade, hue and chroma rule as lightRule; L moved in 0.005 steps the least distance to reach 22 between pieces (v3 dark ground: crescents take the pale crescent stop, L moved the least, lighter first and under the middle, to reach 15 from panels and 30 from navy and the platform groundHi; middle takes the lightest middle stop and is the brightest piece; panels the lead)",
+    "targets": {
+      "adjacentPieces": 20,
+      "markVsGround": 30
+    },
+    "markVsGround": "CIEDE2000 of the area-weighted OKLab mean of the five pieces against the ground (how the mark reads at 16px)",
+    "grounds": {
+      "dark": "the colourway ground",
+      "light": "#F3F1EC"
+    },
+    "flat": "refined-<key>-flat.svg uses the dark-ground small tones on the full geometry"
+  },
+  "frontier": {
+    "colourway": "neon-cyberpunk",
+    "source": "assets/ccs-mark/suite/frontier-mark.svg, measured and rebuilt from parameters",
+    "viewBox": "544.93 -2602.31 3637.75 5727.99",
+    "viewBoxSmall": "544.93 -2825.57 4009.86 6248.93",
+    "aspectRatio": {
+      "full": 0.64,
+      "small": 0.64,
+      "note": "width divided by height"
+    },
+    "heightVsS": 0.93,
+    "measured": {
+      "panelWidth": 1315.59,
+      "gap": 214.96,
+      "gapFraction": 0.163,
+      "crescentWidest": 785.04,
+      "crescentFraction": 0.597,
+      "crescentOffset": 1000,
+      "panelEndCentres": [
+        1417.41,
+        784.41
+      ],
+      "panelEndRadius": 1315.59,
+      "width": 3788.07,
+      "height": 5734.42
+    },
+    "refined": {
+      "panelWidth": 1315.59,
+      "gap": 236.81,
+      "gapFraction": 0.18,
+      "crescentWidest": 710.42,
+      "crescentFraction": 0.54,
+      "crescentOffset": 947.23,
+      "panelEndRadius": 1315.59,
+      "crescentInnerRadius": 1552.39,
+      "crescentTipFlat": 123.12,
+      "width": 3637.75,
+      "height": 5727.99
+    },
+    "small": {
+      "gap": 447.3,
+      "gapFraction": 0.34,
+      "crescentWidest": 815.67,
+      "crescentFraction": 0.62,
+      "crescentTipFlat": 89.51
+    },
+    "unchanged": "W, 45 degree axis, panel-end radius W, panel-end centres along u, arm lengths",
+    "lightContrast": {
+      "middleVsGround": 29.9,
+      "middleVsPanels": 23.5,
+      "crescentsVsGround": 45.1,
+      "crescentsVsPanels": 15.6,
+      "crescentsVsMiddle": 31.4,
+      "middleChroma": 0.167,
+      "darkMiddleChroma": 0.149,
+      "method": "CIEDE2000. Middle vs ground: lighter of its two stops. Pairs between pieces: gradient mid-colour (OKLab mean) of each piece. Chroma: OKLCH C of the middle mid-colour."
+    },
+    "lightOverrides": {
+      "1": [
+        "#F2A9FF",
+        "#FF65B9"
+      ],
+      "3": [
+        "#CB43E2",
+        "#4F2391"
+      ],
+      "4": [
+        "#4F2391",
+        "#CB43E2"
+      ]
+    },
+    "supersedesPalette": true,
+    "smallTones": {
+      "dark": {
+        "ground": "#140431",
+        "panels": "#7C3AED",
+        "middle": "#F0ABFC",
+        "crescents": "#EDA8F9",
+        "stats": {
+          "panelsVsMiddle": 34.1,
+          "panelsVsCrescents": 33.5,
+          "middleVsCrescents": 0.8,
+          "markVsGround": 47.4,
+          "minPieceVsGround": 33.2
+        },
+        "statsOnNavy": {
+          "panelsVsMiddle": 34.1,
+          "panelsVsCrescents": 33.5,
+          "middleVsCrescents": 0.8,
+          "markVsGround": 46.7,
+          "minPieceVsGround": 32.9
+        }
+      },
+      "light": {
+        "ground": "#F3F1EC",
+        "panels": "#7C3AED",
+        "middle": "#F2A8FF",
+        "crescents": "#3A0075",
+        "stats": {
+          "panelsVsMiddle": 33.6,
+          "panelsVsCrescents": 22.1,
+          "middleVsCrescents": 61.4,
+          "markVsGround": 48.3,
+          "minPieceVsGround": 30.1
+        }
+      }
+    },
+    "partIds": [
+      "panel-upper",
+      "panel-middle",
+      "panel-lower",
+      "crescent-left",
+      "crescent-right"
+    ],
+    "files": {
+      "dark": "refined-frontier-f-dark.svg",
+      "light": "refined-frontier-f-light.svg",
+      "flat": "refined-frontier-f-flat.svg",
+      "parts": "refined-frontier-f-parts.svg",
+      "small": "refined-small-frontier-f.svg",
+      "smallLight": "refined-small-frontier-f-light.svg",
+      "monoWhite": "refined-frontier-f-mono-white.svg",
+      "monoInk": "refined-frontier-f-mono-ink.svg"
+    }
+  }
+}

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The space between: how the system works</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="space.css">
+<style>
+.top{background:var(--navy);color:var(--silver);--X:64%;position:relative;z-index:1}
+.top__in{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:64px;align-items:end;padding:56px var(--m) 72px}
+.top h1{font-size:var(--s-display)}
+.top p{font-size:var(--s-lead);line-height:1.35;color:var(--silver-soft);max-width:22em}
+
+.part{padding:clamp(88px,12vh,150px) var(--m) 0}
+.part > h2{font-size:var(--s-head);max-width:12em;margin-bottom:24px}
+.part > .lede{font-size:var(--s-lead);line-height:1.35;color:var(--ink-soft);max-width:30em}
+
+/* 1. The rule, shown on the mark itself. */
+.rule{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,104px);align-items:center;margin-top:56px}
+.rule__mark{background:var(--navy);display:grid;place-items:center;padding:56px 0;position:relative;overflow:hidden}
+.rule__mark img{height:min(58vh,520px);width:auto}
+.rule dl{margin:0;display:grid;gap:36px}
+.rule dt{font-family:var(--f-display);font-weight:700;font-size:var(--s-head);letter-spacing:-.03em;line-height:1}
+.rule dd{margin:8px 0 0;max-width:30em;color:var(--ink-soft)}
+
+/* 2. Type */
+.type{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(40px,6vw,104px);margin-top:56px;align-items:end}
+.type__big{font-family:var(--f-display);font-weight:700;font-size:clamp(88px,13vw,220px);letter-spacing:-.05em;line-height:.8}
+.type__notes p{margin-bottom:20px;max-width:32em}
+.type__notes b{font-weight:600}
+.scale{margin-top:56px;display:grid;gap:18px}
+.scale div{display:grid;grid-template-columns:9em minmax(0,1fr);gap:24px;align-items:baseline}
+.scale span{font-size:var(--s-small);color:var(--ink-soft)}
+
+/* 3. Colour: six fields, each meeting the next through the gap. */
+.fields{margin-top:56px;display:flex;flex-direction:column}
+.field{--X:56%;--Xin:56%;--H:64px;color:#fff;padding:28px var(--m) calc(var(--H) + 28px);margin-left:calc(-1 * var(--m));margin-right:calc(-1 * var(--m));display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;position:relative}
+.field + .field{margin-top:calc(-1 * var(--H));padding-top:calc(var(--H) + 28px)}
+.field:nth-child(even){--X:44%;--Xin:56%}
+.field:nth-child(odd){--Xin:44%}
+.field:first-child{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--H)),calc(var(--X) + var(--H)) calc(100% - var(--H)),var(--X) 100%,0 100%)}
+.field + .field{clip-path:polygon(calc(var(--Xin) + var(--H) + var(--d)) 0,100% 0,100% calc(100% - var(--H)),calc(var(--X) + var(--H)) calc(100% - var(--H)),var(--X) 100%,0 100%,0 var(--H),calc(var(--Xin) + var(--d)) var(--H))}
+.field:last-child{clip-path:polygon(calc(var(--Xin) + var(--H) + var(--d)) 0,100% 0,100% 100%,0 100%,0 var(--H),calc(var(--Xin) + var(--d)) var(--H));padding-bottom:28px}
+.field b{display:block;font-family:var(--f-display);font-size:var(--s-lead);letter-spacing:-.02em;line-height:1.1}
+.field span{font-size:var(--s-small)}
+.field i{font-style:normal;font-size:var(--s-small);font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:10px}
+.field i em{display:inline-block;width:1.4em;height:1.4em;background:var(--lead-c)}
+.colour-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;margin-top:64px}
+.colour-rules h3{font-size:var(--s-lead);letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.colour-rules p{color:var(--ink-soft);font-size:var(--s-body)}
+
+/* 4. Devices */
+.device{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);margin-top:72px;align-items:start}
+.device h3{font-size:var(--s-lead);letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.device > div:first-child p{color:var(--ink-soft)}
+.ex{display:flex;flex-direction:column;gap:14px}
+.ex figure{margin:0;aspect-ratio:4/3;position:relative;overflow:hidden;background:var(--paper-2)}
+.ex p{font-size:var(--s-small);color:var(--ink-soft)}
+.ex p b{display:block;color:var(--ink);font-size:var(--s-body);font-weight:600}
+.ex.dont p b{color:#A01A2C}
+/* tiny demos */
+.demo-gap{position:absolute;inset:0;--H:44%;--g:10px;--d:14px}
+.demo-gap .a,.demo-gap .b{position:absolute;inset:0}
+.demo-gap .a{background:var(--navy);clip-path:polygon(0 0,100% 0,100% 40%,60% 40%,37.5% 70%,0 70%)}
+.demo-gap .b{background:#2563EB;clip-path:polygon(calc(60% + 14px) 40%,100% 40%,100% 100%,0 100%,0 70%,calc(37.5% + 14px) 70%)}
+.demo-gap.bad .a{clip-path:polygon(0 0,100% 0,100% 30%,0 74%)}
+.demo-gap.bad .b{clip-path:polygon(0 80%,100% 36%,100% 100%,0 100%);background:#E4571E}
+.ex figure .ph{background:#C3CCDB;color:var(--ink)}
+.demo-moon{position:absolute;height:84%;width:63%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.demo-moon.ph span{font-size:13px;max-width:7em;transform:translate(-26%,10%)}
+.blob{position:absolute;width:62%;aspect-ratio:1;left:19%;top:12%;border-radius:38% 62% 55% 45%/50% 40% 60% 50%;background:var(--paper-2);display:grid;place-items:center;outline:0}
+.ws-do{position:absolute;inset:0;background:var(--paper);padding:10%;display:flex;flex-direction:column;justify-content:flex-end}
+.ws-do strong{font-family:var(--f-display);font-size:clamp(22px,2.2vw,34px);letter-spacing:-.03em;line-height:.95}
+.ws-do img{position:absolute;right:8%;top:10%;height:34%}
+.ws-dont{position:absolute;inset:0;background:var(--paper);padding:6%;display:grid;grid-template-columns:1fr 1fr;gap:6%;align-content:start}
+.ws-dont i{display:block;height:2.4em;background:var(--paper-2)}
+.ws-dont img{height:2.4em}
+.sheet-end{padding:120px var(--m) 96px;display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap}
+.sheet-end p{font-size:var(--s-lead);max-width:24em;line-height:1.35}
+
+@media (max-width:900px){
+  .top__in,.rule,.type{grid-template-columns:1fr;gap:40px}
+  .top h1{font-size:14vw}
+  .rule__mark img{height:300px}
+  .rule dt{font-size:34px}
+  .type__big{font-size:21vw}
+  .scale div{grid-template-columns:1fr;gap:4px}
+  .field{--H:40px;grid-template-columns:1fr}
+  .field i{justify-self:start}
+  .colour-rules{grid-template-columns:1fr;gap:32px}
+  .device{grid-template-columns:1fr 1fr}
+  .device > div:first-child{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<header class="top ends-gap">
+  <div class="bar"><a class="wordmark" href="home.html"><img src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="">CCS</a><nav aria-label="Toolkit"><a href="home.html">Toolkit</a><a href="qbr.html">Deck</a></nav></div>
+  <div class="top__in">
+    <h1>How the space works</h1>
+    <p>One sheet for the whole system. Everything on it is cut from the mark: its panels, its two crescents, and the gap between them.</p>
+  </div>
+</header>
+
+<main>
+<section class="part" aria-labelledby="h-rule">
+  <h2 id="h-rule">The graphic rule</h2>
+  <p class="lede">We never add a shape to the brand. We only take one out of the mark, at the mark's own angle and the mark's own width.</p>
+  <div class="rule">
+    <div class="rule__mark"><img src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="The CCS mark, Platform colourway"></div>
+    <dl>
+      <div><dt>45 degrees</dt><dd>Every cut, divider and section change runs at the angle of the gap between the panels. Nothing else on the page is diagonal.</dd></div>
+      <div><dt>One twenty-eighth</dt><dd>The gap is 1/28 of the mark's height, about one sixth of a panel's width. Divider gaps use the same width, square to the cut.</dd></div>
+      <div><dt>Whatever is behind</dt><dd>A gap is never filled. It shows the ground, the way the mark does. Two fields meet through it; paper never meets paper.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="h-type">
+  <h2 id="h-type">Type</h2>
+  <div class="type">
+    <div class="type__big" aria-hidden="true">Space<br>between</div>
+    <div class="type__notes">
+      <p><b>League Spartan Bold</b> for display. Its near-circular C repeats the crescent at text size. Set tight, in sentence case, two lines at most.</p>
+      <p><b>Figtree</b> for text, 400 and 600. Open and friendly, it keeps a dense toolkit easy to read for colleagues, not just designers.</p>
+    </div>
+  </div>
+  <div class="scale" aria-label="Type scale">
+    <div><span>Display, 56 to 124px</span><p style="font-family:var(--f-display);font-weight:700;font-size:var(--s-display);letter-spacing:-.04em;line-height:.9">Four labs</p></div>
+    <div><span>Heading, 34 to 58px</span><p style="font-family:var(--f-display);font-weight:700;font-size:var(--s-head);letter-spacing:-.03em;line-height:1">Colleague Services</p></div>
+    <div><span>Lead, 20 to 26px</span><p style="font-size:var(--s-lead)">Six colourways: one per role, and one mark.</p></div>
+    <div><span>Body, 17 to 19px</span><p>The lower panel is the top panel turned 180 degrees; the crescents mirror each other and glow, with no outline.</p></div>
+    <div><span>Small, 15px</span><p style="font-size:var(--s-small)">Captions and placeholders only. Nothing smaller, and never in capitals.</p></div>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="h-col">
+  <h2 id="h-col">Colour behaviour</h2>
+  <p class="lede">Each role owns one colourway. Its ground fills the field, its lead colour appears once, and fields meet through the gap.</p>
+  <div class="fields">
+    <div class="field" style="background:#0D1730;--lead-c:#5B82D1"><div><b>Platform</b><span>Midnight Navy and Silver</span></div><i><em></em>#0D1730 ground, #5B82D1 lead</i></div>
+    <div class="field" style="background:#260C03;--lead-c:#E4571E"><div><b>24x7 Services</b><span>Lab 1, Ember</span></div><i><em></em>#260C03 ground, #E4571E lead</i></div>
+    <div class="field" style="background:#30050C;--lead-c:#D7263D"><div><b>Automated Operations</b><span>Lab 2, Imperial Crimson and Obsidian</span></div><i><em></em>#30050C ground, #D7263D lead</i></div>
+    <div class="field" style="background:#0A0F1B;--lead-c:#2563EB"><div><b>Colleague Services</b><span>Lab 3, Royal Sapphire and Ice Cobalt</span></div><i><em></em>#0A0F1B ground, #2563EB lead</i></div>
+    <div class="field" style="background:#04213E;--lead-c:#14C8B4"><div><b>Data &amp; Insights</b><span>Lab 4, Seafoam and Teal</span></div><i><em></em>#04213E ground, #14C8B4 lead</i></div>
+    <div class="field" style="background:#140431;--lead-c:#7C3AED"><div><b>Frontier</b><span>The innovation forum, Neon Cyberpunk Violet</span></div><i><em></em>#140431 ground, #7C3AED lead</i></div>
+  </div>
+  <div class="colour-rules">
+    <div><h3>Ground carries the page</h3><p>About four fifths of any surface is ground: the role's deep field, or paper (#F2F4F7) with navy ink (#0D1730).</p></div>
+    <div><h3>Lead appears once</h3><p>The lead colour sits in the mark and on one action. If it is in ten places it means nothing.</p></div>
+    <div><h3>One role per surface</h3><p>Labs never share a field. Where several roles appear together, each gets its own field and the gap keeps them apart.</p></div>
+  </div>
+</section>
+
+<section class="part" aria-labelledby="h-dev">
+  <h2 id="h-dev">The devices</h2>
+  <p class="lede">Three devices, all cut from the mark, plus the one that costs nothing: room.</p>
+
+  <div class="device">
+    <div><h3>The gap divider</h3><p>Section changes step at 45 degrees, and two fields meet through a channel one gap wide.</p></div>
+    <div class="ex"><figure><div class="demo-gap"><div class="a"></div><div class="b"></div></div></figure><p><b>Do</b>Step at 45 degrees, parallel edges, ground showing through.</p></div>
+    <div class="ex dont"><figure><div class="demo-gap bad"><div class="a"></div><div class="b"></div></div></figure><p><b>Do not</b>Slant at any other angle, or let the edges converge.</p></div>
+  </div>
+
+  <div class="device">
+    <div><h3>The crescent crop</h3><p>Portraits and moments with people sit in a crescent: the C is where colleague and customer live.</p></div>
+    <div class="ex"><figure><div class="demo-moon ph m-cl"><span>Portrait to come, left crescent crop</span></div></figure><p><b>Do</b>Use the crescent exactly as cut from the mark, upright as it sits in the S.</p></div>
+    <div class="ex dont"><figure><div class="blob"><span style="font-size:13px;color:var(--ink-soft)">Freeform blob</span></div></figure><p><b>Do not</b>Draw a new curve, a circle or a blob because it looks friendlier.</p></div>
+  </div>
+
+  <div class="device">
+    <div><h3>The panel crop</h3><p>Places, screens and work in progress sit in the upper panel. The middle panel is the wide crop for banners.</p></div>
+    <div class="ex"><figure><div class="ph m-band" style="position:absolute;width:88%;height:58%;left:6%;top:21%"><span style="font-size:13px">Banner to come, middle panel crop</span></div></figure><p><b>Do</b>Keep the panel's 45 degree ends; let the picture fill it to the edge.</p></div>
+    <div class="ex dont"><figure><div class="ph m-band" style="position:absolute;width:88%;height:58%;left:6%;top:21%;transform:rotate(-30deg)"><span style="font-size:13px">Rotated panel</span></div></figure><p><b>Do not</b>Rotate a panel. Its angle is the gap's angle, so it only ever sits one way.</p></div>
+  </div>
+
+  <div class="device">
+    <div><h3>Room</h3><p>Whitespace is the fourth device. The mark is mostly space; a page should be too.</p></div>
+    <div class="ex"><figure><div class="ws-do"><img src="../../assets/ccs-mark/suite/ccs-mark-ember.svg" alt=""><strong>24x7<br>Services</strong></div></figure><p><b>Do</b>One large thing, one short line, and the rest left open.</p></div>
+    <div class="ex dont"><figure><div class="ws-dont"><img src="../../assets/ccs-mark/suite/ccs-mark-ember.svg" alt=""><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></figure><p><b>Do not</b>Fill the space the system leaves. Crowding is how the Cs disappear.</p></div>
+  </div>
+</section>
+
+<section class="sheet-end">
+  <p>If a shape cannot be traced back to the mark, it does not belong in the brand.</p>
+  <a class="btn" href="home.html" style="background:var(--navy);color:var(--silver)">Back to the toolkit</a>
+</section>
+</main>
+</body>
+</html>

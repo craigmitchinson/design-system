@@ -1,0 +1,72 @@
+/* Mark in Motion on the v3 kit. Tokens and type from kit/ccs.css; this file only lays out the workbench. */
+.mo-head{padding-bottom:calc(var(--S) * .5 + 48px)}
+.mo-head .lead{max-width:30em;color:var(--fg-2);margin-top:.6em}
+.layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(32px,4vw,72px);align-items:start}
+.stagecol{position:sticky;top:16px;display:grid;gap:20px;min-width:0}
+.stage{position:relative;width:100%;aspect-ratio:1;overflow:hidden;background:var(--stone);transition:background .6s var(--ease)}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.readout{position:absolute;left:20px;right:20px;bottom:14px;display:flex;flex-wrap:wrap;gap:4px 22px;font-family:inherit;font-size:14px;color:var(--fg-2)}
+.readout b{font-family:var(--f-m);font-variant-numeric:tabular-nums;font-weight:500;color:var(--fg)}
+.caption h2{margin:0}
+.np-meta{margin:.35em 0 0;font-size:var(--s-small)}
+.caption .desc{margin:.7em 0 1.1em;max-width:34em}
+.transport,.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+.side{display:grid;gap:clamp(32px,4vh,48px);min-width:0}
+.group{display:grid;gap:14px}
+.group h3{margin:0;font-family:var(--f-d);font-weight:800;font-size:var(--s-sub);letter-spacing:-.02em;line-height:1.05}
+.group h3 span{display:block;font-family:var(--f-t);font-weight:400;font-size:var(--s-small);letter-spacing:0;margin-top:.5em}
+.group h3 label{cursor:pointer}
+.note{margin:0;font-size:var(--s-small);color:var(--fg-2);max-width:36em}
+.row > .lbl{flex:0 0 6.5em;font-family:var(--f-d);font-weight:700;font-size:16px}
+.status{margin:0;font-size:var(--s-small)}
+
+/* Buttons: the kit's cut corner, white when off, Ink when on. Every target is at least 44px. */
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px}
+.seg button,.opt,.tile,.cw{display:inline-flex;align-items:center;gap:10px;min-height:44px;min-width:44px;border:0;cursor:pointer;font:inherit;font-family:var(--f-d);font-weight:700;font-size:16px;letter-spacing:-.01em;padding:0 16px 0 18px;background:#FFFFFF;color:var(--ink);clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,0 10px)}
+.seg button[aria-pressed="true"],.opt[aria-pressed="true"],.tile[aria-pressed="true"],.cw[aria-pressed="true"],.opt-main{background:var(--ink);color:var(--stone)}
+.seg button:disabled{cursor:not-allowed;color:var(--ink-2);background:#E4E1DA}
+.seg button:focus-visible,.opt:focus-visible,.tile:focus-visible,.cw:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.tile{position:relative;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-height:64px;padding:10px 16px 12px 18px;text-align:left}
+.tile .name{font-size:17px}
+.tile .meta{font-family:var(--f-t);font-weight:400;font-size:14px;color:var(--ink-2)}
+.tile[aria-pressed="true"] .meta{color:var(--silver-2)}
+.tile .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--lead);transform:scaleX(0);transform-origin:left}
+.tile[aria-pressed="false"] .bar{transform:scaleX(0)!important}
+.cws{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.cwgroup{flex:0 0 100%;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin-top:10px}
+.cwgroup:first-child{margin-top:0}
+.cwname{font-family:var(--f-d);font-weight:700;font-size:16px}
+.cwnote{font-size:var(--s-small);color:var(--fg-2)}
+.cw .sw{display:inline-flex}
+.cw .sw i{width:12px;height:22px;display:block}
+.slider{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
+.slider input{width:100%;min-height:44px;margin:0;accent-color:var(--ink);cursor:pointer}
+.slider output{font-family:var(--f-m);font-size:15px;font-variant-numeric:tabular-nums;min-width:6.5em;text-align:right}
+
+/* The one motion */
+.one{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:start}
+.one h2{margin:0}
+.one .body{display:grid;gap:1em;max-width:34em}
+.one .body p{margin:0}
+.one .body .lead{color:var(--fg)}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .stagecol{position:static}
+  .stage{width:calc(100% + 2 * var(--m));margin-inline:calc(-1 * var(--m))}
+  .caption{padding-top:4px}
+  .one{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .row > .lbl{flex-basis:100%}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .slider{grid-template-columns:minmax(0,1fr)}
+  .slider output{text-align:left}
+  .readout{font-size:12px;gap:2px 14px;left:14px;bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){ .stage{transition:none} }
+/* Construction readout: hidden unless shown by the toggle or while the slider is in use. */
+.stage:not(.show-con) .readout{display:none}
+.con-toggle{justify-self:start}
+.mo-head .lead{position:static}

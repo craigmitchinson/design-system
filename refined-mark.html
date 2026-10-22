@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The refined mark | CCS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform-light.svg" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="kit/ccs.css">
+<style>
+.hero{min-height:88svh;display:flex;flex-direction:column}
+.hero-in{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:center;gap:var(--m);padding:2vh 0 4vh}
+.hero h1{margin-bottom:.4em}
+.hero .lead{max-width:22em;color:var(--fg-2)}
+.hero-mark{--mark-h:min(62vh,30vw);justify-self:center}
+.intro{max-width:36em;margin:.6em 0 var(--sp-5);color:var(--fg-2)}
+.changed{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,112px);align-items:start}
+.ov{margin:0;padding:clamp(24px,3vw,48px);position:sticky;top:24px}
+.ov svg{width:100%;height:auto;max-height:70vh;display:block}
+.ov figcaption{margin-top:20px;color:var(--fg-2);font-size:17px}
+.changes{display:grid;gap:var(--sp-5)}
+.change h3{margin-bottom:.2em}
+.change .fig{font-family:var(--f-d);font-weight:700;font-size:var(--s-lead);margin-bottom:.5em}
+.change p{max-width:34em}
+.change .why{margin-top:.5em;font-style:italic;color:var(--fg-2)}
+.build{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,112px);align-items:center}
+.diag{width:100%;height:auto;max-height:640px;display:block}
+.diag .cf{fill:var(--ground-hi)}
+.diag .cl{fill:none;stroke:var(--tint);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.diag .cl2{fill:none;stroke:var(--accent);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.diag .cd{fill:var(--fg)}
+.diag text{fill:var(--fg);font-family:var(--f-d);font-weight:700}
+.build .table-wrap{margin-top:var(--sp-3)}
+.build .table th,.build .table td{vertical-align:top}
+.sizes > div,.tile,.build > *,.changed > *{min-width:0}
+.diag{max-width:100%;overflow:hidden}
+.sizes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;margin-top:var(--sp-4)}
+.sizes > div{padding:clamp(24px,3vw,48px)}
+.sizes h3{margin-bottom:var(--sp-3)}
+.ladder{display:flex;align-items:flex-end;flex-wrap:wrap;gap:clamp(16px,2.4vw,40px)}
+.rung{margin:0;display:grid;justify-items:center;gap:10px}
+.rung figcaption{font-size:var(--s-small);color:var(--fg-2)}
+.on-stone .rung figcaption,.on-stone .px{color:var(--ink)}
+.versus{display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px);margin-top:var(--sp-4)}
+.pair{display:grid;grid-template-columns:auto auto;align-items:end;gap:10px 28px}
+.pair .px{grid-column:1 / -1;font-family:var(--f-d);font-weight:700;margin:0}
+.pair svg{display:block}
+.on-stone{background:var(--stone);color:var(--ink)}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:var(--sp-4)}
+.tile{margin:0;padding:28px 24px;display:grid;justify-items:start;gap:18px}
+.tile figcaption b{display:block;font-family:var(--f-d);font-size:17px}
+.tile figcaption span{font-size:var(--s-small)}
+.light-tiles .tile{background:var(--stone);color:var(--ink)}
+.frontier{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;margin-top:var(--sp-5)}
+.frontier img{height:200px;width:auto;display:block}
+.frontier .on-stone,.frontier [data-swatch]{padding:28px}
+.frontier p{max-width:26em}
+.rules .lead{max-width:30em;margin:.6em 0 var(--sp-4);color:var(--fg-2)}
+@media (max-width:980px){
+  .changed,.build,.sizes{grid-template-columns:1fr}
+  .ov{position:static}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .frontier{grid-template-columns:auto auto}
+  .frontier p{grid-column:1 / -1}
+}
+@media (max-width:860px){
+  .hero-in{grid-template-columns:1fr;align-content:center}
+  .hero-mark{--mark-h:clamp(200px,40vh,320px);justify-self:start;order:-1}
+}
+@media (max-width:560px){
+  .ladder{gap:14px}
+  .tile{padding:20px 16px}
+  .frontier img{height:140px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="section hero" data-colourway="platform" aria-label="Introduction">
+  <div class="bar">
+    <a class="wordmark" href="refined-mark.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main"><ul>
+      <li><a href="refined-mark.html">Home</a></li><li><a href="how-ccs-works.html">How CCS works</a></li><li><a href="mark-suite.html">Mark Suite</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="motion.html">Motion</a></li><li><a href="deck.html">Deck</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="journey.html">Journey</a></li>
+    </ul></nav>
+  </div>
+  <div class="hero-in">
+    <div>
+      <h1 class="display hero-size step"><span>The refined</span><span>mark.</span></h1>
+      <p class="lead">The same faceted S, with optical corrections only.</p>
+    </div>
+    <div class="mark hero-mark" data-mark="platform" data-build="parts" data-assemble role="img" aria-label="The refined CCS mark: three panels form an S, two crescents turn it"></div>
+  </div>
+</header>
+<main id="main">
+  <section class="section" data-surface="stone" data-cut="left" aria-labelledby="changed-h">
+    <h2 id="changed-h" class="display head">What changed</h2>
+    <p class="lead intro">Five corrections. The panel width, the 45° angle and the 180° turn are the original's. Units are the master's own drawing units, with a panel 1315.6 wide.</p>
+    <div class="changed">
+      <figure class="ov" data-swatch="platform"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-150.24 -115.58 5217.8 6238.35" class="overlay" role="img" aria-label="Refined master filled, current master outlined in red"><path d="M2412.15 -75.58A1315.59 1315.59 0 0 1 2412.15 1784.95L899.28 3297.82A1434 1434 0 0 1 979.54 1357.03L2412.15 -75.58Z" fill="#C9D5EC"/><path d="M1066.72 3465.27L1909.8 2622.19A1434 1434 0 0 1 3850.6 2541.92L3007.52 3385A1434 1434 0 0 1 1066.72 3465.27Z" fill="#C9D5EC"/><path d="M2505.17 6082.77A1315.59 1315.59 0 0 1 2505.17 4222.24L4018.04 2709.37A1434 1434 0 0 1 3937.78 4650.16L2505.17 6082.77Z" fill="#C9D5EC"/><path d="M372.02 1968.15A1434 1434 0 1 0 2396.39 3992.52A1670.8 1670.8 0 0 1 372.02 1968.15Z" fill="#C9D5EC"/><path d="M4545.3 4039.04A1434 1434 0 1 0 2520.93 2014.67A1670.8 1670.8 0 0 1 4545.3 4039.04Z" fill="#C9D5EC"/><path d="M2367.46 0A1315.59 1315.59 0 0 1 2367.46 1860.53L913.24 3314.75A1423.07 1423.07 0 0 1 986.37 1381.09L2367.46 0Z" fill="none" stroke="#D7263D" stroke-width="22"/><path d="M1065.24 3466.75L1918.42 2613.57A1423.07 1423.07 0 0 1 3852.08 2540.44L2998.9 3393.62A1423.07 1423.07 0 0 1 1065.24 3466.75Z" fill="none" stroke="#D7263D" stroke-width="22"/><path d="M2549.86 6007.19A1315.59 1315.59 0 0 1 2549.86 4146.66L4004.08 2692.44A1423.07 1423.07 0 0 1 3930.95 4626.1L2549.86 6007.19Z" fill="none" stroke="#D7263D" stroke-width="22"/><path d="M412.5 1955.67A1423.07 1423.07 0 1 0 2424.32 3967.49A1638.03 1638.03 0 0 1 412.5 1955.67Z" fill="none" stroke="#D7263D" stroke-width="22"/><path d="M4504.82 4051.52A1423.07 1423.07 0 1 0 2493 2039.7A1638.03 1638.03 0 0 1 4504.82 4051.52Z" fill="none" stroke="#D7263D" stroke-width="22"/></svg><figcaption>The refined mark filled in pale blue, the original outlined in red, on the same turn centre.</figcaption></figure>
+      <div class="changes">
+        <div class="change"><h3 class="display sub">One gap value</h3><p class="fig">16.3% to 18.0% of panel width</p><p>The gap is 215.0 units in the original and 236.8 in the refined mark, panel to panel and panel to crescent alike.</p><p class="why">A slightly wider channel stays open longer as the mark gets smaller, and one value means every cut follows one rule.</p></div>
+        <div class="change"><h3 class="display sub">Heavier crescents</h3><p class="fig">48.3% to 54.0% of panel width</p><p>At their widest the crescents grow from 635.0 to 710.4 units, and their share of the ink rises from 24.7% to 26.8%.</p><p class="why">The two Cs carry the idea, so they now carry more weight beside the panels.</p></div>
+        <div class="change"><h3 class="display sub">The panel-end circle at exactly half the gap</h3><p class="fig">106.2 to 118.4 units along the channel</p><p>In the original the circle that rounds each panel end sat 106.2 units along the channel, close to but not quite half the gap (107.5).</p><p class="why">At exactly g/2 both panel ends are cut by the same rule, so the curves meet the channel cleanly.</p></div>
+        <div class="change"><h3 class="display sub">A small cut under 40px</h3><p class="fig">gap at 16px: 0.57px to 1.06px</p><p>Below 40px a second build opens the gap to 34.0% and the crescents to 62.0% of panel width. At 16px the crescent goes from 1.69px to 1.93px.</p><p class="why">Under one pixel the gap fills in and the S reads as a blot; just over one pixel, it stays open.</p></div>
+        <div class="change"><h3 class="display sub">2.5% taller</h3><p class="fig">6007.2 to 6158.4 units tall</p><p>The panel width does not change. The wider gap and heavier crescents add the height, and the width to height ratio stays 0.83.</p><p class="why">The proportions the mark is known by are kept.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section" data-colourway="platform" data-cut="right" aria-labelledby="build-h">
+    <div class="build">
+      <figure style="margin:0"><svg viewBox="-370.24 -335.58 5657.8 6678.35" class="diag" role="img" aria-label="Construction of the refined master"><path class="cf" d="M2412.15 -75.58A1315.59 1315.59 0 0 1 2412.15 1784.95L899.28 3297.82A1434 1434 0 0 1 979.54 1357.03L2412.15 -75.58Z"/><path class="cf" d="M1066.72 3465.27L1909.8 2622.19A1434 1434 0 0 1 3850.6 2541.92L3007.52 3385A1434 1434 0 0 1 1066.72 3465.27Z"/><path class="cf" d="M2505.17 6082.77A1315.59 1315.59 0 0 1 2505.17 4222.24L4018.04 2709.37A1434 1434 0 0 1 3937.78 4650.16L2505.17 6082.77Z"/><path class="cf" d="M372.02 1968.15A1434 1434 0 1 0 2396.39 3992.52A1670.8 1670.8 0 0 1 372.02 1968.15Z"/><path class="cf" d="M4545.3 4039.04A1434 1434 0 1 0 2520.93 2014.67A1670.8 1670.8 0 0 1 4545.3 4039.04Z"/><line class="cl" x1="-2074.03" y1="4410.6" x2="3865.66" y2="-1529.1"/><line class="cl" x1="-1143.77" y1="5340.86" x2="4795.93" y2="-598.83"/><line class="cl" x1="-976.32" y1="5508.31" x2="4963.38" y2="-431.39"/><line class="cl" x1="-46.06" y1="6438.58" x2="5893.64" y2="498.88"/><line class="cl" x1="121.39" y1="6606.02" x2="6061.09" y2="666.33"/><line class="cl" x1="1051.66" y1="7536.29" x2="6991.35" y2="1596.59"/><circle class="cl" cx="1993.53" cy="2371.01" r="1434"/><circle class="cl" cx="2923.79" cy="3636.18" r="1434"/><circle class="cl2" cx="1993.53" cy="2371.01" r="1670.8"/><circle class="cl2" cx="1323.74" cy="3040.81" r="1434"/><circle class="cl2" cx="1481.88" cy="854.68" r="1315.59"/><circle class="cd" cx="1993.53" cy="2371.01" r="34"/><circle class="cd" cx="2923.79" cy="3636.18" r="34"/><circle class="cd" cx="1323.74" cy="3040.81" r="34"/><circle class="cd" cx="1481.88" cy="854.68" r="34"/><circle class="cd" cx="2458.66" cy="3003.59" r="34"/><text x="2528.66" y="3043.59" font-size="240">O, the 180° turn</text><text x="2063.53" y="2321.01" font-size="240">Q, R = W + g/2</text><text x="1203.74" y="3270.81" font-size="240">P, radius R</text></svg></figure>
+      <div>
+        <h2 id="build-h" class="display head">Construction</h2>
+        <p class="lead intro">One radius sets both panel ends and the crescent. Three parallel panels at 45°. The lower half is the upper half turned 180° about the centre.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="build-h">
+          <table class="table"><thead><tr><th scope="col">Parameter</th><th scope="col">Units</th><th scope="col">Rule</th></tr></thead><tbody>
+          <tr><th scope="row">Panel width W</th><td class="mono">1315.6</td><td>Unchanged from the original</td></tr><tr><th scope="row">Panel angle</th><td class="mono">45°</td><td>All three panels parallel</td></tr><tr><th scope="row">Gap g</th><td class="mono">236.8</td><td>0.18W, everywhere</td></tr><tr><th scope="row">Panel-end radius R</th><td class="mono">1434.0</td><td>W + g/2, touches both outer edges</td></tr><tr><th scope="row">Panel-end offset</th><td class="mono">118.4</td><td>Exactly g/2 along the channel</td></tr><tr><th scope="row">Crescent at its widest t</th><td class="mono">710.4</td><td>0.54W</td></tr><tr><th scope="row">Crescent outer circle</th><td class="mono">1434.0</td><td>Radius R, offset t + g from the panel-end circle</td></tr><tr><th scope="row">Top cap</th><td class="mono">1315.6</td><td>Quarter circle of radius W, centre mirrors the crescent centre</td></tr><tr><th scope="row">Turn centre O</th><td class="mono">2458.66, 3003.59</td><td>The lower panel is the upper turned 180° about O</td></tr><tr><th scope="row">Small cut, under 40px</th><td class="mono">0.34W, 0.62W</td><td>Gap and crescent; same rules</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" data-surface="stone" data-cut="left" aria-labelledby="sizes-h">
+    <h2 id="sizes-h" class="display head">At every size</h2>
+    <p class="lead intro">From 256px down to 16px. Under 40px the small cut takes over, in flat fills. The original is shown at 16 and 32px, where the difference is visible.</p>
+    <div class="sizes">
+      <div data-swatch="platform">
+        <h3 class="display sub">On dark</h3>
+        <div class="ladder"><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:16px" role="img" aria-label="Refined mark at 16px on dark"></span><figcaption>16px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:24px" role="img" aria-label="Refined mark at 24px on dark"></span><figcaption>24px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:32px" role="img" aria-label="Refined mark at 32px on dark"></span><figcaption>32px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="dark" style="--mark-h:64px" role="img" aria-label="Refined mark at 64px on dark"></span><figcaption>64px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="dark" style="--mark-h:256px" role="img" aria-label="Refined mark at 256px on dark"></span><figcaption>256px</figcaption></figure></div>
+        <div class="versus"><div class="pair"><figure class="rung"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-31.35 0 4980.02 6007.2" width="13.26" height="16" role="img" aria-label="Original mark at 16px"><path d="M2367.46 0A1315.59 1315.59 0 0 1 2367.46 1860.53L913.24 3314.75A1423.07 1423.07 0 0 1 986.37 1381.09L2367.46 0Z" fill="#7396DA"/><path d="M1065.24 3466.75L1918.42 2613.57A1423.07 1423.07 0 0 1 3852.08 2540.44L2998.9 3393.62A1423.07 1423.07 0 0 1 1065.24 3466.75Z" fill="#E4EAF3"/><path d="M2549.86 6007.19A1315.59 1315.59 0 0 1 2549.86 4146.66L4004.08 2692.44A1423.07 1423.07 0 0 1 3930.95 4626.1L2549.86 6007.19Z" fill="#7396DA"/><path d="M412.5 1955.67A1423.07 1423.07 0 1 0 2424.32 3967.49A1638.03 1638.03 0 0 1 412.5 1955.67Z" fill="#899BBE"/><path d="M4504.82 4051.52A1423.07 1423.07 0 1 0 2493 2039.7A1638.03 1638.03 0 0 1 4504.82 4051.52Z" fill="#899BBE"/></svg><figcaption>Original</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:16px" role="img" aria-label="Refined mark at 16px"></span><figcaption>Refined</figcaption></figure><p class="px">16px</p></div><div class="pair"><figure class="rung"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-31.35 0 4980.02 6007.2" width="26.53" height="32" role="img" aria-label="Original mark at 32px"><path d="M2367.46 0A1315.59 1315.59 0 0 1 2367.46 1860.53L913.24 3314.75A1423.07 1423.07 0 0 1 986.37 1381.09L2367.46 0Z" fill="#7396DA"/><path d="M1065.24 3466.75L1918.42 2613.57A1423.07 1423.07 0 0 1 3852.08 2540.44L2998.9 3393.62A1423.07 1423.07 0 0 1 1065.24 3466.75Z" fill="#E4EAF3"/><path d="M2549.86 6007.19A1315.59 1315.59 0 0 1 2549.86 4146.66L4004.08 2692.44A1423.07 1423.07 0 0 1 3930.95 4626.1L2549.86 6007.19Z" fill="#7396DA"/><path d="M412.5 1955.67A1423.07 1423.07 0 1 0 2424.32 3967.49A1638.03 1638.03 0 0 1 412.5 1955.67Z" fill="#899BBE"/><path d="M4504.82 4051.52A1423.07 1423.07 0 1 0 2493 2039.7A1638.03 1638.03 0 0 1 4504.82 4051.52Z" fill="#899BBE"/></svg><figcaption>Original</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:32px" role="img" aria-label="Refined mark at 32px"></span><figcaption>Refined</figcaption></figure><p class="px">32px</p></div></div>
+      </div>
+      <div class="on-stone">
+        <h3 class="display sub">On Stone</h3>
+        <div class="ladder"><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:16px" role="img" aria-label="Refined mark at 16px on Stone"></span><figcaption>16px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:24px" role="img" aria-label="Refined mark at 24px on Stone"></span><figcaption>24px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:32px" role="img" aria-label="Refined mark at 32px on Stone"></span><figcaption>32px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="light" style="--mark-h:64px" role="img" aria-label="Refined mark at 64px on Stone"></span><figcaption>64px</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="light" style="--mark-h:256px" role="img" aria-label="Refined mark at 256px on Stone"></span><figcaption>256px</figcaption></figure></div>
+        <div class="versus"><div class="pair"><figure class="rung"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-31.35 0 4980.02 6007.2" width="13.26" height="16" role="img" aria-label="Original mark at 16px"><path d="M2367.46 0A1315.59 1315.59 0 0 1 2367.46 1860.53L913.24 3314.75A1423.07 1423.07 0 0 1 986.37 1381.09L2367.46 0Z" fill="#7396DA"/><path d="M1065.24 3466.75L1918.42 2613.57A1423.07 1423.07 0 0 1 3852.08 2540.44L2998.9 3393.62A1423.07 1423.07 0 0 1 1065.24 3466.75Z" fill="#91A4C4"/><path d="M2549.86 6007.19A1315.59 1315.59 0 0 1 2549.86 4146.66L4004.08 2692.44A1423.07 1423.07 0 0 1 3930.95 4626.1L2549.86 6007.19Z" fill="#7396DA"/><path d="M412.5 1955.67A1423.07 1423.07 0 1 0 2424.32 3967.49A1638.03 1638.03 0 0 1 412.5 1955.67Z" fill="#556F9F"/><path d="M4504.82 4051.52A1423.07 1423.07 0 1 0 2493 2039.7A1638.03 1638.03 0 0 1 4504.82 4051.52Z" fill="#556F9F"/></svg><figcaption>Original</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:16px" role="img" aria-label="Refined mark at 16px"></span><figcaption>Refined</figcaption></figure><p class="px">16px</p></div><div class="pair"><figure class="rung"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-31.35 0 4980.02 6007.2" width="26.53" height="32" role="img" aria-label="Original mark at 32px"><path d="M2367.46 0A1315.59 1315.59 0 0 1 2367.46 1860.53L913.24 3314.75A1423.07 1423.07 0 0 1 986.37 1381.09L2367.46 0Z" fill="#7396DA"/><path d="M1065.24 3466.75L1918.42 2613.57A1423.07 1423.07 0 0 1 3852.08 2540.44L2998.9 3393.62A1423.07 1423.07 0 0 1 1065.24 3466.75Z" fill="#91A4C4"/><path d="M2549.86 6007.19A1315.59 1315.59 0 0 1 2549.86 4146.66L4004.08 2692.44A1423.07 1423.07 0 0 1 3930.95 4626.1L2549.86 6007.19Z" fill="#7396DA"/><path d="M412.5 1955.67A1423.07 1423.07 0 1 0 2424.32 3967.49A1638.03 1638.03 0 0 1 412.5 1955.67Z" fill="#556F9F"/><path d="M4504.82 4051.52A1423.07 1423.07 0 1 0 2493 2039.7A1638.03 1638.03 0 0 1 4504.82 4051.52Z" fill="#556F9F"/></svg><figcaption>Original</figcaption></figure><figure class="rung"><span class="mark" data-mark="platform" data-build="small" style="--mark-h:32px" role="img" aria-label="Refined mark at 32px"></span><figcaption>Refined</figcaption></figure><p class="px">32px</p></div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section" data-colourway="platform" data-cut="right" aria-labelledby="ways-h">
+    <h2 id="ways-h" class="display head">In every colourway</h2>
+    <p class="lead intro">The same geometry in all eight colourways. The dark build sits on each colourway's ground, the light build on Stone.</p>
+    <div class="tiles"><figure class="tile" data-swatch="platform"><span class="mark" data-mark="platform" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Midnight Navy &amp; Silver, dark build"></span><figcaption><b>Midnight Navy &amp; Silver</b><span>Platform</span></figcaption></figure><figure class="tile" data-swatch="ember"><span class="mark" data-mark="ember" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Ember, dark build"></span><figcaption><b>Ember</b><span>Lab 1 · 24x7 Services</span></figcaption></figure><figure class="tile" data-swatch="crimson-obsidian"><span class="mark" data-mark="crimson-obsidian" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Imperial Crimson &amp; Obsidian, dark build"></span><figcaption><b>Imperial Crimson &amp; Obsidian</b><span>Lab 2 · Automated Operations</span></figcaption></figure><figure class="tile" data-swatch="royal-sapphire"><span class="mark" data-mark="royal-sapphire" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Royal Sapphire &amp; Ice Cobalt, dark build"></span><figcaption><b>Royal Sapphire &amp; Ice Cobalt</b><span>Lab 3 · Colleague Services</span></figcaption></figure><figure class="tile" data-swatch="seafoam-teal"><span class="mark" data-mark="seafoam-teal" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Seafoam &amp; Teal (toned), dark build"></span><figcaption><b>Seafoam &amp; Teal (toned)</b><span>Lab 4 · Data &amp; Insights</span></figcaption></figure><figure class="tile" data-swatch="neon-cyberpunk"><span class="mark" data-mark="neon-cyberpunk" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Neon Cyberpunk Violet, dark build"></span><figcaption><b>Neon Cyberpunk Violet</b><span>Frontier</span></figcaption></figure><figure class="tile" data-swatch="cyber-emerald"><span class="mark" data-mark="cyber-emerald" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Cyber Emerald &amp; Mint, dark build"></span><figcaption><b>Cyber Emerald &amp; Mint</b><span>Spare</span></figcaption></figure><figure class="tile" data-swatch="saffron"><span class="mark" data-mark="saffron" data-build="dark" style="--mark-h:150px" role="img" aria-label="Refined mark in Saffron, dark build"></span><figcaption><b>Saffron</b><span>Spare</span></figcaption></figure></div>
+    <div class="tiles light-tiles"><figure class="tile"><span class="mark" data-mark="platform" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Midnight Navy &amp; Silver, light build"></span><figcaption><b>Platform</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="ember" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Ember, light build"></span><figcaption><b>Ember</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="crimson-obsidian" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Imperial Crimson &amp; Obsidian, light build"></span><figcaption><b>Crimson</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="royal-sapphire" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Royal Sapphire &amp; Ice Cobalt, light build"></span><figcaption><b>Sapphire</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="seafoam-teal" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Seafoam &amp; Teal (toned), light build"></span><figcaption><b>Seafoam</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="neon-cyberpunk" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Neon Cyberpunk Violet, light build"></span><figcaption><b>Frontier</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="cyber-emerald" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Cyber Emerald &amp; Mint, light build"></span><figcaption><b>Emerald</b></figcaption></figure><figure class="tile"><span class="mark" data-mark="saffron" data-build="light" style="--mark-h:110px" role="img" aria-label="Refined mark in Saffron, light build"></span><figcaption><b>Saffron</b></figcaption></figure></div>
+    <div class="frontier">
+      <div data-swatch="neon-cyberpunk"><img src="marks/refined-frontier-f-dark.svg" alt="The refined Frontier F, dark build"></div>
+      <div class="on-stone"><img src="marks/refined-frontier-f-light.svg" alt="The refined Frontier F, light build"></div>
+      <div><h3 class="display sub">The Frontier F</h3><p>Frontier's mark takes the same corrections: the gap at 18.0% of panel width, the same as the S.</p></div>
+    </div>
+  </section>
+  <section class="section rules" data-surface="stone" data-cut="left" aria-labelledby="rules-h">
+    <h2 id="rules-h" class="display head">Using it</h2>
+    <p class="lead">Clear space, minimum sizes, grounds and what never to do with the mark are in the Guidelines.</p>
+    <a class="btn btn-ink" href="guidelines.html">Read the Guidelines</a>
+    <footer class="foot">
+      <a class="wordmark" href="refined-mark.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+      <a href="how-ccs-works.html">How CCS works</a><a href="archive/directions/synthesis/qbr.html">QBR pack</a><a href="refined-mark.html">The refined mark</a><a href="kit/gallery.html">Kit gallery</a>
+    </footer>
+  </section>
+</main>
+<script src="palette.js"></script>
+<script src="kit/ccs.js"></script>
+</body>
+</html>

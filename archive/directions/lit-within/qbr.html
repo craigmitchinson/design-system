@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB" data-lab="platform">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lit from within · QBR slides</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="stylesheet" href="lit.css">
+<style>
+  html, body { background: #05080F; }
+  main { display: grid; gap: 32px; padding: 32px; justify-items: center; }
+  @media (max-width: 720px) { main { padding: 12px; gap: 16px; } }
+  .stage { overflow: hidden; width: calc(1920px * var(--k, .5)); height: calc(1080px * var(--k, .5)); }
+  .slide-frame { width: 1920px; height: 1080px; transform: scale(var(--k, .5)); transform-origin: 0 0; overflow: hidden; position: relative;
+    background: var(--fall); color: var(--ink); --margin: 120px; }
+  .slide-frame .bar { padding: 72px var(--margin) 0; }
+  .slide-frame .wordmark { font-size: 32px; }
+
+  /* Title slide: the mark is a word in the title. */
+  .title h1 { position: absolute; left: var(--margin); top: 210px; font-size: 270px; line-height: .84; letter-spacing: -.06em; color: color-mix(in oklab, var(--p1) 42%, var(--ink)); }
+  .title h1 span { display: block; padding-left: .5em; }
+  .title h1 img { height: .84em; vertical-align: -.03em; margin-right: .08em; }
+  .title .sub { position: absolute; left: var(--margin); bottom: 96px; font: 400 34px/1.35 var(--text); color: var(--muted); max-width: 52ch; }
+  .title .sub b { color: var(--ink); font-weight: 600; }
+  .title .when { position: absolute; right: var(--margin); bottom: 96px; font: 700 34px/1 var(--display); color: var(--muted); }
+
+  /* Content slide: one lab, one number lit. */
+  .content .lockup { display: flex; align-items: center; gap: 24px; margin-left: auto; font: 500 30px/1.1 var(--display); color: var(--muted); }
+  .content .lockup img { height: 72px; }
+  .content h2 { position: absolute; left: var(--margin); top: 230px; font-size: 128px; line-height: .9; letter-spacing: -.05em; max-width: 9ch; }
+  .content .figure { position: absolute; right: 0; top: 230px; width: 860px; height: 520px; padding: 64px 140px 64px 84px;
+    display: flex; flex-direction: column; justify-content: space-between; --slant: 120px; }
+  .content .figure::before { width: 22px; }
+  .content .figure b { font: 900 200px/.85 var(--display); letter-spacing: -.06em; }
+  .content .figure p { font: 400 30px/1.35 var(--text); max-width: 24ch; }
+  .content ul { position: absolute; left: var(--margin); right: var(--margin); bottom: 96px; list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 72px; }
+  .content li { font: 400 28px/1.4 var(--text); color: var(--muted); }
+  .content li b { display: block; font: 800 40px/1.05 var(--display); letter-spacing: -.03em; color: var(--ink); margin-bottom: 10px; }
+  .ph { color: inherit; opacity: 1; }
+</style>
+</head>
+<body>
+<main>
+  <h1 class="sr-only">QBR slides in the Lit from within direction</h1>
+
+  <div class="stage">
+    <section class="slide-frame title" data-lab="platform" aria-label="Title slide">
+      <header class="bar"><span class="wordmark">CCS</span></header>
+      <h1>Quarterly <span><img src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="CCS mark,">review</span></h1>
+      <p class="sub"><b>Colleague &amp; Customer Service.</b> The platform and its four Labs: 24x7 Services, Automated Operations, Colleague Services, Data &amp; Insights.</p>
+      <p class="when">[Quarter, year]</p>
+    </section>
+  </div>
+
+  <div class="stage">
+    <section class="slide-frame content" data-lab="ember" aria-label="Content slide, 24x7 Services">
+      <header class="bar"><span class="wordmark">CCS</span><span class="lockup"><img src="../../assets/ccs-mark/suite/ccs-mark-ember.svg" alt="">Lab 1 · 24x7 Services</span></header>
+      <h2>Where the quarter landed.</h2>
+      <div class="figure lit">
+        <b>[00%]</b>
+        <p>Placeholder: the one figure the lab wants remembered from this quarter, with a line on what it measures.</p>
+      </div>
+      <ul>
+        <li><b>[What moved]</b>Placeholder: the change behind the figure, in one or two lines.</li>
+        <li><b>[What it means]</b>Placeholder: who it helps, colleagues or customers.</li>
+        <li><b>[What is next]</b>Placeholder: the one ask or decision for next quarter.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+<script>
+  function fit() { const w = Math.min(document.documentElement.clientWidth, screen.width || 1e4), p = w < 720 ? 24 : 64, k = Math.min((w - p) / 1920, 1); document.documentElement.style.setProperty('--k', k.toFixed(4)); }
+  fit(); addEventListener('resize', fit);
+</script>
+</body>
+</html>

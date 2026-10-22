@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCS brand toolkit · The hand-off</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hand-off.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  .hero { position: relative; min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; }
+  .hero .sfield { --P: 30vmin; --cx: 75%; --cy: 75%; }
+  .hero .sfield .top { background: var(--ember); }
+  .hero .sfield .mid { background: var(--paper); }
+  .hero .sfield .bot { background: var(--sapphire); }
+  .hero h1 { position: relative; z-index: 2; padding: 4vh var(--m) 0; }
+  .hero .foot { position: relative; z-index: 2; padding: 0 var(--m) 7vh; display: grid; gap: 28px; justify-items: start; max-width: calc(var(--m) + 30em); }
+  .hero .foot p { font-size: var(--t-lead); line-height: 1.3; font-weight: 500; letter-spacing: -0.01em; }
+
+  .idea { padding: 18vh var(--m) 16vh; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; row-gap: 56px; }
+  .idea .head { grid-column: 1 / -1; color: var(--ink); }
+  .idea .head em { font-style: normal; color: var(--ember); }
+  .idea p { grid-column: 6 / span 6; color: var(--ink); }
+
+  .kit { padding: 14vh var(--m) 16vh; }
+  .kit h2 { margin-bottom: 64px; }
+  .kit ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .kit li { --i: 0; margin-left: calc(var(--row) * var(--i)); --row: 112px; }
+  .kit a { display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 26em); align-items: baseline; column-gap: 32px; min-height: var(--row); padding: 18px 0; text-decoration: none; }
+  .kit a b { font-weight: 900; font-size: var(--t-lead); letter-spacing: -0.02em; font-size: clamp(1.75rem, 1rem + 2.4vw, 3.25rem); line-height: 1; white-space: nowrap; }
+  .kit a:hover b { text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 8px; }
+
+  .labs { padding: 14vh 0 16vh; }
+  .labs .intro { padding: 0 var(--m); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; margin-bottom: 72px; }
+  .labs .intro h2 { grid-column: 1 / span 7; }
+  .labs .intro p { grid-column: 8 / span 5; align-self: end; }
+  .labs .relay { padding: 0 var(--m); }
+  .relay b { display: block; white-space: nowrap; font-weight: 900; font-size: clamp(1.5rem, .8rem + 2vw, 2.75rem); letter-spacing: -0.03em; line-height: 1; }
+  .relay span { display: block; margin-top: 10px; font-weight: 500; }
+  .labs .plat { padding: 64px var(--m) 0; display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; }
+  .labs .plat p { max-width: 36em; }
+
+  .frontier { position: relative; overflow: hidden; padding: 16vh var(--m); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: center; min-height: 92svh; }
+  .frontier .copy { grid-column: 1 / span 6; display: grid; gap: 32px; justify-items: start; }
+  .frontier figure { grid-column: 8 / span 4; margin: 0; }
+  .frontier figure img { width: 100%; height: auto; }
+
+  .take { padding: 16vh var(--m) 18vh; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; row-gap: 40px; }
+  .take .head { grid-column: 1 / span 9; }
+  .take .act { grid-column: 1 / span 6; display: grid; gap: 28px; justify-items: start; }
+  .take .facts { grid-column: 8 / span 5; display: grid; gap: 28px; align-content: start; }
+  .take .facts b { display: block; font-weight: 900; font-size: var(--t-lead); letter-spacing: -0.02em; }
+
+  footer { padding: 56px var(--m) 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: end; }
+  footer .name { font-weight: 900; font-size: clamp(2.5rem, 1rem + 5vw, 5.5rem); letter-spacing: -0.04em; line-height: .9; }
+  footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-rows: auto auto auto 1fr; }
+    .hero .sfield { inset: 66% 0 0 0; --P: 30vw; --cx: 62%; --cy: 55%; }
+    .hero .foot { padding-top: 28px; }
+    .relay b { white-space: normal; }
+    .hero h1 { padding-top: 3vh; font-size: 22vw; }
+    .hero .foot { padding-bottom: 5vh; }
+    .hero .foot p { font-size: 1.125rem; max-width: 15em; }
+    .idea, .labs .intro, .take, .frontier { grid-template-columns: 1fr; }
+    .idea p, .labs .intro h2, .labs .intro p, .take .head, .take .act, .take .facts, .frontier .copy { grid-column: 1; }
+    .idea { padding: 12vh var(--m); row-gap: 32px; }
+    .idea .head { font-size: 11vw; }
+    .kit li { margin-left: 0 !important; }
+    .kit a { grid-template-columns: 1fr; row-gap: 8px; min-height: 0; }
+    .labs .intro p { margin-top: 24px; }
+    .frontier figure { grid-column: 1; width: 62%; justify-self: end; margin-top: 48px; }
+  }
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="hero f-ink">
+  <div class="sfield" aria-hidden="true"><div class="band top"></div><div class="band mid"></div><div class="band bot"></div></div>
+  <nav class="bar" aria-label="Main">
+    <a class="brand" href="#"><img src="../../assets/ccs-mark/suite/ccs-mark-platform.svg" alt="" width="33" height="40">CCS</a>
+    <div class="links">
+      <a href="#">Mark Suite</a><a href="#">Guidelines</a><a href="#">Motion</a><a href="#">Deck</a>
+      <a class="menu" href="#">Menu</a>
+      <a class="btn" href="#">Downloads</a>
+    </div>
+  </nav>
+  <h1 class="display stair"><span>Hand it</span><span>on.</span></h1>
+  <div class="foot">
+    <p>The CCS brand toolkit. Everything for the mark in one place, for every colleague who passes work on.</p>
+    <a class="btn ember" href="#kit">Open the toolkit</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="idea f-paper" aria-labelledby="idea-h">
+    <h2 id="idea-h" class="head stair flat-sm pass"><span>The panels slide.</span><span>The Cs are <em>the space</em></span><span>they leave.</span></h2>
+    <p class="lead pass">That is the mark, and the whole of CCS: work passed between colleague and customer, each side shaped by the other. Three panels, two crescents, one angle. Everything in this toolkit is built from it.</p>
+  </section>
+
+  <section id="kit" class="kit f-ember" aria-labelledby="kit-h">
+    <h2 id="kit-h" class="head">Pick it up</h2>
+    <ol>
+      <li class="pass" style="--i:0"><a href="#"><b>Mark Suite</b><span>The final mark: six colourways, variants, type, lockups and sizes.</span></a></li>
+      <li class="pass" style="--i:1"><a href="#"><b>Guidelines</b><span>The rules: construction, colour, clear space and misuse.</span></a></li>
+      <li class="pass" style="--i:2"><a href="#"><b>Motion</b><span>Every motion scene, with sound and MP4 or GIF export.</span></a></li>
+      <li class="pass" style="--i:3"><a href="#"><b>Mark Deck</b><span>Eleven slides introducing the mark to colleagues.</span></a></li>
+      <li class="pass" style="--i:4"><a href="#"><b>Downloads</b><span>SVG and PNG marks, app icons, favicons and an email signature.</span></a></li>
+      <li class="pass" style="--i:5"><a href="#"><b>Journey</b><span>The record: five candidates and how we chose.</span></a></li>
+    </ol>
+  </section>
+
+  <section class="labs f-ink" aria-labelledby="labs-h">
+    <div class="intro">
+      <h2 id="labs-h" class="head">Four labs, one panel</h2>
+      <p>Each lab owns one colourway. Stacked on the mark's angle, the four make a single panel: the work moves between them, and nobody holds it alone. Every lab has its own SharePoint hub.</p>
+    </div>
+    <div class="relay">
+      <a class="f-ember pass" style="--i:3" href="#"><b>24x7 Services</b><span>Lab 1 · Ember · 6 pages</span></a>
+      <a class="f-crimson pass" style="--i:2" href="#"><b>Automated Operations</b><span>Lab 2 · Crimson · 6 pages</span></a>
+      <a class="f-sapphire pass" style="--i:1" href="#"><b>Colleague Services</b><span>Lab 3 · Sapphire · 6 pages</span></a>
+      <a class="f-seafoam pass" style="--i:0" href="#"><b>Data &amp; Insights</b><span>Lab 4 · Seafoam · 6 pages</span></a>
+    </div>
+    <div class="plat">
+      <a class="btn" href="#">Every SharePoint page</a>
+      <p>The platform hub is Navy, nine pages, and holds all four labs together. Sixty pages in all, with business and team site templates.</p>
+    </div>
+  </section>
+
+  <section class="frontier f-frontier" aria-labelledby="fr-h">
+    <div class="copy pass">
+      <h2 id="fr-h" class="head">Frontier</h2>
+      <p class="lead measure">Our innovation forum. It is not a Lab, so it has its own mark: an F built from the same panels and gap, drawn to the same height as the S.</p>
+      <a class="btn dark" href="#">Visit Frontier</a>
+    </div>
+    <figure class="pass"><img src="../../assets/ccs-mark/suite/frontier-mark.svg" alt="The Frontier mark, an F built from three panels" width="386" height="632"></figure>
+  </section>
+
+  <section class="take f-paper" aria-labelledby="take-h">
+    <h2 id="take-h" class="head stair flat-sm"><span>Take the mark</span><span>with you.</span></h2>
+    <div class="act">
+      <p class="lead">SVG and PNG marks, app icons, favicons and an email signature, in every colourway.</p>
+      <a class="btn dark" href="#">Download the marks</a>
+    </div>
+    <div class="facts">
+      <p><b>Six colourways</b>Navy for the platform. Ember, Crimson, Sapphire and Seafoam for the four labs. Violet for Frontier.</p>
+      <p><b>One angle</b>Forty-five degrees, read from the master file. Every panel, cut and step in this toolkit runs on it.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="f-ink">
+  <p class="name">Colleague &amp;<br>Customer Service</p>
+  <nav aria-label="Footer"><a href="#">Guidelines</a><a href="sheet.html">The hand-off sheet</a><a href="qbr.html">QBR template</a></nav>
+</footer>
+
+<script>
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.pass').forEach((el, i) => { el.style.transitionDelay = (el.style.getPropertyValue('--i') ? (+el.style.getPropertyValue('--i') * 70) : 0) + 'ms'; io.observe(el); });
+  } else document.querySelectorAll('.pass').forEach(el => el.classList.add('in'));
+</script>
+</body>
+</html>

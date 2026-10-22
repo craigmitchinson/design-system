@@ -1,0 +1,54 @@
+/* The space between: shared system. Every shape below comes from the CCS mark's own geometry. */
+:root{
+  --paper:#F2F4F7; --paper-2:#E1E6EE; --ink:#0D1730; --ink-soft:#46536E;
+  --navy:#0D1730; --navy-hi:#233A6E; --lead:#5B82D1; --silver:#F4F7FB; --silver-soft:#B9C4D9;
+  --f-display:"League Spartan",system-ui,sans-serif; --f-text:"Figtree",system-ui,sans-serif;
+  --s-small:15px; --s-body:clamp(17px,1rem + .25vw,19px); --s-lead:clamp(20px,1.1rem + .7vw,26px);
+  --s-head:clamp(34px,1.3rem + 2.6vw,58px); --s-display:clamp(56px,7.4vw,124px);
+  --m:clamp(20px,6vw,104px);
+  /* The gap: 45 degrees, 1/28 of the mark height, 1/6 of a panel. g is measured square to the cut. */
+  --g:clamp(12px,1.5vw,22px); --d:calc(var(--g) * 1.4142); --H:clamp(72px,8vw,132px); --X:40%;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;font-family:var(--f-text);font-size:var(--s-body);line-height:1.5;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:none}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.035em;line-height:.92;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--lead);outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Signature: the diagonal gap. A field ends on a 45 degree cut; the next begins one gap further on. */
+.ends-gap{padding-bottom:var(--H);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--H)),calc(var(--X) + var(--H)) calc(100% - var(--H)),var(--X) 100%,0 100%)}
+.starts-gap{margin-top:calc(-1 * var(--H));padding-top:var(--H);clip-path:polygon(calc(var(--Xin) + var(--H) + var(--d)) 0,100% 0,100% 100%,0 100%,0 var(--H),calc(var(--Xin) + var(--d)) var(--H))}
+.starts-gap.ends-gap{clip-path:polygon(calc(var(--Xin) + var(--H) + var(--d)) 0,100% 0,100% calc(100% - var(--H)),calc(var(--X) + var(--H)) calc(100% - var(--H)),var(--X) 100%,0 100%,0 var(--H),calc(var(--Xin) + var(--d)) var(--H))}
+
+/* Masks cut from the mark: the upper panel, the middle panel, and the two crescents. */
+.m-panel{-webkit-mask:url(panel-upper.svg) center/contain no-repeat;mask:url(panel-upper.svg) center/contain no-repeat;aspect-ratio:2200/3320}
+.m-band{-webkit-mask:url(panel-middle.svg) center/contain no-repeat;mask:url(panel-middle.svg) center/contain no-repeat;aspect-ratio:2800/1850}
+.m-cl{-webkit-mask:url(crescent-left.svg) center/contain no-repeat;mask:url(crescent-left.svg) center/contain no-repeat;aspect-ratio:1}
+.m-cr{-webkit-mask:url(crescent-right.svg) center/contain no-repeat;mask:url(crescent-right.svg) center/contain no-repeat;aspect-ratio:1}
+.glyph{display:inline-block;height:.82em;width:.82em;vertical-align:-.08em;background:currentColor;margin:0 .1em}
+
+/* Picture placeholder: shows the crop shape and says what goes in it. */
+.ph{position:relative;background:var(--paper-2);color:var(--ink-soft);display:grid;place-items:center}
+.ph span{font-size:var(--s-small);line-height:1.4;max-width:15em;text-align:center}
+
+/* One action shape: the corner cut at the gap's angle. */
+.btn{display:inline-block;font-family:var(--f-text);font-weight:600;font-size:var(--s-body);text-decoration:none;padding:.9em 2.2em .9em 1.3em;background:var(--silver);color:var(--navy);clip-path:polygon(0 0,100% 0,100% calc(100% - 1em),calc(100% - 1em) 100%,0 100%)}
+.btn:hover{background:#fff}
+
+.bar{display:flex;align-items:center;justify-content:flex-start;gap:clamp(32px,5vw,72px);padding:28px var(--m);position:relative;z-index:2}
+.wordmark{display:flex;align-items:center;gap:12px;font-family:var(--f-display);font-weight:700;font-size:32px;letter-spacing:-.04em;text-decoration:none;line-height:1}
+.wordmark img{height:40px;width:auto}
+.bar nav{display:flex;gap:32px;font-size:var(--s-small);font-weight:600}
+.bar nav a{text-decoration:none}
+.bar nav a:hover{text-decoration:underline;text-underline-offset:6px}
+@media (max-width:700px){.bar nav a:not(:first-child){display:none}}
+
+@media (prefers-reduced-motion:no-preference){
+  .arrive{animation:arrive 1100ms cubic-bezier(.2,.7,.1,1) both}
+  @keyframes arrive{from{opacity:0;transform:translate(-56px,56px)}to{opacity:1;transform:none}}
+}

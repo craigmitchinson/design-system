@@ -1,0 +1,103 @@
+/* CCS synthesis. Four moves: the cut, the step, the light, the found C. Nothing else decorates. */
+:root{
+  --ink:#0D1730; --ink-2:#3B4763; --stone:#F3F1EC; --silver:#F4F7FB; --silver-2:#C9D3E6; --lead:#5B82D1;
+  --f-d:"Schibsted Grotesk",system-ui,sans-serif; --f-t:"Source Serif 4",Georgia,serif;
+  --f-w:"Familjen Grotesk",system-ui,sans-serif; --f-m:"IBM Plex Mono",ui-monospace,monospace;
+  --s-text:clamp(17px,.85rem + .4vw,20px); --s-lead:clamp(19px,1rem + .6vw,25px);
+  --s-hero:clamp(72px,11vw,200px); --s-head:clamp(30px,5.2vw,96px); --s-name:clamp(40px,6.4vw,120px);
+  --m:clamp(20px,6vw,112px);
+  /* The channel: the refined mark's gap, 0.18 of a panel, scaled to the section. */
+  --g:clamp(24px,2.6vw,48px); --d:calc(var(--g) * 1.4142); --H:clamp(56px,7vw,128px);
+  --pad:clamp(64px,10vh,140px); --S:clamp(96px,24vw,400px); --cut:clamp(22px,2.6vw,48px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box}
+html{background:#0D1730}
+body{margin:0;background:#0D1730;font-family:var(--f-t);font-size:var(--s-text);line-height:1.55;color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:800}
+:focus-visible{outline:3px solid currentColor;outline-offset:5px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;z-index:9;background:var(--stone);color:var(--ink);padding:10px 16px;font-family:var(--f-d);font-weight:800}
+.skip:focus{top:12px}
+
+.display{font-family:var(--f-d);font-weight:800;letter-spacing:-.035em;line-height:.95}
+.hero-size{font-size:var(--s-hero)}
+.head{font-size:var(--s-head)}
+.name{font-size:var(--s-name)}
+.mono{font-family:var(--f-m);font-variant-numeric:tabular-nums}
+.lead{font-size:var(--s-lead);line-height:1.45}
+
+/* THE STEP. Each line steps right by one line-height, so the headline descends at 45 degrees. */
+.step > span{display:block;white-space:nowrap}
+.step > span:nth-child(2){margin-left:1lh}
+.step > span:nth-child(3){margin-left:2lh}
+.step em{font-style:normal;color:var(--accent,var(--lead))}
+
+/* Surfaces. One colourway each. Platform fades straight from the top-left.
+   The ground is painted by ::before so a section can show the channel colour (--chan) along its top cut. */
+.s{position:relative;isolation:isolate;overflow:hidden;padding:var(--pad) var(--m);--top-o:0 0,100% 0;--top-i:0 0,100% 0;--bot:100% 100%,0 100%;background:var(--chan,var(--bg));clip-path:polygon(var(--top-o),var(--bot))}
+.s::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bg);clip-path:polygon(var(--top-i),var(--bot))}
+.s-platform{--bg:linear-gradient(135deg,#0D1730,#233A6E);color:var(--silver)}
+.s-stone{--bg:var(--stone);color:var(--ink)}
+.s-lab{--bg:linear-gradient(135deg,var(--gr),var(--grh));color:#fff}
+
+/* THE CUT. One long 45 degree run (--S) rising to the right, at the left (L) or right (R) edge.
+   The channel, one mark gap wide (--g), runs the whole boundary edge to edge in a contrasting ground.
+   A section takes cbL or cbR for its lower edge; the next takes the matching ctL or ctR and sets --chan. */
+.cbR{--bot:100% calc(100% - var(--S)),calc(100% - var(--S)) 100%,0 100%}
+.cbL{--bot:100% calc(100% - var(--S)),var(--S) calc(100% - var(--S)),0 100%}
+.cbR{padding-bottom:calc(var(--pad) + var(--S) * .45)}
+.cbL{padding-bottom:calc(var(--pad) + var(--S))}
+.ctR{--top-o:0 var(--S),calc(100% - var(--S)) var(--S),100% 0;--top-i:0 calc(var(--S) + var(--g)),calc(100% + var(--d) - var(--S) - var(--g)) calc(var(--S) + var(--g)),100% var(--d)}
+.ctL{--top-o:0 var(--S),var(--S) 0,100% 0;--top-i:0 calc(var(--S) + var(--d)),calc(var(--S) + var(--d) - var(--g)) var(--g),100% var(--g)}
+.ctR,.ctL{margin-top:calc(-1 * var(--S))}
+.ctR{padding-top:calc(var(--S) + var(--g) + var(--pad))}
+.ctL{padding-top:calc(var(--S) + var(--d) + var(--pad) - var(--m))}
+
+/* THE LIGHT. One per surface: the colourway's middle-panel fade, cut at 45 degrees on its leading edge. */
+.lit{background:linear-gradient(135deg,var(--l1),var(--l2));color:var(--ld);clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.s-platform .lit{--l1:#D4DCEA;--l2:#F4F7FB;--ld:#14244A}
+.s-stone .lit{--l1:#7E93B8;--l2:#A3B4CF;--ld:#0D1730}
+
+/* THE FOUND C. The three panels in Ink on Stone, the crescent spaces empty; the Cs fill in the platform lead as it enters view. Filled under reduced motion. */
+.fc svg{width:100%;height:auto}
+.fc .pn{fill:var(--ink)}
+.fc .cr{fill:var(--lead)}
+@media (prefers-reduced-motion:no-preference){
+  .js .fc .cr{transition:fill-opacity 1.2s var(--ease) 1.1s}
+  .js .fc:not(.in) .cr{fill-opacity:0}
+}
+
+/* Bar */
+.bar{display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:26px var(--m);position:relative;z-index:3;flex-wrap:wrap}
+.wm{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--f-w);font-weight:700;letter-spacing:.01em;font-size:28px;line-height:1}
+.wm .mk{width:30px;height:36px}
+.wm .mk svg,.wm .mk img{width:100%;height:100%}
+.bar nav{display:flex;gap:clamp(18px,2.6vw,36px);font-family:var(--f-d);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.bar nav a{text-decoration:none;padding:6px 0}
+.bar nav a:hover,.bar nav a[aria-current]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px}
+@media (max-width:600px){.bar nav a.opt{display:none}}
+
+.btn{display:inline-block;font-family:var(--f-d);font-weight:800;font-size:clamp(17px,1rem + .2vw,20px);letter-spacing:-.01em;text-decoration:none;padding:.95em 1.5em .95em 1.7em;background:var(--stone);color:var(--ink);clip-path:polygon(.9em 0,100% 0,100% 100%,0 100%,0 .9em)}
+.btn:focus-visible{outline-color:var(--stone)}
+
+/* The one motion: a slide along the mark's 45 degree axis. */
+@media (prefers-reduced-motion:no-preference){
+  .js .rise{translate:-17px 17px;opacity:0;transition:translate .9s var(--ease),opacity .6s linear}
+  .js .rise.in{translate:0 0;opacity:1}
+  .glide,.btn{transition:translate .35s var(--ease)}
+  .glide:hover,.glide:focus-visible,.btn:hover,.btn:focus-visible{translate:5.66px -5.66px}
+}
+
+/* Assembly: outer panels slide in along the axis, the crescents fade up in the space they leave. */
+@media (prefers-reduced-motion:no-preference){
+  .asm .p1{animation:in-u 1.2s var(--ease) both}
+  .asm .p3{animation:in-d 1.2s var(--ease) both}
+  .asm .c1,.asm .c2{animation:fade .55s linear both .65s}
+  @keyframes in-u{from{transform:translate(780px,-780px)}}
+  @keyframes in-d{from{transform:translate(-780px,780px)}}
+  @keyframes fade{from{opacity:0}}
+}

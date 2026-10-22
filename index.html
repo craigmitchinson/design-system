@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCS brand toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform-light.svg" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/svg+xml" href="marks/refined-small-platform.svg" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="kit/ccs.css">
+<style>
+.hero{min-height:100svh;display:flex;flex-direction:column;padding:0 0 calc(var(--S) + var(--pad) * .5)}
+.hero-in{flex:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center;gap:var(--m);padding:2vh var(--m) 4vh}
+.hero h1{margin-bottom:.42em}
+.hero .lead{max-width:25em;color:var(--fg-2);margin-bottom:44px}
+.hero-mark{--mark-h:min(72vh,44vw);justify-self:center}
+.idea{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(40px,6vw,120px);align-items:center}
+.idea h2{margin-bottom:.7em}
+.idea .body{max-width:34em;display:grid;gap:1em}
+.idea figure{margin:0;justify-self:center;width:min(100%,400px)}
+.idea figcaption{margin-top:24px;font-style:italic;color:var(--fg-2);font-size:17px;max-width:21em}
+.labs{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,22em);gap:clamp(32px,5vw,96px);align-items:end}
+.labs .lit{padding:clamp(28px,3.4vw,56px) clamp(28px,3.4vw,56px) clamp(28px,3.4vw,56px) calc(var(--cut) + 20px)}
+.labs p{color:var(--fg-2)}
+.band{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,5vw,96px);align-items:center}
+.band .mark{--mark-h:var(--bh,clamp(150px,23vw,360px))}
+.band .tag{font-size:16px;margin:16px 0 1.3em}
+.band p.lead{color:var(--fg);max-width:22em}
+.band.flip{grid-template-columns:minmax(0,1fr) auto;text-align:right}
+.band.flip .mark{order:2}
+.band.flip p.lead{margin-left:auto}
+.b1{--bh:clamp(150px,24vw,380px)} .b2{--bh:clamp(150px,21vw,330px)} .b3{--bh:clamp(150px,25vw,390px)} .b4{--bh:clamp(150px,20vw,320px)}
+.b5 .lit{padding:clamp(28px,3.4vw,56px) clamp(32px,4vw,72px) clamp(28px,3.4vw,56px) calc(var(--cut) + 24px)}
+.kitsec .lead{max-width:30em;margin-top:.6em;color:var(--fg-2)}
+.kitsec .link-list{margin-top:clamp(40px,7vh,88px)}
+@media (max-width:860px){
+  .hero-in{grid-template-columns:1fr;align-content:center}
+  .hero-mark{--mark-h:clamp(180px,32vh,300px);justify-self:start;order:-1}
+  .idea,.labs{grid-template-columns:1fr}
+  .idea figure{justify-self:start;width:min(70%,280px)}
+}
+@media (max-width:560px){
+  .band,.band.flip{grid-template-columns:1fr;gap:28px;text-align:left}
+  .band.flip .mark{order:0}
+  .band.flip p.lead{margin-left:0}
+  .band .mark{--mark-h:150px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="section hero" data-colourway="platform" aria-label="Introduction">
+  <div class="bar">
+    <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main"><ul>
+      <li><a href="index.html">Home</a></li><li><a href="how-ccs-works.html">How CCS works</a></li><li><a href="mark-suite.html">Mark Suite</a></li><li><a href="guidelines.html">Guidelines</a></li><li><a href="motion.html">Motion</a></li><li><a href="deck.html">Deck</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="journey.html">Journey</a></li>
+    </ul></nav>
+  </div>
+  <div class="hero-in">
+    <div>
+      <h1 class="display hero-size step"><span>Hand it</span><span>on.</span></h1>
+      <p class="lead">The CCS brand toolkit. Everything you need to carry the mark well, for every colleague who passes work on.</p>
+      <a class="btn" href="#toolkit">Open the toolkit</a>
+    </div>
+    <div class="mark hero-mark" data-mark="platform" data-build="parts" data-assemble role="img" aria-label="The CCS mark: three panels form an S, two crescents turn it"></div>
+  </div>
+</header>
+<main id="main">
+  <section class="section" data-surface="stone" data-cut="right" aria-labelledby="idea-h">
+    <div class="idea" data-enter>
+      <div>
+        <h2 id="idea-h" class="display head step"><span>The panels slide.</span><span>The Cs are <em>the space</em></span><span>they leave.</span></h2>
+        <div class="body">
+          <p>Three panels form the S. Two crescents turn it. The Cs are Colleague and Customer, and the S between them is Service.</p>
+          <p>One mark for the platform and every lab. The light middle panel is the focal point, so it is always the brightest part of the mark. That is where the work passes from one of us to the next.</p>
+        </div>
+      </div>
+      <figure>
+        <div class="found-c" role="img" aria-label="The three panels of the mark in ink. The two Cs fill in the spaces the panels leave."></div>
+        <figcaption>Look again. The Cs were there all along: the space the panels leave.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" data-colourway="platform" data-cut="left" aria-labelledby="labs-h">
+    <div class="labs" data-enter>
+      <h2 id="labs-h" class="display head lit">Four labs.<br>One platform.</h2>
+      <p class="lead">Use the platform navy when several labs appear together. Each lab uses its own colourway only for its own materials.</p>
+    </div>
+  </section>
+
+  <!-- DRAFT lab purpose lines, below, for the lab leads to confirm. Keep the wording as it is until they do. -->
+  <section class="section b1" data-colourway="ember" data-cut="right" aria-labelledby="l1"><div class="band" data-enter>
+    <div class="mark" data-mark="ember"></div>
+    <div><h3 id="l1" class="display name">24x7 Services</h3><p class="tag">Lab 1 · Ember</p><p class="lead">Round the clock, so nobody waits for the morning.</p></div>
+  </div></section>
+  <section class="section b2" data-colourway="crimson-obsidian" data-cut="left" aria-labelledby="l2"><div class="band flip" data-enter>
+    <div class="mark" data-mark="crimson-obsidian"></div>
+    <div><h3 id="l2" class="display name">Automated Operations</h3><p class="tag">Lab 2 · Crimson</p><p class="lead">The routine done by machines, so people can do the rest.</p></div>
+  </div></section>
+  <section class="section b3" data-colourway="royal-sapphire" data-cut="right" aria-labelledby="l3"><div class="band" data-enter>
+    <div class="mark" data-mark="royal-sapphire"></div>
+    <div><h3 id="l3" class="display name">Colleague Services</h3><p class="tag">Lab 3 · Sapphire</p><p class="lead">Looking after the people who look after customers.</p></div>
+  </div></section>
+  <section class="section b4" data-colourway="seafoam-teal" data-cut="left" aria-labelledby="l4"><div class="band flip" data-enter>
+    <div class="mark" data-mark="seafoam-teal"></div>
+    <div><h3 id="l4" class="display name">Data &amp; Insights</h3><p class="tag">Lab 4 · Seafoam</p><p class="lead">What the numbers say, in words everyone can use.</p></div>
+  </div></section>
+  <section class="section b5" data-colourway="neon-cyberpunk" data-cut="right" aria-labelledby="l5"><div class="band" data-enter>
+    <h3 id="l5" class="display name lit">Frontier</h3>
+    <div><p class="tag">Innovation forum · Frontier</p><p class="lead">Where we try the next idea first.</p></div>
+  </div></section>
+  <!-- End of DRAFT lab purpose lines. -->
+
+  <section class="section kitsec" data-surface="stone" data-cut="left" id="toolkit" aria-labelledby="kit-h">
+    <div data-enter>
+      <h2 id="kit-h" class="display head">The toolkit.</h2>
+      <p class="lead">Everything for the CCS mark in one place: the mark and its colourways, guidelines, motion, the deck, and the SharePoint sites built on them.</p>
+    </div>
+    <ul class="link-list" data-enter>
+      <li><a class="nudge lit" href="mark-suite.html"><span class="ln">Mark Suite</span><span class="ld">The final mark: six colourways in use, two spares (Emerald, Saffron), variants, type, lockups and sizes.</span></a></li>
+      <li><a class="nudge" href="guidelines.html"><span class="ln">Brand Guidelines</span><span class="ld">The rules: construction, colour, clear space and misuse.</span></a></li>
+      <li><a class="nudge" href="motion.html"><span class="ln">Mark in Motion</span><span class="ld">Every motion scene, with sound and MP4 or GIF export.</span></a></li>
+      <li><a class="nudge" href="deck.html"><span class="ln">Mark Deck</span><span class="ld">Eleven slides introducing the mark to colleagues.</span></a></li>
+      <li><a class="nudge" href="downloads.html"><span class="ln">Downloads</span><span class="ld">SVG and PNG marks, app icons, favicons and an email signature.</span></a></li>
+      <li><a class="nudge" href="journey.html"><span class="ln">Design Journey</span><span class="ld">The record: five candidates and how we chose. Shown in their original colours.</span></a></li>
+    </ul>
+    <footer class="foot">
+      <a class="wordmark" href="index.html" aria-label="CCS home"><span class="mark" data-mark="platform"></span><span aria-hidden="true">CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+      <a href="how-ccs-works.html">How CCS works</a><a href="archive/directions/synthesis/qbr.html">QBR pack</a><a href="refined-mark.html">The refined mark</a><a href="kit/gallery.html">Kit gallery</a>
+    </footer>
+  </section>
+</main>
+<script src="palette.js"></script>
+<script src="kit/ccs.js"></script>
+</body>
+</html>

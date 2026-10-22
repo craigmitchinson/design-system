@@ -1,0 +1,94 @@
+/* Exploration only. Lloyds family colours, measured from lloydsbank.com. */
+:root{--lg:#006A4D;--ldeep:#024731;--lbright:#11B67A;--llime:#6CF479;--lblack:#0B0B0C;--lnear:#323233;--lgrey:#F1F1F1;--serif:'Fraunces',Georgia,serif}
+.serif,.sub3,.t-fraunces{font-family:var(--serif);font-weight:900;font-variation-settings:'SOFT' 100,'WONK' 0,'opsz' 144;letter-spacing:-.02em;line-height:1}
+h2.serif{font-size:clamp(40px,5.2vw,80px);margin:0 0 .35em}
+.sub3{font-size:26px;margin:0 0 .35em;font-variation-settings:'SOFT' 100,'WONK' 0,'opsz' 72;letter-spacing:-.01em}
+.narrow{max-width:40em}
+.note{color:var(--fg-2);margin-top:40px}
+.kick{font-family:var(--f-m);font-size:14px;letter-spacing:.04em;margin:0 0 28px;color:var(--fg-2)}
+.g-deep{background:var(--ldeep);color:#fff;--fg:#fff;--fg-2:#CDEBDD;--ground:#024731}
+.g-white{background:#fff;color:var(--lblack);--fg:var(--lblack);--fg-2:var(--lnear)}
+.g-grey{background:var(--lgrey);color:var(--lblack);--fg:var(--lblack);--fg-2:var(--lnear)}
+.g-lime{background:var(--llime);color:var(--lblack);--fg:var(--lblack);--fg-2:var(--lblack)}
+.g-green{background:var(--lg);color:#fff;--fg:#fff;--fg-2:#E3F3EC}
+.wm-mark{height:36px;width:auto}
+.nav a{color:var(--fg)}
+.hero{min-height:100svh;display:flex;flex-direction:column;padding-top:0}
+.hero-in{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--m);align-items:center}
+.hero h1{font-size:clamp(48px,7vw,120px);margin:0 0 .4em;max-width:8.5em}
+.hero .lead{max-width:26em;color:var(--fg-2)}
+.hero-mark{height:auto;width:auto;max-height:min(68vh,38vw);max-width:100%;justify-self:center}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,3vw,48px);padding:clamp(32px,4vw,64px) 0;margin-top:24px;align-items:end}
+.trio.on-green{background:var(--lg);color:#fff;padding-left:clamp(12px,4vw,64px);padding-right:clamp(12px,4vw,64px)}
+.trio figure{margin:0;display:grid;justify-items:center;gap:20px}
+.trio img{height:clamp(72px,16vw,240px);width:auto}
+.trio figcaption{font-size:16px;text-align:center}
+.vrow{display:grid;grid-template-columns:minmax(0,16em) minmax(0,1fr);gap:clamp(20px,3vw,48px);margin-top:56px}
+.vhead p{font-size:16px;margin:0;color:var(--lnear)}
+.vcells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.cell{display:flex;align-items:flex-end;flex-wrap:wrap;gap:16px 20px;padding:24px;min-width:0}
+.cell img{width:auto;display:block;max-width:100%}
+/* Marks keep their true ratio: a fixed height with max-width:100% squashes the box when the cell is narrow, so large marks size by max-height and height:auto. */
+.cell .s256{height:auto;max-height:256px}
+.gw{background:#fff}.gb{background:#000}.gg{background:var(--lg)}
+.lock-row{display:grid;gap:72px;margin-top:40px}
+.lock1,.lock2{display:flex;flex-wrap:wrap;align-items:center}
+.lock1{flex-direction:column;align-items:flex-start;gap:14px}
+.lk{display:inline-flex;align-items:center;gap:20px}
+.lk img{height:88px;width:auto}
+.lk-wm{font-family:var(--f-w);font-weight:700;font-size:60px;line-height:1;color:var(--lblack)}
+.lk-sub{font-size:15px;color:var(--lnear);padding-left:2px}
+.lock2 .rule{width:1px;height:88px;background:var(--lnear);margin:0 27px}
+.lloyds-logo{height:88px;width:auto}
+.banner{display:block;width:100%;max-width:1200px;height:auto;margin:32px 0 48px}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px);margin-bottom:40px}
+.spec{margin:0}
+.spec p{font-size:clamp(48px,5vw,84px);line-height:1;margin:0 0 16px;color:var(--lblack)}
+.spec figcaption{font-size:16px}
+.spec.chosen p{text-decoration:underline;text-decoration-thickness:5px;text-underline-offset:14px}
+.t-young{font-family:'Young Serif',serif;font-weight:400;letter-spacing:-.02em}
+.t-roboto{font-family:'Roboto Serif',serif;font-weight:900;font-variation-settings:'opsz' 144;letter-spacing:-.02em}
+.apps{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:40px;margin-top:32px;align-items:start}
+.apps figure{margin:0}
+.apps figcaption{margin-top:12px;font-size:16px;color:var(--fg-2)}
+.apps .wide{grid-column:1/-1}
+.teams{width:180px;height:180px;background:var(--ldeep);border-radius:28px;display:grid;place-items:center;box-shadow:0 0 0 1px #3C7A62}
+.teams img{height:118px;width:auto}
+.sig{background:#fff;color:var(--lblack);padding:28px;display:flex;gap:20px;align-items:flex-start;max-width:520px}
+.sig img{height:52px;width:auto;flex:none}
+.sig p{margin:0;font-size:15px;line-height:1.45}
+.sig .sig-n{font-family:var(--serif);font-weight:900;font-variation-settings:'SOFT' 100,'opsz' 72;font-size:22px}
+.sig .sig-g{color:var(--lg);margin-top:8px;font-weight:600}
+.slide{aspect-ratio:16/9;max-width:1100px;background:var(--ldeep);box-shadow:0 0 0 1px #3C7A62;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6%;align-items:center;padding:6%;container-type:inline-size}
+.slide img{height:44cqw;width:auto}
+.slide p{margin:0}
+.s-k{font-family:var(--f-m);font-size:max(11px,1.6cqw);color:#CDEBDD}
+.slide .s-h{font-family:var(--serif);font-weight:900;font-variation-settings:'SOFT' 100,'opsz' 144;font-size:9cqw;line-height:1;margin:.2em 0 .3em}
+.s-s{font-size:max(12px,2.2cqw);color:#fff;border-top:3px solid var(--lbright);padding-top:.8em}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.two ul{margin:0;padding-left:1.1em;display:grid;gap:.4em}
+.gn{background:#15223E}
+.lbg-cells{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lbg-cells .beside{grid-column:1/-1;gap:24px 40px;padding-top:8px}
+.pair{display:inline-flex;align-items:flex-end;gap:.35em}
+.pair img{width:auto;display:block;max-width:none}
+.pair .s256{height:256px}
+.trio.on-navy{background:#15223E;color:#fff;padding-left:clamp(12px,4vw,64px);padding-right:clamp(12px,4vw,64px)}
+@media (max-width:1100px){.vrow{grid-template-columns:1fr}}
+@media (max-width:860px){
+  .hero-in{grid-template-columns:1fr;align-content:center;gap:32px}
+  .hero-mark{max-height:clamp(180px,34vh,300px);justify-self:start;order:-1}
+  .specs,.two{grid-template-columns:1fr}
+  .vcells{grid-template-columns:1fr}
+  .apps{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .trio figcaption{font-size:14px}
+  .cell .s256{max-height:200px}
+  .beside .s256{height:120px}
+  .lk img,.lloyds-logo{height:56px}
+  .lk-wm{font-size:40px}
+  .lock2 .rule{height:56px;margin:0 17px}
+  .lock2{row-gap:16px}
+  .sig{padding:20px}
+}

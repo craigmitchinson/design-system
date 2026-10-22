@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How CCS works</title>
+<link rel="icon" type="image/svg+xml" href="../../assets/ccs-mark/suite/ccs-mark-platform.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Familjen+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="synthesis.css">
+<script src="../../palette.js"></script>
+<style>
+.top{padding-top:0}
+.top .bar{padding-left:0;padding-right:0}
+.top-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--m);align-items:end;padding-top:clamp(40px,8vh,96px)}
+.top h1{margin-bottom:.4em}
+.top .lead{max-width:26em;color:var(--silver-2)}
+.top .mk-l{height:clamp(140px,22vw,320px);aspect-ratio:5137.8/6158.35}
+.mk-l svg,.mk-l img{width:100%;height:100%}
+.sec-h{margin-bottom:.5em}
+.intro{max-width:34em;margin-bottom:clamp(40px,6vh,72px)}
+.s-platform .intro{color:var(--silver-2)}
+.s-stone .intro{color:var(--ink-2)}
+.markrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(32px,6vw,112px);align-items:center}
+.markrow .mk-l{height:clamp(160px,20vw,280px)}
+.markrow p{max-width:30em}
+.markrow a{font-family:var(--f-d);font-weight:800;display:inline-block;margin-top:24px}
+.moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(56px,7vw,112px) clamp(32px,5vw,96px)}
+.move h3{font-size:clamp(28px,3vw,44px);margin:28px 0 14px}
+.move .dd{display:grid;gap:8px;color:var(--silver-2);max-width:30em}
+.move .dd b{color:var(--silver);font-weight:600}
+.ex{height:220px;position:relative;overflow:hidden}
+.ex-cut{background:#0D1730}
+.ex-cut i{position:absolute;inset:0}
+.ex-cut .a{background:var(--stone);clip-path:polygon(0 0,100% 0,100% 30px,calc(100% - 130px) 160px,0 160px)}
+.ex-cut .b{background:linear-gradient(135deg,#260C03,#662209);clip-path:polygon(0 184px,calc(100% - 120px) 184px,100% 64px,100% 100%,0 100%)}
+.ex-step{font-size:clamp(48px,6vw,88px);padding-top:24px}
+.ex-lit{display:flex;align-items:center}
+.ex-lit .lit{padding:28px 32px 28px calc(var(--cut) + 18px);font-family:var(--f-d);font-weight:800;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.02em;line-height:1.05}
+.ex-c{background:var(--stone);display:flex;align-items:center;justify-content:center}
+.ex-c [data-fc]{height:184px;aspect-ratio:5137.8/6158.35}
+.ex-c svg{height:100%;width:auto}
+.ways{margin-top:clamp(112px,16vh,200px)}
+.sw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
+.way{background:linear-gradient(135deg,var(--gr),var(--grh));color:#fff;padding:clamp(24px,2.6vw,40px);min-height:300px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
+.way h3{font-size:clamp(28px,2.6vw,40px)}
+.way .role{color:var(--tint);margin-top:6px}
+.way .lit{padding:16px 18px 16px calc(var(--cut) + 12px);font-size:15px;line-height:1.5}
+.way dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 14px}
+.way dt{font-family:var(--f-t);font-weight:600}
+.way dd{margin:0}
+.spec{display:grid;gap:clamp(36px,5vh,64px)}
+.spec .row{display:grid;grid-template-columns:minmax(0,14em) minmax(0,1fr);gap:16px 4vw;align-items:baseline}
+.spec .meta{color:var(--ink-2);font-size:16px}
+.spec .meta .mono{display:block;font-size:15px;margin-top:4px}
+.spec .wmk{font-family:var(--f-w);font-weight:700;letter-spacing:.01em;font-size:64px;line-height:1}
+.spec .lit{padding:20px 24px 20px calc(var(--cut) + 14px);font-size:18px;justify-self:start}
+.voice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,64px);margin-bottom:clamp(56px,8vh,96px)}
+.voice h3{font-size:clamp(26px,2.4vw,36px);margin-bottom:12px}
+.voice p{color:var(--silver-2)}
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(28px,4vw,64px);align-items:stretch}
+.ba ol{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.ba .before{color:var(--silver-2);padding:28px 0}
+.ba .lit{padding:28px 28px 28px calc(var(--cut) + 18px);font-family:var(--f-d);font-weight:800;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.015em;line-height:1.2}
+.ba h3{font-family:var(--f-t);font-weight:600;font-size:18px;margin-bottom:12px}
+.motion-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(32px,6vw,112px);align-items:center}
+.motion-row ul{margin:0;padding-left:1.1em;display:grid;gap:10px;max-width:32em}
+.motion-row .mk-l{height:clamp(180px,22vw,300px)}
+.replay{margin-top:28px;font:inherit;font-family:var(--f-d);font-weight:800;border:0;cursor:pointer;background:var(--ink);color:var(--stone);padding:.8em 1.4em .8em 1.6em;clip-path:polygon(.8em 0,100% 0,100% 100%,0 100%,0 .8em)}
+.foot{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;margin-top:clamp(72px,12vh,140px);font-size:17px;color:var(--ink-2)}
+@media (max-width:900px){.moves,.voice,.ba{grid-template-columns:1fr}.sw{grid-template-columns:repeat(2,minmax(0,1fr))}.ba .before{padding:0}}
+@media (max-width:600px){.top-in,.markrow,.motion-row{grid-template-columns:1fr}.sw{grid-template-columns:1fr}.spec .row{grid-template-columns:1fr}.spec .wmk{font-size:48px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="s s-platform cbL top">
+  <div class="bar">
+    <a class="wm" href="home.html" aria-label="CCS home"><span class="mk" data-mark="platform" data-v="small"></span><span>CCS</span></a>
+    <nav aria-label="Main"><a href="home.html#toolkit">Toolkit</a><a href="sheet.html" aria-current="page">How CCS works</a><a class="opt" href="qbr.html">QBR pack</a></nav>
+  </div>
+  <div class="top-in">
+    <div>
+      <h1 class="display hero-size step"><span>How CCS</span><span>works.</span></h1>
+      <p class="lead">Four moves, one colourway per surface, two typefaces and one motion. That is the whole system, and it all comes from the mark.</p>
+    </div>
+    <div class="mk-l" data-mark="platform" role="img" aria-label="The refined CCS mark"></div>
+  </div>
+</header>
+<main id="main">
+  <section class="s s-stone ctL cbR" style="--chan:var(--lead)" aria-labelledby="mark-h">
+    <div class="markrow rise">
+      <div class="mk-l" data-mark="platform" data-v="light" role="img" aria-label="The refined CCS mark on a light ground"></div>
+      <div>
+        <h2 id="mark-h" class="display head sec-h">The refined mark.</h2>
+        <p class="lead">One gap everywhere, now 0.18 of a panel, so the S holds at small sizes and the crescents end on true curves.</p>
+        <a href="../../../refined-mark.html">Read the mark study</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="s s-platform ctR cbL" style="--chan:var(--lead)" aria-labelledby="moves-h">
+    <div class="rise">
+      <h2 id="moves-h" class="display head sec-h">Four moves.</h2>
+      <p class="intro lead">They are the whole graphic language. Nothing else decorates.</p>
+    </div>
+    <div class="moves">
+      <article class="move rise">
+        <div class="ex ex-cut" role="img" aria-label="Two fields meeting at 45 degrees through a channel"><i class="a"></i><i class="b"></i></div>
+        <h3 class="display">The cut</h3>
+        <div class="dd"><p><b>Do</b> meet every boundary at 45 degrees, through a channel one gap wide.</p><p><b>Don't</b> divide sections with a hairline or a straight edge.</p></div>
+      </article>
+      <article class="move rise">
+        <div class="ex ex-step display step" aria-hidden="true"><span>Pass it</span><span>on.</span></div>
+        <h3 class="display">The step</h3>
+        <div class="dd"><p><b>Do</b> step two or three lines right by one line-height each.</p><p><b>Don't</b> step more than one headline on a screen.</p></div>
+      </article>
+      <article class="move rise">
+        <div class="ex ex-lit"><p class="lit">One lit element<br>per surface.</p></div>
+        <h3 class="display">The light</h3>
+        <div class="dd"><p><b>Do</b> fill it with that colourway's middle-panel fade, cut at 45 degrees on its leading edge.</p><p><b>Don't</b> add radial glows or light a second thing.</p></div>
+      </article>
+      <article class="move rise">
+        <div class="ex ex-c fc"><div data-fc role="img" aria-label="The three panels of the mark in ink. The two Cs fill in the spaces the panels leave."></div></div>
+        <h3 class="display">The found C</h3>
+        <div class="dd"><p><b>Do</b> show the panels first, then let the two Cs fill the space they leave, once, at the featured moment.</p><p><b>Don't</b> show a crescent on its own, or repeat it as a pattern, a bullet or a frame.</p></div>
+      </article>
+    </div>
+    <section class="ways" aria-labelledby="col-h">
+    <div class="rise">
+      <h2 id="col-h" class="display head sec-h">One colourway per surface.</h2>
+      <p class="intro lead">Each surface takes its ground, a straight fade from the top-left, and one lit element in its middle-panel fade. Lab colours stay on that lab's own materials.</p>
+    </div>
+    <div class="sw rise" id="sw"></div>
+    </section>
+  </section>
+
+  <section class="s s-stone ctL cbR" style="--chan:var(--lead)" aria-labelledby="type-h">
+    <div class="rise">
+      <h2 id="type-h" class="display head sec-h">Type.</h2>
+      <p class="intro lead">Schibsted Grotesk, used heavy, carries the voice. Source Serif 4 keeps it warm. Familjen Grotesk appears once, in the wordmark.</p>
+    </div>
+    <div class="spec rise">
+      <div class="row"><p class="meta">Display, hero<span class="mono">800 · 72 to 200px · 0.95 · -0.035em</span></p><p class="display hero-size">Hand it on.</p></div>
+      <div class="row"><p class="meta">Display, section<span class="mono">800 · 30 to 96px</span></p><p class="display head">Four labs. One platform.</p></div>
+      <div class="row"><p class="meta">Lead<span class="mono">Source Serif 4 · 19 to 25px · 1.45</span></p><p class="lead">Everything you need to carry the mark well.</p></div>
+      <div class="row"><p class="meta">Text<span class="mono">Source Serif 4 · 17 to 20px · 1.55</span></p><p style="max-width:34em">Three panels form the S. Two crescents turn it. The light middle panel is the focal point and is always the brightest part of the mark.</p></div>
+      <div class="row"><p class="meta">Wordmark<span class="mono">Familjen Grotesk 700 · +10</span></p><p class="wmk">CCS</p></div>
+      <div class="row"><p class="meta">Figures and data<span class="mono">IBM Plex Mono · 400</span></p><p class="lit mono">#0D1730 &nbsp; 0.18 W &nbsp; 45° &nbsp; 1.2 s</p></div>
+    </div>
+  </section>
+
+  <section class="s s-platform ctR cbL" style="--chan:var(--lead)" aria-labelledby="voice-h">
+    <div class="rise">
+      <h2 id="voice-h" class="display head sec-h">Voice.</h2>
+      <p class="intro lead">We write about people passing work between them, to colleagues, as you and we.</p>
+    </div>
+    <div class="voice rise">
+      <div><h3 class="display">Say one thing.</h3><p>Short declaratives. One idea per sentence, with the point first.</p></div>
+      <div><h3 class="display">Write to colleagues.</h3><p>You and we. Never users, stakeholders or resources.</p></div>
+      <div><h3 class="display">Name the hand-off.</h3><p>Work moves between people. Say who passes it and who picks it up.</p></div>
+    </div>
+    <div class="ba rise">
+      <div><h3>Before</h3><ol class="before"><li>Our best-in-class platform empowers stakeholders to unlock value.</li><li>Please be advised that the toolkit has been updated.</li><li>Click here to access the resources.</li></ol></div>
+      <div><h3>After</h3><ol class="lit"><li>Everything you need to carry the mark well.</li><li>The toolkit has changed. Here is what is new.</li><li>Open the toolkit.</li></ol></div>
+    </div>
+  </section>
+
+  <section class="s s-stone ctL" style="--chan:var(--lead)" aria-labelledby="motion-h">
+    <div class="motion-row rise">
+      <div>
+        <h2 id="motion-h" class="display head sec-h">One motion.</h2>
+        <p class="intro lead" style="margin-bottom:24px">Everything slides along the mark's own 45 degree axis.</p>
+        <ul>
+          <li>The mark assembles once on load: the outer panels slide in along their axis and the crescents fade up in the space they leave, in about 1.2 seconds.</li>
+          <li>Sections slide in by 24px along the axis as they enter view.</li>
+          <li>List items slide 8px along the axis on hover and focus.</li>
+          <li>With reduced motion, everything is static and assembled.</li>
+        </ul>
+        <button class="replay" type="button" id="replay">Replay the assembly</button>
+      </div>
+      <div class="mk-l" id="mo" data-mark="platform" data-v="light" data-anim="1" role="img" aria-label="The CCS mark assembling"></div>
+    </div>
+    <footer class="foot">
+      <a class="wm" href="home.html" aria-label="CCS home"><span class="mk" data-mark="platform" data-v="small"></span><span>CCS</span></a>
+      <span>Colleague &amp; Customer Service</span>
+    </footer>
+  </section>
+</main>
+<script>
+/* Marks come from marks/ (manifest.json). Until a file exists, the refined master is used, recoloured from palette.js. */
+const RV="-110.24 -75.58 5137.8 6158.35";
+const RP=["M2412.15 -75.58A1315.59 1315.59 0 0 1 2412.15 1784.95L899.28 3297.82A1434 1434 0 0 1 979.54 1357.03L2412.15 -75.58Z","M1066.72 3465.27L1909.8 2622.19A1434 1434 0 0 1 3850.6 2541.92L3007.52 3385A1434 1434 0 0 1 1066.72 3465.27Z","M2505.17 6082.77A1315.59 1315.59 0 0 1 2505.17 4222.24L4018.04 2709.37A1434 1434 0 0 1 3937.78 4650.16L2505.17 6082.77Z","M372.02 1968.15A1434 1434 0 1 0 2396.39 3992.52A1670.8 1670.8 0 0 1 372.02 1968.15Z","M4545.3 4039.04A1434 1434 0 1 0 2520.93 2014.67A1670.8 1670.8 0 0 1 4545.3 4039.04Z"];
+const PN=["p1","p2","p3","c1","c2"], ALIAS={"crimson-obsidian":["crimson-obsidian","crimson"],"royal-sapphire":["royal-sapphire","sapphire"],"seafoam-teal":["seafoam-teal","seafoam"]};
+let uid=0;
+function markSVG(k){const g=CCS_PALETTE[k].g,id="m"+(uid++),st=[g[0],g[1],[g[0][1],g[0][0]],g[3],g[4]];
+  return `<svg viewBox="${RV}" aria-hidden="true" focusable="false"><defs>${st.map((s,i)=>`<linearGradient id="${id}${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${s[0]}"/><stop offset="1" stop-color="${s[1]}"/></linearGradient>`).join("")}</defs>${RP.map((d,i)=>`<path class="${PN[i]}" d="${d}" fill="url(#${id}${i})"/>`).join("")}</svg>`;}
+async function loadMarks(){
+  let txt="";try{const r=await fetch("marks/manifest.json",{cache:"no-store"});if(r.ok)txt=await r.text();}catch(e){}
+  const has=f=>txt.includes(f);
+  for(const el of document.querySelectorAll("[data-mark]")){
+    const k=el.dataset.mark,v=el.dataset.v||"dark";let file=null;
+    for(const a of (ALIAS[k]||[k])){const f=v==="small"?`refined-small-${a}.svg`:v.startsWith("mono")?`refined-${v}.svg`:`refined-${a}-${v}.svg`;if(has(f)){file=f;break;}}
+    if(file&&(v==="parts"||el.dataset.anim)){try{const t=await (await fetch("marks/"+file)).text();el.innerHTML=t;const s=el.querySelector("svg");s.setAttribute("aria-hidden","true");s.removeAttribute("width");s.removeAttribute("height");
+        const ps=[...s.querySelectorAll("path")];if(!s.querySelector(".p1")&&ps.length===5)ps.forEach((p,i)=>p.classList.add(PN[i]));continue;}catch(e){}}
+    el.innerHTML=file&&!(v==="parts"||el.dataset.anim)?`<img src="marks/${file}" alt="">`:markSVG(k);
+  }
+  await foundC();
+}
+/* The found C: the three panels from marks/masks in Ink, the two crescents in the platform lead, filled as it enters view. */
+async function foundC(){
+  const els=document.querySelectorAll("[data-fc]");if(!els.length)return;
+  const parts=["panel-upper","panel-middle","panel-lower","crescent-left","crescent-right"];
+  const ds=await Promise.all(parts.map(async(p,i)=>{try{const t=await (await fetch("marks/masks/"+p+".svg")).text();const m=t.match(/ d="([^"]+)"/);if(m)return m[1];}catch(e){}return RP[i];}));
+  const svg='<svg viewBox="'+RV+'" aria-hidden="true" focusable="false">'+ds.map((d,i)=>'<path class="'+(i<3?"pn":"cr")+'" d="'+d+'"/>').join("")+'</svg>';
+  els.forEach(el=>el.innerHTML=svg);
+}
+if("IntersectionObserver" in window){document.documentElement.classList.add("js");
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".rise,.fc").forEach(el=>io.observe(el));}
+loadMarks().then(()=>document.querySelectorAll("#heroMark,[data-anim]").forEach(h=>h.classList.add("asm")));
+</script>
+<script>
+const W=[["platform","Platform"],["ember","24x7 Services"],["crimson-obsidian","Automated Operations"],["royal-sapphire","Colleague Services"],["seafoam-teal","Data & Insights"],["neon-cyberpunk","Frontier"]];
+document.getElementById("sw").innerHTML=W.map(([k,lab])=>{const c=CCS_PALETTE[k];return `<div class="way" style="--gr:${c.ground};--grh:${c.groundHi};--tint:${c.g[1][1]}"><div><h3 class="display">${lab}</h3><p class="role">${c.name}</p></div><div class="lit" style="--l1:${c.g[1][0]};--l2:${c.g[1][1]};--ld:${c.deep}"><dl class="mono"><dt>Ground</dt><dd>${c.ground} to ${c.groundHi}</dd><dt>Lit</dt><dd>${c.g[1][0]} to ${c.g[1][1]}</dd><dt>Lead</dt><dd>${c.g[0][0]}</dd></dl></div></div>`}).join("");
+document.getElementById("replay").addEventListener("click",()=>{const m=document.getElementById("mo");m.classList.remove("asm");void m.offsetWidth;m.classList.add("asm");});
+</script>
+</body>
+</html>
